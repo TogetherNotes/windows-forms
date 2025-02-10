@@ -9,9 +9,29 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Resources\catalan_flag.png" />
+    <None Remove="Resources\logo_wbg.png" />
+    <None Remove="Resources\spain_flag.png" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Folder Include="Logs\" />
     <Folder Include="Logic\" />
-    <Folder Include="Resources\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Resources\catalan_flag.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\logo_wbg.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\spain_flag.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\en_flag.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
   </ItemGroup>
 
   <ItemGroup>

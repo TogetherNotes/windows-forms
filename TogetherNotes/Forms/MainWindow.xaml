@@ -5,8 +5,46 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TogetherNotes"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="450" Width="800"
+        Background="#2A3A44">
     <Grid>
+        <!-- Selector de idioma -->
+        <ComboBox Name="LanguageSelector" Width="60" Height="30"
+                  HorizontalAlignment="Right" VerticalAlignment="Top"
+                  Margin="10">
+            <ComboBoxItem Tag="en">
+                <StackPanel Orientation="Horizontal">
+                    <Image Source="pack://application:,,,/Resources/en_flag.png" Width="25" Height="15"/>
+                </StackPanel>
+            </ComboBoxItem>
+            <ComboBoxItem Tag="ca">
+                <StackPanel Orientation="Horizontal">
+                    <Image Source="pack://application:,,,/Resources/catalan_flag.png" Width="25" Height="15"/>
+                </StackPanel>
+            </ComboBoxItem>
+            <ComboBoxItem Tag="es">
+                <StackPanel Orientation="Horizontal">
+                    <Image Source="pack://application:,,,/Resources/spain_flag.png" Width="25" Height="15"/>
 
+                </StackPanel>
+            </ComboBoxItem>
+        </ComboBox>
+
+        <!-- Contenedor principal -->
+        <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" Width="300">
+            <!-- Logo -->
+            <Image Source="pack://application:,,,/Resources/logo_wbg.png" Width="150" Height="150" Margin="0,0,0,20"/>
+
+            <!-- Campos de texto -->
+            <TextBox x:Name="EmailTextBox"  Margin="0,5" Height="30"/>
+            <PasswordBox x:Name="PasswordTextBox" Margin="0,5" Height="30"/>
+
+            <!-- Botones -->
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,10">
+                <Button Content="Exit" Width="100" Margin="5" Background="Transparent" BorderBrush="White" Foreground="White"/>
+                <Button Content="Login" Width="100" Margin="5" Background="Transparent" BorderBrush="White" Foreground="White"/>
+            </StackPanel>
+        </StackPanel>
     </Grid>
+
 </Window>
