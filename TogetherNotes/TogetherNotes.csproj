@@ -15,17 +15,35 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Update="Languages\Resource1.Designer.cs">
+    <Compile Update="Languages\strings.es.Designer.cs">
+      <DependentUpon>strings.es.resx</DependentUpon>
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
-      <DependentUpon>Resource1.resx</DependentUpon>
+    </Compile>
+    <Compile Update="Languages\strings.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>strings.resx</DependentUpon>
+    </Compile>
+    <Compile Update="Languages\strings.ca.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>strings.ca.resx</DependentUpon>
     </Compile>
   </ItemGroup>
 
   <ItemGroup>
-    <EmbeddedResource Update="Languages\Resource1.resx">
+    <EmbeddedResource Update="Languages\strings.es.resx">
+      <LastGenOutput>strings.es.Designer.cs</LastGenOutput>
       <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resource1.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Languages\strings.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>strings.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Languages\strings.ca.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>strings.ca.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
 
