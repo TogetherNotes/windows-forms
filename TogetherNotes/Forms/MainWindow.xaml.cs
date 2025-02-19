@@ -13,7 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace TogetherNotes
+namespace TogetherNotes.Forms
 {
     /// <summary>
     /// Lógica de interacción para MainWindow.xaml
@@ -23,6 +23,22 @@ namespace TogetherNotes
         public MainWindow()
         {
             InitializeComponent();
+        }
+
+        private void CloseWindow(object sender, RoutedEventArgs e)
+        {
+            Application.Current.Shutdown();
+        }
+
+        private void MinimizeWindow(object sender, RoutedEventArgs e)
+        {
+            this.WindowState = WindowState.Minimized;
+        }
+
+        private void DockPanel_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            if (e.LeftButton == MouseButtonState.Pressed)
+                DragMove();
         }
     }
 }

@@ -1,0 +1,71 @@
+﻿<Window x:Class="TogetherNotes.Forms.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:TogetherNotes.Forms"
+        mc:Ignorable="d"
+        WindowStartupLocation="CenterScreen"
+        Title="MainWindow" Height="675" Width="1200"
+        WindowStyle="None" ResizeMode="NoResize"
+        Background="Transparent">
+
+    <!-- Borde principal con bordes redondeados y opacidad -->
+    <Border CornerRadius="10" BorderThickness="2" Opacity="0.95">
+        <Border.BorderBrush>
+            <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                <GradientStop Color="#462AD8" Offset="0"/>
+                <GradientStop Color="#DA34AE" Offset="0.75"/>
+                <GradientStop Color="#8A16C1" Offset="1"/>
+            </LinearGradientBrush>
+        </Border.BorderBrush>
+
+        <Border.Background>
+            <LinearGradientBrush StartPoint="0,1" EndPoint="1,0">
+                <GradientStop Color="#2A3A44" Offset="0"/>
+                <GradientStop Color="#1B1448" Offset="1"/>
+            </LinearGradientBrush>
+        </Border.Background>
+
+        <!-- Grid principal para organizar los controles -->
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="30"/>
+                <!-- Fila para la barra de título -->
+                <RowDefinition Height="*"/>
+                <!-- Resto del espacio disponible -->
+            </Grid.RowDefinitions>
+
+            <!-- Barra de título -->
+            <Border Grid.Row="0" CornerRadius="8,8,0,0" Margin="2" Background="#1E2A33">
+                <Grid MouseDown="DockPanel_MouseDown">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+
+                    <!-- Título -->
+                    <Label Content="Together Notes" Foreground="White" VerticalAlignment="Center" Margin="10,0,0,0" />
+
+                    <!-- Botones de ventana (Minimizar y Cerrar) -->
+                    <StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Right">
+                        <!-- Botón Minimizar -->
+                        <Button Click="MinimizeWindow" Width="30" Background="Transparent" BorderBrush="Transparent">
+                            <TextBlock Text="➖" FontSize="16" Foreground="White" VerticalAlignment="Center" TextAlignment="Center"/>
+                        </Button>
+
+                        <!-- Botón Cerrar -->
+                        <Button Click="CloseWindow" Width="30" Background="Transparent" BorderBrush="Transparent">
+                            <TextBlock Text="❌" FontSize="16" Foreground="White" VerticalAlignment="Center" TextAlignment="Center"/>
+                        </Button>
+                    </StackPanel>
+                </Grid>
+            </Border>
+
+            <!-- Área de contenido (el resto de la ventana) -->
+            <Grid Grid.Row="1" Background="Transparent">
+                <!-- Aquí van los demás controles y contenido -->
+            </Grid>
+        </Grid>
+    </Border>
+</Window>
