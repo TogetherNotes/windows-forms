@@ -1,9 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.12.35527.113 d17.12
+VisualStudioVersion = 17.13.35806.99 d17.13
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TogetherNotes", "TogetherNotes\TogetherNotes.csproj", "{B41C3150-FF5F-4893-B761-D13CCDAD8F60}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TogetherNotes", "TogetherNotes.csproj", "{CF7CA58B-10DD-453A-8B16-9A81EFA82997}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,12 +11,15 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{B41C3150-FF5F-4893-B761-D13CCDAD8F60}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{B41C3150-FF5F-4893-B761-D13CCDAD8F60}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{B41C3150-FF5F-4893-B761-D13CCDAD8F60}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{B41C3150-FF5F-4893-B761-D13CCDAD8F60}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CF7CA58B-10DD-453A-8B16-9A81EFA82997}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CF7CA58B-10DD-453A-8B16-9A81EFA82997}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CF7CA58B-10DD-453A-8B16-9A81EFA82997}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CF7CA58B-10DD-453A-8B16-9A81EFA82997}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {C72AF651-E55E-423B-BD38-6EEA26CF8CE5}
 	EndGlobalSection
 EndGlobal
