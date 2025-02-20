@@ -10,7 +10,7 @@
         WindowStyle="None" ResizeMode="NoResize"
         Background="Transparent">
 
-    <!-- Borde principal con bordes redondeados y opacidad -->
+   
     <Border CornerRadius="10" BorderThickness="2" Opacity="0.95">
         <Border.BorderBrush>
             <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
@@ -27,7 +27,6 @@
             </LinearGradientBrush>
         </Border.Background>
 
-        <!-- Grid principal para organizar los controles -->
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="30"/>
@@ -37,24 +36,19 @@
             </Grid.RowDefinitions>
 
             <!-- Barra de título -->
-            <Border Grid.Row="0" CornerRadius="8,8,0,0" Margin="2" Background="#1E2A33">
+            <Border Grid.Row="0" CornerRadius="10,10,0,0"  Background="#1E2A33" Margin="0,1,0,0">
                 <Grid MouseDown="DockPanel_MouseDown">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*"/>
                         <ColumnDefinition Width="Auto"/>
                     </Grid.ColumnDefinitions>
 
-                    <!-- Título -->
                     <Label Content="Together Notes" Foreground="White" VerticalAlignment="Center" Margin="10,0,0,0" />
 
-                    <!-- Botones de ventana (Minimizar y Cerrar) -->
                     <StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Right">
-                        <!-- Botón Minimizar -->
                         <Button Click="MinimizeWindow" Width="30" Background="Transparent" BorderBrush="Transparent">
                             <TextBlock Text="➖" FontSize="16" Foreground="White" VerticalAlignment="Center" TextAlignment="Center"/>
                         </Button>
-
-                        <!-- Botón Cerrar -->
                         <Button Click="CloseWindow" Width="30" Background="Transparent" BorderBrush="Transparent">
                             <TextBlock Text="❌" FontSize="16" Foreground="White" VerticalAlignment="Center" TextAlignment="Center"/>
                         </Button>
@@ -62,9 +56,26 @@
                 </Grid>
             </Border>
 
-            <!-- Área de contenido (el resto de la ventana) -->
             <Grid Grid.Row="1" Background="Transparent">
-                <!-- Aquí van los demás controles y contenido -->
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="320"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                
+                <!--// Navigation panel //-->
+
+                <Grid Grid.Column="0">
+
+                    <Border CornerRadius="10,0,0,10" Background="#272B2F"/>
+
+                    <StackPanel Height="450">
+                        
+                        
+                        
+                    </StackPanel>
+                </Grid>
+                
             </Grid>
         </Grid>
     </Border>
