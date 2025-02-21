@@ -8,7 +8,7 @@
         WindowStartupLocation="CenterScreen"
         Title="MainWindow" Height="675" Width="1200"
         WindowStyle="None" ResizeMode="NoResize"
-        Background="Transparent">
+        Background="Transparent" >
 
    
     <Border CornerRadius="10" BorderThickness="2" Opacity="0.95">

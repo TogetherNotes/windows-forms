@@ -4,6 +4,20 @@
              xmlns:local="clr-namespace:TogetherNotes"
              StartupUri="Forms/MainWindow.xaml">
     <Application.Resources>
+
+        <ResourceDictionary>
+
+            <ResourceDictionary.MergedDictionaries>
+
+                <ResourceDictionary Source="/Styles/Page.xaml"/>
+                <ResourceDictionary Source="/Styles/Imatge.xaml"/>
+                <ResourceDictionary Source="/Styles/Text.xaml"/>
+                <ResourceDictionary Source="/Styles/Button.xaml"/>
+                <ResourceDictionary Source="/Utils/DataTemplate.xaml"/>
+
+            </ResourceDictionary.MergedDictionaries>
+            
+        </ResourceDictionary>
          
     </Application.Resources>
 </Application>
