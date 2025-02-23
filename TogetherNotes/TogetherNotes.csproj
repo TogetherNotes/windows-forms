@@ -55,17 +55,43 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Forms\Customers.xaml.cs">
+      <DependentUpon>Customers.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Home.xaml.cs">
+      <DependentUpon>Home.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Orders.xaml.cs">
+      <DependentUpon>Orders.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Products.xaml.cs">
+      <DependentUpon>Products.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Settings.xaml.cs">
+      <DependentUpon>Settings.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Shipment.xaml.cs">
+      <DependentUpon>Shipment.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Transactions.xaml.cs">
+      <DependentUpon>Transactions.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Utils\Btn.cs" />
     <Compile Include="Utils\RelayCommand.cs" />
     <Compile Include="Utils\ViewModelBase.cs" />
+    <Compile Include="ViewModel\CustomerVM.cs" />
     <Compile Include="ViewModel\HomeVM.cs" />
-    <Compile Include="ViewModel\LoginVM.cs" />
-    <Compile Include="ViewModel\UsersVM.cs" />
-    <Page Include="Forms\Home.xaml">
+    <Compile Include="ViewModel\NavigationVM.cs" />
+    <Compile Include="ViewModel\OrderVM.cs" />
+    <Compile Include="ViewModel\ProductVM.cs" />
+    <Compile Include="ViewModel\SettingVM.cs" />
+    <Compile Include="ViewModel\ShipmentVM.cs" />
+    <Compile Include="ViewModel\TransactionVM.cs" />
+    <Page Include="Forms\Customers.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Forms\Login.xaml">
+    <Page Include="Forms\Home.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -77,17 +103,27 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Forms\Home.xaml.cs">
-      <DependentUpon>Home.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\Login.xaml.cs">
-      <DependentUpon>Login.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Forms\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="Forms\Users.xaml">
+    <Page Include="Forms\Orders.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Forms\Products.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Forms\Settings.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Forms\Shipment.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Forms\Transactions.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -95,7 +131,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Styles\Imatge.xaml">
+    <Page Include="Styles\Image.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -113,9 +149,6 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Forms\Users.xaml.cs">
-      <DependentUpon>Users.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Languages\strings.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

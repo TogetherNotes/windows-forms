@@ -16,11 +16,11 @@ using System.Windows.Shapes;
 namespace TogetherNotes.Forms
 {
     /// <summary>
-    /// Lógica de interacción para Users.xaml
+    /// Lógica de interacción para Customers.xaml
     /// </summary>
-    public partial class Users : UserControl
+    public partial class Customers : UserControl
     {
-        public Users()
+        public Customers()
         {
             InitializeComponent();
         }
