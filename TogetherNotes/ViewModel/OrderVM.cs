@@ -10,7 +10,7 @@ namespace TogetherNotes.ViewModel
     class OrderVM :Utils.ViewModelBase
     {
         private readonly PageModel _pageModel;
-        public DateOnly DisplayOrderDate
+        public DateTime DisplayOrderDate
         {
             get { return _pageModel.OrderDate; }
             set { _pageModel.OrderDate = value; OnPropertyChanged(); }
@@ -19,7 +19,7 @@ namespace TogetherNotes.ViewModel
         public OrderVM()
         {
             _pageModel = new PageModel();
-            DisplayOrderDate = DateOnly.FromDateTime(DateTime.Now);
+            
         }
     }
 }

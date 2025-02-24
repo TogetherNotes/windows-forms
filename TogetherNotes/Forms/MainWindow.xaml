@@ -4,13 +4,18 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TogetherNotes.Forms"
+        xmlns:Menu="clr-namespace:TogetherNotes.Utils"
         mc:Ignorable="d"
         WindowStartupLocation="CenterScreen"
+        xmlns:vm="clr-namespace:TogetherNotes.ViewModel"
         Title="MainWindow" Height="675" Width="1200"
         WindowStyle="None" ResizeMode="NoResize"
         Background="Transparent" >
 
-   
+        <Window.DataContext>
+            <vm:NavigationVM />
+        </Window.DataContext>
+
     <Border CornerRadius="10" BorderThickness="2" Opacity="0.95">
         <Border.BorderBrush>
             <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
@@ -60,7 +65,7 @@
 
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="320"/>
-                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
                 
                 <!--// Navigation panel //-->
@@ -70,9 +75,113 @@
                     <Border CornerRadius="10,0,0,10" Background="#272B2F"/>
 
                     <StackPanel Height="450">
-                        
-                        
-                        
+
+                        <Menu:Btn Style="{StaticResource BtnStyle}"
+                              Command="{Binding HomeCommand}"
+                              IsChecked="True">
+
+                            <Grid>
+
+                                <TextBlock Text="Home"
+                                       Style="{StaticResource Text_Style}" />
+
+                            </Grid>
+
+                        </Menu:Btn>
+
+                        <!--// Customer //-->
+
+                        <Menu:Btn Style="{StaticResource BtnStyle}"
+                              Command="{Binding CustomersCommand}">
+
+                            <Grid>
+
+                                
+
+                                <TextBlock Text="Customer"
+                                       Style="{StaticResource Text_Style}" />
+
+                            </Grid>
+
+                        </Menu:Btn>
+
+                        <!--// Products //-->
+
+                        <Menu:Btn Style="{StaticResource BtnStyle}"
+                              Command="{Binding ProductsCommand}">
+
+                            <Grid>
+
+                                
+
+                                <TextBlock Text="Products"
+                                       Style="{StaticResource Text_Style}" />
+
+                            </Grid>
+
+                        </Menu:Btn>
+
+                        <!--// Orders //-->
+
+                        <Menu:Btn Style="{StaticResource BtnStyle}"
+                              Command="{Binding OrdersCommand}">
+
+                            <Grid>
+
+                               
+
+                                <TextBlock Text="Orders"
+                                       Style="{StaticResource Text_Style}" />
+
+                            </Grid>
+
+                        </Menu:Btn>
+
+                        <!--// Transactions //-->
+
+                        <Menu:Btn Style="{StaticResource BtnStyle}"
+                              Command="{Binding TransactionsCommand}">
+
+                            <Grid>
+
+
+                                <TextBlock Text="Transactions"
+                                       Style="{StaticResource Text_Style}" />
+
+                            </Grid>
+
+                        </Menu:Btn>
+
+                        <!--// Shipments //-->
+
+                        <Menu:Btn Style="{StaticResource BtnStyle}"
+                              Command="{Binding ShipmentsCommand}">
+
+                            <Grid>
+
+                                <TextBlock Text="Shipments"
+                                       Style="{StaticResource Text_Style}" />
+
+                            </Grid>
+
+                        </Menu:Btn>
+
+                        <!--// Settings //-->
+
+                        <Menu:Btn Style="{StaticResource BtnStyle}"
+                              Command="{Binding SettingsCommand}">
+
+                            <Grid>
+
+                       
+
+                                <TextBlock Text="Settings"
+                                       Style="{StaticResource Text_Style}" />
+
+                            </Grid>
+
+                        </Menu:Btn>
+
                     </StackPanel>
                 </Grid>
                 
