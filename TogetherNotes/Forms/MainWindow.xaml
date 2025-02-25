@@ -10,7 +10,7 @@
         xmlns:vm="clr-namespace:TogetherNotes.ViewModel"
         Title="MainWindow" Height="675" Width="1200"
         WindowStyle="None" ResizeMode="NoResize"
-        Background="Transparent" >
+        Background="Transparent">
 
         <Window.DataContext>
             <vm:NavigationVM />
@@ -64,7 +64,7 @@
             <Grid Grid.Row="1" Background="Transparent">
 
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="320"/>
+                    <ColumnDefinition Width="74"/>
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
                 
@@ -74,16 +74,18 @@
 
                     <Border CornerRadius="10,0,0,10" Background="#272B2F"/>
 
-                    <StackPanel Height="450">
+                    <StackPanel Height="650">
 
+                        <!--// Home //-->
+                        
                         <Menu:Btn Style="{StaticResource BtnStyle}"
                               Command="{Binding HomeCommand}"
                               IsChecked="True">
 
                             <Grid>
 
-                                <TextBlock Text="Home"
-                                       Style="{StaticResource Text_Style}" />
+                                <Image Source="/Resources/home.png"
+                                       Style="{StaticResource Image_Style}"/>
 
                             </Grid>
 
@@ -96,10 +98,8 @@
 
                             <Grid>
 
-                                
-
-                                <TextBlock Text="Customer"
-                                       Style="{StaticResource Text_Style}" />
+                                <Image Source="/Resources/user.png"
+                                       Style="{StaticResource Image_Style}"/>
 
                             </Grid>
 
@@ -112,10 +112,8 @@
 
                             <Grid>
 
-                                
-
-                                <TextBlock Text="Products"
-                                       Style="{StaticResource Text_Style}" />
+                                <Image Source="/Resources/calendar.png"
+                                       Style="{StaticResource Image_Style}"/>
 
                             </Grid>
 
@@ -128,10 +126,8 @@
 
                             <Grid>
 
-                               
-
-                                <TextBlock Text="Orders"
-                                       Style="{StaticResource Text_Style}" />
+                                <Image Source="/Resources/map.png"
+                                       Style="{StaticResource Image_Style}"/>
 
                             </Grid>
 
@@ -144,9 +140,9 @@
 
                             <Grid>
 
+                                <Image Source="/Resources/settings.png"
+                                       Style="{StaticResource Image_Style}"/>
 
-                                <TextBlock Text="Transactions"
-                                       Style="{StaticResource Text_Style}" />
 
                             </Grid>
 
@@ -159,8 +155,8 @@
 
                             <Grid>
 
-                                <TextBlock Text="Shipments"
-                                       Style="{StaticResource Text_Style}" />
+                                <Image Source="/Resources/info.png"
+                                       Style="{StaticResource Image_Style}"/>
 
                             </Grid>
 
@@ -173,14 +169,13 @@
 
                             <Grid>
 
-                       
-
-                                <TextBlock Text="Settings"
-                                       Style="{StaticResource Text_Style}" />
+                                <Image Source="/Resources/info.png"
+                                       Style="{StaticResource Image_Style}"/>
 
                             </Grid>
 
                         </Menu:Btn>
+
 
                     </StackPanel>
                 </Grid>
