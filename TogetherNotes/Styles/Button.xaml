@@ -8,8 +8,7 @@
                 Value="Center"/>
         <Setter Property="VerticalAlignment"
                 Value="Center"/>
-        <Setter Property="Margin"
-                Value="0,10,0,0"/>
+        
         <Setter Property="Background" 
                 Value="Transparent"/>
         <Setter Property="Foreground"
@@ -21,8 +20,9 @@
 
                     <Border x:Name="border"
                             Height="50"
-                            Width="320"
-                            BorderThickness="0">
+                            Width="74"
+                            BorderThickness="0"
+                            CornerRadius="0,0,0,10">
 
                         <Border.Background>
                             <SolidColorBrush x:Name="BorderBackground"

@@ -72,15 +72,21 @@
 
                 <Grid Grid.Column="0">
 
-                    <Border CornerRadius="10,0,0,10" Background="#272B2F"/>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="auto"/>
+                    </Grid.RowDefinitions>
 
-                    <StackPanel Height="650">
+                    <Border  Background="#272B2F"/>
+                    
+                    <StackPanel Height="650" VerticalAlignment="Stretch">
 
                         <!--// Home //-->
                         
                         <Menu:Btn Style="{StaticResource BtnStyle}"
                               Command="{Binding HomeCommand}"
-                              IsChecked="True">
+                              IsChecked="True" Margin="0,15,0,0"
+                                  GroupName="NavigationButton">
 
                             <Grid>
 
@@ -94,7 +100,8 @@
                         <!--// Customer //-->
 
                         <Menu:Btn Style="{StaticResource BtnStyle}"
-                              Command="{Binding CustomersCommand}">
+                                  Command="{Binding CustomersCommand}"
+                                  Margin="0,15,0,0" GroupName="NavigationButton">
 
                             <Grid>
 
@@ -108,7 +115,8 @@
                         <!--// Products //-->
 
                         <Menu:Btn Style="{StaticResource BtnStyle}"
-                              Command="{Binding ProductsCommand}">
+                              Command="{Binding ProductsCommand}"
+                                  Margin="0,15,0,0" GroupName="NavigationButton">
 
                             <Grid>
 
@@ -122,7 +130,8 @@
                         <!--// Orders //-->
 
                         <Menu:Btn Style="{StaticResource BtnStyle}"
-                              Command="{Binding OrdersCommand}">
+                              Command="{Binding OrdersCommand}"
+                                  Margin="0,15,0,0" GroupName="NavigationButton">
 
                             <Grid>
 
@@ -136,7 +145,8 @@
                         <!--// Transactions //-->
 
                         <Menu:Btn Style="{StaticResource BtnStyle}"
-                              Command="{Binding TransactionsCommand}">
+                              Command="{Binding TransactionsCommand}"
+                                  Margin="0,15,0,0" GroupName="NavigationButton">
 
                             <Grid>
 
@@ -151,7 +161,8 @@
                         <!--// Shipments //-->
 
                         <Menu:Btn Style="{StaticResource BtnStyle}"
-                              Command="{Binding ShipmentsCommand}">
+                              Command="{Binding ShipmentsCommand}"
+                                  Margin="0,15,0,0" GroupName="NavigationButton">
 
                             <Grid>
 
@@ -161,23 +172,24 @@
                             </Grid>
 
                         </Menu:Btn>
-
-                        <!--// Settings //-->
-
-                        <Menu:Btn Style="{StaticResource BtnStyle}"
-                              Command="{Binding SettingsCommand}">
-
-                            <Grid>
-
-                                <Image Source="/Resources/info.png"
-                                       Style="{StaticResource Image_Style}"/>
-
-                            </Grid>
-
-                        </Menu:Btn>
-
 
                     </StackPanel>
+
+                    <!--// Settings //-->
+
+                    <Menu:Btn Style="{StaticResource BtnStyle}"
+                              Command="{Binding SettingsCommand}"
+                              Grid.Row="1" GroupName="NavigationButton">
+
+                        <Grid>
+
+                            <Image Source="/Resources/apagar.png"
+                                   Style="{StaticResource Image_Style}" />
+
+                        </Grid>
+
+                    </Menu:Btn>
+
                 </Grid>
 
                 <Grid Grid.Column="1">
