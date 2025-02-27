@@ -10,7 +10,7 @@
         xmlns:vm="clr-namespace:TogetherNotes.ViewModel"
         Title="MainWindow" Height="675" Width="1200"
         WindowStyle="None" ResizeMode="NoResize"
-        Background="Transparent" >
+        Background="Transparent">
 
         <Window.DataContext>
             <vm:NavigationVM />
@@ -64,7 +64,7 @@
             <Grid Grid.Row="1" Background="Transparent">
 
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="320"/>
+                    <ColumnDefinition Width="74"/>
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
                 
@@ -72,18 +72,26 @@
 
                 <Grid Grid.Column="0">
 
-                    <Border CornerRadius="10,0,0,10" Background="#272B2F"/>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="auto"/>
+                    </Grid.RowDefinitions>
 
-                    <StackPanel Height="450">
+                    <Border  Background="#272B2F"/>
+                    
+                    <StackPanel Height="650" VerticalAlignment="Stretch">
 
+                        <!--// Home //-->
+                        
                         <Menu:Btn Style="{StaticResource BtnStyle}"
                               Command="{Binding HomeCommand}"
-                              IsChecked="True">
+                              IsChecked="True" Margin="0,15,0,0"
+                                  GroupName="NavigationButton">
 
                             <Grid>
 
-                                <TextBlock Text="Home"
-                                       Style="{StaticResource Text_Style}" />
+                                <Image Source="/Resources/home.png"
+                                       Style="{StaticResource Image_Style}"/>
 
                             </Grid>
 
@@ -92,14 +100,13 @@
                         <!--// Customer //-->
 
                         <Menu:Btn Style="{StaticResource BtnStyle}"
-                              Command="{Binding CustomersCommand}">
+                                  Command="{Binding CustomersCommand}"
+                                  Margin="0,15,0,0" GroupName="NavigationButton">
 
                             <Grid>
 
-                                
-
-                                <TextBlock Text="Customer"
-                                       Style="{StaticResource Text_Style}" />
+                                <Image Source="/Resources/user.png"
+                                       Style="{StaticResource Image_Style}"/>
 
                             </Grid>
 
@@ -108,14 +115,13 @@
                         <!--// Products //-->
 
                         <Menu:Btn Style="{StaticResource BtnStyle}"
-                              Command="{Binding ProductsCommand}">
+                              Command="{Binding ProductsCommand}"
+                                  Margin="0,15,0,0" GroupName="NavigationButton">
 
                             <Grid>
 
-                                
-
-                                <TextBlock Text="Products"
-                                       Style="{StaticResource Text_Style}" />
+                                <Image Source="/Resources/calendar.png"
+                                       Style="{StaticResource Image_Style}"/>
 
                             </Grid>
 
@@ -124,14 +130,13 @@
                         <!--// Orders //-->
 
                         <Menu:Btn Style="{StaticResource BtnStyle}"
-                              Command="{Binding OrdersCommand}">
+                              Command="{Binding OrdersCommand}"
+                                  Margin="0,15,0,0" GroupName="NavigationButton">
 
                             <Grid>
 
-                               
-
-                                <TextBlock Text="Orders"
-                                       Style="{StaticResource Text_Style}" />
+                                <Image Source="/Resources/map.png"
+                                       Style="{StaticResource Image_Style}"/>
 
                             </Grid>
 
@@ -140,13 +145,14 @@
                         <!--// Transactions //-->
 
                         <Menu:Btn Style="{StaticResource BtnStyle}"
-                              Command="{Binding TransactionsCommand}">
+                              Command="{Binding TransactionsCommand}"
+                                  Margin="0,15,0,0" GroupName="NavigationButton">
 
                             <Grid>
 
+                                <Image Source="/Resources/settings.png"
+                                       Style="{StaticResource Image_Style}"/>
 
-                                <TextBlock Text="Transactions"
-                                       Style="{StaticResource Text_Style}" />
 
                             </Grid>
 
@@ -155,34 +161,35 @@
                         <!--// Shipments //-->
 
                         <Menu:Btn Style="{StaticResource BtnStyle}"
-                              Command="{Binding ShipmentsCommand}">
+                              Command="{Binding ShipmentsCommand}"
+                                  Margin="0,15,0,0" GroupName="NavigationButton">
 
                             <Grid>
 
-                                <TextBlock Text="Shipments"
-                                       Style="{StaticResource Text_Style}" />
-
-                            </Grid>
-
-                        </Menu:Btn>
-
-                        <!--// Settings //-->
-
-                        <Menu:Btn Style="{StaticResource BtnStyle}"
-                              Command="{Binding SettingsCommand}">
-
-                            <Grid>
-
-                       
-
-                                <TextBlock Text="Settings"
-                                       Style="{StaticResource Text_Style}" />
+                                <Image Source="/Resources/info.png"
+                                       Style="{StaticResource Image_Style}"/>
 
                             </Grid>
 
                         </Menu:Btn>
 
                     </StackPanel>
+
+                    <!--// Settings //-->
+
+                    <Menu:Btn Style="{StaticResource BtnStyle}"
+                              Command="{Binding SettingsCommand}"
+                              Grid.Row="1" GroupName="NavigationButton">
+
+                        <Grid>
+
+                            <Image Source="/Resources/apagar.png"
+                                   Style="{StaticResource Image_Style}" />
+
+                        </Grid>
+
+                    </Menu:Btn>
+
                 </Grid>
 
                 <Grid Grid.Column="1">
