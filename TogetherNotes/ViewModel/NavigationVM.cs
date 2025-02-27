@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Input;
 using TogetherNotes.Utils;
 
@@ -17,6 +13,13 @@ namespace TogetherNotes.ViewModel
             set { _currentView = value; OnPropertyChanged(); }
         }
 
+        private bool _isAuthenticated;
+        public bool IsAuthenticated
+        {
+            get { return _isAuthenticated; }
+            set { _isAuthenticated = value; OnPropertyChanged(); }
+        }
+
         public ICommand HomeCommand { get; set; }
         public ICommand CustomersCommand { get; set; }
         public ICommand ProductsCommand { get; set; }
@@ -25,13 +28,13 @@ namespace TogetherNotes.ViewModel
         public ICommand ShipmentsCommand { get; set; }
         public ICommand SettingsCommand { get; set; }
 
-        private void Home(object obj) => CurrentView = new HomeVM();
-        private void Customer(object obj) => CurrentView = new CustomerVM();
-        private void Product(object obj) => CurrentView = new ProductVM();
-        private void Order(object obj) => CurrentView = new OrderVM();
-        private void Transaction(object obj) => CurrentView = new TransactionVM();
-        private void Shipment(object obj) => CurrentView = new ShipmentVM();
-        private void Setting(object obj) => CurrentView = new SettingVM();
+        private void Home(object obj) { if (IsAuthenticated) CurrentView = new HomeVM(); }
+        private void Customer(object obj) { if (IsAuthenticated) CurrentView = new CustomerVM(); }
+        private void Product(object obj) { if (IsAuthenticated) CurrentView = new ProductVM(); }
+        private void Order(object obj) { if (IsAuthenticated) CurrentView = new OrderVM(); }
+        private void Transaction(object obj) { if (IsAuthenticated) CurrentView = new TransactionVM(); }
+        private void Shipment(object obj) { if (IsAuthenticated) CurrentView = new ShipmentVM(); }
+        private void Setting(object obj) { if (IsAuthenticated) CurrentView = new SettingVM(); }
 
         public NavigationVM()
         {
@@ -43,8 +46,16 @@ namespace TogetherNotes.ViewModel
             ShipmentsCommand = new RelayCommand(Shipment);
             SettingsCommand = new RelayCommand(Setting);
 
-            // Startup Page
-            CurrentView = new HomeVM();
+            // Inicializar vista de login
+            IsAuthenticated = false;
+            var loginVM = new LoginVM();
+            loginVM.OnLoginSuccess = () =>
+            {
+                IsAuthenticated = true;
+                CurrentView = new HomeVM();
+            };
+
+            CurrentView = loginVM;
         }
     }
 }
