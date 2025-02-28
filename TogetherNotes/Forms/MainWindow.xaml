@@ -10,7 +10,7 @@
         xmlns:vm="clr-namespace:TogetherNotes.ViewModel"
         Title="MainWindow" Height="675" Width="1200"
         WindowStyle="None" ResizeMode="NoResize"
-        Background="Transparent">
+        Background="Transparent" Icon="/Resources/logo_wbg_cut.png">
 
         <Window.DataContext>
             <vm:NavigationVM />
