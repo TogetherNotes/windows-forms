@@ -12,9 +12,9 @@
         WindowStyle="None" ResizeMode="NoResize"
         Background="Transparent" Icon="/Resources/logo_wbg_cut.png">
 
-        <Window.DataContext>
-            <vm:NavigationVM />
-        </Window.DataContext>
+    <Window.DataContext>
+        <vm:NavigationVM />
+    </Window.DataContext>
 
     <Border CornerRadius="10" BorderThickness="2" Opacity="0.95">
         <Border.BorderBrush>
@@ -67,7 +67,7 @@
                     <ColumnDefinition Width="74"/>
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
-                
+
                 <!--// Navigation panel //-->
 
                 <Grid Grid.Column="0">
@@ -78,11 +78,11 @@
                     </Grid.RowDefinitions>
 
                     <Border  Background="#272B2F"/>
-                    
+
                     <StackPanel Height="650" VerticalAlignment="Stretch">
 
                         <!--// Home //-->
-                        
+
                         <Menu:Btn Style="{StaticResource BtnStyle}"
                               Command="{Binding HomeCommand}"
                               IsChecked="True" Margin="0,15,0,0"
@@ -178,17 +178,15 @@
                     <!--// Settings //-->
 
                     <Menu:Btn Style="{StaticResource BtnStyle}"
-                              Command="{Binding SettingsCommand}"
-                              Grid.Row="1" GroupName="NavigationButton">
-
+                        Click="ShutdownWindow"
+                        Grid.Row="1" GroupName="NavigationButton">
+                        
                         <Grid>
-
                             <Image Source="/Resources/apagar.png"
-                                   Style="{StaticResource Image_Style}" />
-
+                            Style="{StaticResource Image_Style}" />
                         </Grid>
-
                     </Menu:Btn>
+
 
                 </Grid>
 
