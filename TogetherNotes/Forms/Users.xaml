@@ -1,0 +1,29 @@
+﻿<UserControl x:Class="TogetherNotes.Forms.Users"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:vm="clr-namespace:TogetherNotes.ViewModel"
+             xmlns:local="clr-namespace:TogetherNotes.Forms"
+             mc:Ignorable="d" 
+             d:DesignHeight="645" d:DesignWidth="876">
+
+    <Grid Margin="15">
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <Button Width="150" Height="150" Background="Transparent" Grid.Column="0">
+            <Image Source="/Resources/musician_wbg.png"/>
+        </Button>
+        <Button Width="150" Height="150" Background="Transparent" Grid.Column="1">
+            <Image Source="/Resources/restaurant_wbg.png"/>
+        </Button>
+        <Button Width="150" Height="150" Background="Transparent" Grid.Column="2">
+            <Image Source="/Resources/admin_wbg.png"/>
+        </Button>
+    </Grid>
+</UserControl>
