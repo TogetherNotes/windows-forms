@@ -54,7 +54,7 @@
                         <Button Click="MinimizeWindow" Width="30" Background="Transparent" BorderBrush="Transparent">
                             <TextBlock Text="➖" FontSize="16" Foreground="White" VerticalAlignment="Center" TextAlignment="Center"/>
                         </Button>
-                        <Button Click="CloseWindow" Width="30" Background="Transparent" BorderBrush="Transparent">
+                        <Button Click="ShutdownWindow" Width="30" Background="Transparent" BorderBrush="Transparent">
                             <TextBlock Text="❌" FontSize="16" Foreground="White" VerticalAlignment="Center" TextAlignment="Center"/>
                         </Button>
                     </StackPanel>
