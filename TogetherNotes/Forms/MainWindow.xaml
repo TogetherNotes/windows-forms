@@ -175,7 +175,7 @@
 
                     </StackPanel>
 
-                    <!--// Settings //-->
+                    <!--// Power Off //-->
 
                     <Menu:Btn Style="{StaticResource BtnStyle}"
                         Click="ShutdownWindow"

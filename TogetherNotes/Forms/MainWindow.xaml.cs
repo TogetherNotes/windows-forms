@@ -15,7 +15,15 @@ namespace TogetherNotes.Forms
 
         private void CloseWindow(object sender, RoutedEventArgs e)
         {
-            Application.Current.Shutdown();
+            ExitConfirmation exitPopup = new ExitConfirmation();
+            exitPopup.Owner = this; // Assegura que la finestra modal es centri sobre la principal
+
+            bool? result = exitPopup.ShowDialog(); // Mostra la finestra i espera resposta
+
+            if (result == true)
+            {
+                Application.Current.Shutdown();
+            }
         }
 
         private void MinimizeWindow(object sender, RoutedEventArgs e)
