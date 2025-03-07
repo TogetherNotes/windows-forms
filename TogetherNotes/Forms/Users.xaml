@@ -3,27 +3,44 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:vm="clr-namespace:TogetherNotes.ViewModel"
-             xmlns:local="clr-namespace:TogetherNotes.Forms"
              mc:Ignorable="d" 
              d:DesignHeight="645" d:DesignWidth="876">
 
-    <Grid Margin="15">
+    <UserControl.Resources>
+        <!-- Cargar los estilos externos -->
+        <ResourceDictionary Source="/Styles/UsersButton.xaml" />
+    </UserControl.Resources>
 
+    <Grid Margin="15" VerticalAlignment="Center">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
 
-        <Button Width="150" Height="150" Background="Transparent" Grid.Column="0">
-            <Image Source="/Resources/musician_wbg.png"/>
+        <!-- Botón de Admin -->
+        <Button Grid.Column="0" Style="{StaticResource ImageButtonStyle}">
+            <StackPanel Orientation="Vertical">
+                <Image Source="/Resources/admin_wbg.png" Width="250" Height="250"/>
+                <TextBlock Text="Administradores" HorizontalAlignment="Center" Style="{StaticResource WhiteTextStyle}" />
+            </StackPanel>
         </Button>
-        <Button Width="150" Height="150" Background="Transparent" Grid.Column="1">
-            <Image Source="/Resources/restaurant_wbg.png"/>
+
+        <!-- Botón de Músico -->
+        <Button Grid.Column="1" Style="{StaticResource ImageButtonStyle}">
+            <StackPanel Orientation="Vertical">
+                <Image Source="/Resources/musician_wbg.png" Width="250" Height="250"/>
+                <TextBlock Text="Músicos" HorizontalAlignment="Center" Style="{StaticResource WhiteTextStyle}"/>
+            </StackPanel>
         </Button>
-        <Button Width="150" Height="150" Background="Transparent" Grid.Column="2">
-            <Image Source="/Resources/admin_wbg.png"/>
+
+        <!-- Botón de Restaurante -->
+        <Button Grid.Column="2" Style="{StaticResource ImageButtonStyle}">
+            <StackPanel Orientation="Vertical">
+                <Image Source="/Resources/restaurant_wbg.png" Width="250" Height="250"/>
+                <TextBlock Text="Restaurantes" HorizontalAlignment="Center" Style="{StaticResource WhiteTextStyle}"/>
+            </StackPanel>
         </Button>
+
     </Grid>
 </UserControl>
