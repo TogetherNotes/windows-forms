@@ -21,7 +21,7 @@ namespace TogetherNotes.ViewModel
         }
 
         public ICommand HomeCommand { get; set; }
-        public ICommand CustomersCommand { get; set; }
+        public ICommand UsersCommand { get; set; }
         public ICommand ProductsCommand { get; set; }
         public ICommand OrdersCommand { get; set; }
         public ICommand TransactionsCommand { get; set; }
@@ -29,7 +29,7 @@ namespace TogetherNotes.ViewModel
         public ICommand SettingsCommand { get; set; }
 
         private void Home(object obj) { if (IsAuthenticated) CurrentView = new HomeVM(); }
-        private void Customer(object obj) { if (IsAuthenticated) CurrentView = new CustomerVM(); }
+        private void Users(object obj) { if (IsAuthenticated) CurrentView = new UsersVM(); }
         private void Product(object obj) { if (IsAuthenticated) CurrentView = new ProductVM(); }
         private void Order(object obj) { if (IsAuthenticated) CurrentView = new OrderVM(); }
         private void Transaction(object obj) { if (IsAuthenticated) CurrentView = new TransactionVM(); }
@@ -39,7 +39,7 @@ namespace TogetherNotes.ViewModel
         public NavigationVM()
         {
             HomeCommand = new RelayCommand(Home);
-            CustomersCommand = new RelayCommand(Customer);
+            UsersCommand = new RelayCommand(Users);
             ProductsCommand = new RelayCommand(Product);
             OrdersCommand = new RelayCommand(Order);
             TransactionsCommand = new RelayCommand(Transaction);

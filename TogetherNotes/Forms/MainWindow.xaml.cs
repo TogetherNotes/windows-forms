@@ -13,11 +13,6 @@ namespace TogetherNotes.Forms
             InitializeComponent();
         }
 
-        private void CloseWindow(object sender, RoutedEventArgs e)
-        {
-            Application.Current.Shutdown();
-        }
-
         private void MinimizeWindow(object sender, RoutedEventArgs e)
         {
             this.WindowState = WindowState.Minimized;

@@ -54,7 +54,7 @@
                         <Button Click="MinimizeWindow" Width="30" Background="Transparent" BorderBrush="Transparent">
                             <TextBlock Text="➖" FontSize="16" Foreground="White" VerticalAlignment="Center" TextAlignment="Center"/>
                         </Button>
-                        <Button Click="CloseWindow" Width="30" Background="Transparent" BorderBrush="Transparent">
+                        <Button Click="ShutdownWindow" Width="30" Background="Transparent" BorderBrush="Transparent">
                             <TextBlock Text="❌" FontSize="16" Foreground="White" VerticalAlignment="Center" TextAlignment="Center"/>
                         </Button>
                     </StackPanel>
@@ -100,7 +100,7 @@
                         <!--// Customer //-->
 
                         <Menu:Btn Style="{StaticResource BtnStyle}"
-                                  Command="{Binding CustomersCommand}"
+                                  Command="{Binding UsersCommand}"
                                   Margin="0,15,0,0" GroupName="NavigationButton">
 
                             <Grid>
@@ -175,7 +175,7 @@
 
                     </StackPanel>
 
-                    <!--// Settings //-->
+                    <!--// Power Off //-->
 
                     <Menu:Btn Style="{StaticResource BtnStyle}"
                         Click="ShutdownWindow"
