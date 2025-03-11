@@ -14,10 +14,11 @@
                 <ResourceDictionary Source="/Styles/Text.xaml"/>
                 <ResourceDictionary Source="/Styles/Button.xaml"/>
                 <ResourceDictionary Source="/Utils/DataTemplate.xaml"/>
+                <ResourceDictionary Source="/Languages/strings.en.xaml"/>
 
             </ResourceDictionary.MergedDictionaries>
-            
+
         </ResourceDictionary>
-         
+
     </Application.Resources>
 </Application>

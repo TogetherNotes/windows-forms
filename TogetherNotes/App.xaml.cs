@@ -1,17 +1,21 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Configuration;
-using System.Data;
-using System.Linq;
-using System.Threading.Tasks;
 using System.Windows;
 
 namespace TogetherNotes
 {
-    /// <summary>
-    /// Lógica de interacción para App.xaml
-    /// </summary>
     public partial class App : Application
     {
+        public void ChangeLanguage(string languageCode)
+        {
+            string dictionaryPath = $"Languages/strings.{languageCode}.xaml";
+
+            ResourceDictionary newDictionary = new ResourceDictionary
+            {
+                Source = new Uri(dictionaryPath, UriKind.Relative)
+            };
+
+            Application.Current.Resources.MergedDictionaries.Clear();
+            Application.Current.Resources.MergedDictionaries.Add(newDictionary);
+        }
     }
 }
