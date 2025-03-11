@@ -12,8 +12,8 @@
         <view:Users/>
     </DataTemplate>
 
-    <DataTemplate DataType="{x:Type vm:ProductVM}">
-        <view:Products/>
+    <DataTemplate DataType="{x:Type vm:CalendarVM}">
+        <view:Calendar/>
     </DataTemplate>
     
     <DataTemplate DataType="{x:Type vm:OrderVM}">
