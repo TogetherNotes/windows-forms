@@ -1,6 +1,7 @@
 ﻿using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
+using TogetherNotes.ViewModel;
 
 namespace TogetherNotes.Forms
 {
@@ -19,13 +20,17 @@ namespace TogetherNotes.Forms
         {
             ((App)Application.Current).ChangeLanguage(languageCode);
 
-            // Restablir el marc de totes les banderes
+            // Mantenir el marc només a la bandera seleccionada
             BorderCatalan.BorderBrush = Brushes.Transparent;
             BorderSpanish.BorderBrush = Brushes.Transparent;
             BorderEnglish.BorderBrush = Brushes.Transparent;
-
-            // Aplicar el cercle només a la bandera seleccionada
             selectedBorder.BorderBrush = Brushes.White;
+
+            // 🔄 Reinicialitzar la vista perquè els bindings es mantinguin
+            var navVM = (NavigationVM)Application.Current.MainWindow.DataContext;
+            var currentView = navVM.CurrentView;
+            navVM.CurrentView = null;
+            navVM.CurrentView = currentView;
         }
 
         private void LogoutClicked(object sender, RoutedEventArgs e)

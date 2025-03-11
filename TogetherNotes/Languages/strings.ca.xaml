@@ -2,6 +2,7 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:sys="clr-namespace:System;assembly=mscorlib">
 
+    <sys:String x:Key="Languages">Idiomes</sys:String>
     <sys:String x:Key="SettingsTitle">Configuració</sys:String>
     <sys:String x:Key="ConfirmExit">Vols sortir?</sys:String>
 
