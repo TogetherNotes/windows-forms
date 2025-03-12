@@ -10,7 +10,7 @@
              Style="{StaticResource Page_Style}">
     <UserControl.Resources>
         <Style x:Key="CalendarStyle" TargetType="{x:Type Calendar}">
-            <Setter Property="Background" Value="#282F33"/>
+            <Setter Property="Background" Value="Transparent"/>
             <Setter Property="Foreground" Value="#FFFFFF"/>
             <Setter Property="BorderThickness" Value="0"/>
             <Setter Property="Template">
@@ -25,6 +25,7 @@
         </Style>
         <Style x:Key="CalendarItemStyle" TargetType="{x:Type CalendarItem}">
             <Setter Property="Margin" Value="0,3,0,3"/>
+            <Setter Property="HorizontalContentAlignment" Value="left"/>
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="{x:Type CalendarItem}">
@@ -117,7 +118,9 @@
                                                         </VisualState>
                                                     </VisualStateGroup>
                                                 </VisualStateManager.VisualStateGroups>
-                                                <ContentPresenter x:Name="buttonContent" ContentTemplate="{TemplateBinding ContentTemplate}" Content="{TemplateBinding Content}" TextElement.Foreground="#FFFFFF" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="1,4,1,9" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                                                <ContentPresenter x:Name="buttonContent" ContentTemplate="{TemplateBinding ContentTemplate}" 
+                                                                  Content="{TemplateBinding Content}" TextElement.Foreground="#FFFFFF" 
+                                                                  HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="8,4,1,9" VerticalAlignment="{TemplateBinding VerticalContentAlignment}" TextBlock.TextAlignment="{TemplateBinding HorizontalContentAlignment}"/>
                                             </Grid>
                                         </ControlTemplate>
                                     </Grid.Resources>
@@ -158,7 +161,7 @@
                                             <RowDefinition Height="Auto"/>
                                         </Grid.RowDefinitions>
                                     </Grid>
-                                    <Grid x:Name="PART_YearView" Grid.ColumnSpan="3" HorizontalAlignment="Center" Margin="6,-3,7,6" Grid.Row="1" Visibility="Hidden">
+                                    <Grid x:Name="PART_YearView" Grid.ColumnSpan="3" HorizontalAlignment="Center" Margin="6" Grid.Row="1" Visibility="Hidden">
                                         <Grid.ColumnDefinitions>
                                             <ColumnDefinition Width="Auto"/>
                                             <ColumnDefinition Width="Auto"/>
@@ -304,7 +307,7 @@
                             <Rectangle x:Name="TodayBackground" Fill="#FD413C" Opacity="0" RadiusX="20" RadiusY="20"/>
                             <Rectangle x:Name="SelectedBackground" Fill="#FD413C" Opacity="0" RadiusX="20" RadiusY="20"/>
                             <Border Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}"/>
-                            <Rectangle x:Name="HighlightBackground" Stroke="#FD413C" Opacity="0" RadiusX="20" RadiusY="20"/>
+                            <Rectangle x:Name="HighlightBackground" Stroke="#FD413C" StrokeThickness="1" Opacity="0" RadiusX="20" RadiusY="20"/>
                             <ContentPresenter x:Name="NormalText" TextElement.Foreground="#FFFFFF" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="5,1,5,1" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
                             <Path x:Name="Blackout" Data="M8.1772461,11.029181 L10.433105,11.029181 L11.700684,12.801641 L12.973633,11.029181 L15.191895,11.029181 L12.844727,13.999395 L15.21875,17.060919 L12.962891,17.060919 L11.673828,15.256231 L10.352539,17.060919 L8.1396484,17.060919 L10.519043,14.042364 z" Fill="#FF000000" HorizontalAlignment="Stretch" Margin="3" Opacity="0" RenderTransformOrigin="0.5,0.5" Stretch="Fill" VerticalAlignment="Stretch"/>
                             <Rectangle x:Name="DayButtonFocusVisual" IsHitTestVisible="false" RadiusX="1" RadiusY="1" Stroke="Transparent" Visibility="Collapsed"/>
@@ -391,10 +394,10 @@
                                     </VisualState>
                                 </VisualStateGroup>
                             </VisualStateManager.VisualStateGroups>
-                            <Rectangle x:Name="SelectedBackground" Fill="{TemplateBinding Background}" Opacity="0" RadiusX="1" RadiusY="1"/>
-                            <Rectangle x:Name="Background" Fill="{TemplateBinding Background}" Opacity="0" RadiusX="1" RadiusY="1"/>
-                            <ContentPresenter x:Name="NormalText" TextElement.Foreground="#FF333333" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="1,0,1,1" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
-                            <Rectangle x:Name="CalendarButtonFocusVisual" IsHitTestVisible="false" RadiusX="1" RadiusY="1" Stroke="#FF45D6FA" Visibility="Collapsed"/>
+                            <Rectangle x:Name="SelectedBackground" Fill="{TemplateBinding Background}" Opacity="0" RadiusX="20" RadiusY="20"/>
+                            <Rectangle x:Name="Background" Fill="{TemplateBinding Background}" Opacity="0" RadiusX="20" RadiusY="20"/>
+                            <ContentPresenter x:Name="NormalText" TextElement.Foreground="#FFFFFF" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="1,0,1,1" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                            <Rectangle x:Name="CalendarButtonFocusVisual" IsHitTestVisible="false" RadiusX="20" RadiusY="20" Stroke="#FF45D6FA" Visibility="Collapsed"/>
                         </Grid>
                         <ControlTemplate.Triggers>
                             <Trigger Property="IsFocused" Value="True">
@@ -422,54 +425,90 @@
                       CalendarButtonStyle="{DynamicResource CalendarButtonStyle}" 
                       CalendarDayButtonStyle="{DynamicResource CalendarDayButtonStyle}" 
                       CalendarItemStyle="{DynamicResource CalendarItemStyle}" 
-                      Style="{DynamicResource CalendarStyle}" FontFamily="Playfair Display">
+                      Style="{DynamicResource CalendarStyle}" FontFamily="Playfair Display"
+                      SelectedDatesChanged="Calendar_SelectedDatesChanged">
             </Calendar>
         </Viewbox>
 
-        <!-- Lista de eventos con efectos -->
-        <ListView Grid.Column="1" Name="EventsList"
-                  Background="#1B2A34"
-         
-            Foreground="White"
-                  FontSize="14"
-                  Padding="10"
-                  SelectionMode="Single"
-                  HorizontalAlignment="Stretch"
-                  VerticalAlignment="Stretch">
-            <ListView.ItemContainerStyle>
-                <Style TargetType="ListViewItem">
-                    <Setter Property="Margin" Value="5"/>
-                    <Setter Property="Padding" Value="5"/>
-                    <Setter Property="Background" Value="Transparent"/>
-                    <Setter Property="Foreground" Value="White"/>
-                    <Setter Property="BorderBrush" Value="#FF00FF"/>
-                    <Setter Property="BorderThickness" Value="1"/>
-                    <Setter Property="Effect">
-                        <Setter.Value>
-                            <DropShadowEffect Color="White" BlurRadius="10" Direction="270" ShadowDepth="0"/>
-                        </Setter.Value>
-                    </Setter>
-                    <Style.Triggers>
-                        <DataTrigger Binding="{Binding IsSelected}" Value="True">
-                            <DataTrigger.EnterActions>
-                                <BeginStoryboard>
-                                    <Storyboard>
-                                        <ColorAnimation To="#FF00FF" Duration="0:0:0.2" Storyboard.TargetProperty="(BorderBrush).(SolidColorBrush.Color)"/>
-                                    </Storyboard>
-                                </BeginStoryboard>
-                            </DataTrigger.EnterActions>
-                        </DataTrigger>
-                    </Style.Triggers>
-                </Style>
-            </ListView.ItemContainerStyle>
+        <Border CornerRadius="10" BorderBrush="#FF00FF" BorderThickness="2" Grid.Column="1">
+    <ListView Name="EventsList"
+              Background="#1B2A34"
+              IsHitTestVisible="False"
+              Foreground="White"
+              FontSize="14"
+              Padding="10"
+              SelectionMode="Single"
+              HorizontalAlignment="Stretch"
+              VerticalAlignment="Stretch"
+              ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+        
+        <ListView.Resources>
+            <!-- Estilo para los encabezados -->
+            <Style TargetType="GridViewColumnHeader">
+                <Setter Property="Background" Value="#FF00FF"/>
+                <Setter Property="Foreground" Value="White"/>
+                <Setter Property="FontWeight" Value="Bold"/>
+                <Setter Property="Padding" Value="10,5"/>
+                <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="GridViewColumnHeader">
+                            <Border Background="{TemplateBinding Background}"
+                                    BorderBrush="#FF00FF"
+                                    BorderThickness="1"
+                                    CornerRadius="5"
+                                    Margin="4.5,0,4.5,20">
+                                <TextBlock Text="{TemplateBinding Content}" 
+                                           HorizontalAlignment="Center" 
+                                           VerticalAlignment="Center"/>
+                            </Border>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+        </ListView.Resources>
 
-            <ListView.View>
-                <GridView>
-                    <GridViewColumn Header="Hora" DisplayMemberBinding="{Binding Time}" Width="120" />
-                    <GridViewColumn Header="Evento" DisplayMemberBinding="{Binding Title}" Width="200" />
-                </GridView>
-            </ListView.View>
-        </ListView>
+                <ListView.ItemContainerStyle>
+                    <Style TargetType="ListViewItem">
+                        <Setter Property="Margin" Value="5"/>
+                        <Setter Property="Padding" Value="5"/>
+                        <Setter Property="Background" Value="Transparent"/>
+                        <Setter Property="Foreground" Value="White"/>
+                        <Setter Property="BorderBrush" Value="Transparent"/>
+                        <Setter Property="BorderThickness" Value="1"/>
+                        <Setter Property="Effect">
+                            <Setter.Value>
+                                <DropShadowEffect Color="White" BlurRadius="20" Direction="270" ShadowDepth="0"/>
+                            </Setter.Value>
+                        </Setter>
+
+                        <Style.Triggers>
+                            <!-- Evita el cambio de color en hover -->
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="Transparent"/>
+                                <Setter Property="BorderBrush" Value="Transparent"/>
+                            </Trigger>
+
+                            <!-- Evita el cambio de color cuando se selecciona -->
+                            <Trigger Property="IsSelected" Value="True">
+                                <Setter Property="Background" Value="Transparent"/>
+                                <Setter Property="BorderBrush" Value="Transparent"/>
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </ListView.ItemContainerStyle>
+
+
+
+        <ListView.View>
+            <GridView>
+                <GridViewColumn Header="Hora" DisplayMemberBinding="{Binding Time}" Width="80" />
+                <GridViewColumn Header="Evento" DisplayMemberBinding="{Binding Title}" Width="240" />
+            </GridView>
+        </ListView.View>
+
+    </ListView>
+</Border>
 
     </Grid>
 
