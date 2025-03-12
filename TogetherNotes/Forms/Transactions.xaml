@@ -2,44 +2,81 @@
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:TogetherNotes.Forms"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:vm="clr-namespace:TogetherNotes.ViewModel"
              mc:Ignorable="d" 
              d:DesignHeight="645" d:DesignWidth="876"
              Style="{StaticResource Page_Style}">
+
     <UserControl.DataContext>
         <vm:TransactionVM />
     </UserControl.DataContext>
 
     <Grid Margin="15">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
 
-        <Border CornerRadius="0,20,20,0">
-            <Border.Background>
-                <ImageBrush ImageSource="/Resources/logo_wbg_cut.png"
-                            Stretch="None" />
-            </Border.Background>
-        </Border>
+        <!-- Títol "Languages" amb suport per multi-idioma -->
+        <TextBlock Text="{DynamicResource Languages}"
+           FontSize="24" FontWeight="Bold"
+           Foreground="White"
+           HorizontalAlignment="Center"
+           VerticalAlignment="Top"
+           Margin="0,30,0,20"/>
 
-        <Grid>
+        <!-- Grid per centrar les banderes i separar-les adequadament -->
+        <Grid Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="60"/>
+                <!-- Separació fixa -->
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="60"/>
+                <!-- Separació fixa -->
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
 
-            <TextBlock Text="Payment Amount  :"
-                       Foreground="#DBDBDB"
-                       FontSize="12"
-                       HorizontalAlignment="Right"
-                       VerticalAlignment="Top"
-                       FontFamily="/Fonts/#Rubik Medium"
-                       Margin="0,300,150,0" />
+            <!-- Català -->
+            <Border x:Name="BorderCatalan" Grid.Column="0" BorderThickness="3" CornerRadius="30" BorderBrush="Transparent">
+                <Image x:Name="ImgCatalan" Source="/Resources/catalan_flag.png"
+                       Width="90" Height="90"
+                       Cursor="Hand"
+                       MouseDown="SetCatalan"/>
+            </Border>
 
-            <TextBlock Text="{Binding TransactionAmount, StringFormat='{}{0:C}'}"
-                       Foreground="#CED565"
-                       FontSize="12"
-                       HorizontalAlignment="Right"
-                       VerticalAlignment="Top"
-                       FontFamily="/Fonts/#Rubik Medium"
-                       Margin="0,300,82,0" />
+            <!-- Espanyol -->
+            <Border x:Name="BorderSpanish" Grid.Column="2" BorderThickness="3" CornerRadius="30" BorderBrush="Transparent">
+                <Image x:Name="ImgSpanish" Source="/Resources/spain_flag.png"
+                       Width="90" Height="90"
+                       Cursor="Hand"
+                       MouseDown="SetSpanish"/>
+            </Border>
 
+            <!-- Anglès -->
+            <Border x:Name="BorderEnglish" Grid.Column="4" BorderThickness="3" CornerRadius="30" BorderBrush="Transparent">
+                <Image x:Name="ImgEnglish" Source="/Resources/uk_flag.png"
+                       Width="90" Height="90"
+                       Cursor="Hand"
+                       MouseDown="SetEnglish"/>
+            </Border>
         </Grid>
 
+        <!-- Botó de Log Out -->
+        <Button Content="Log Out"
+                Click="LogoutClicked"
+                Width="200" Height="50"
+                Background="Red"
+                Foreground="White"
+                FontSize="16"
+                FontWeight="Bold"
+                BorderBrush="Black"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Bottom"
+                Grid.Row="2"
+                Cursor="Hand"
+                Margin="0,20,0,20"/>
     </Grid>
 </UserControl>
