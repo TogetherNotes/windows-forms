@@ -11,6 +11,14 @@
     <sys:String x:Key="ConfirmExit">Do you want to exit?</sys:String>
     <sys:String x:Key="LogOut">Log Out</sys:String>
     <sys:String x:Key="Yes">Yes</sys:String>
+    
+    <sys:String x:Key="Administrators">Administrators</sys:String>
+    <sys:String x:Key="Artists">Artists</sys:String>
+    <sys:String x:Key="Spaces">Spaces</sys:String>
+
+    <sys:String x:Key="Username">Username</sys:String>
+    <sys:String x:Key="Password">Password</sys:String>
+    <sys:String x:Key="LogIn">Log In</sys:String>
 
     <!-- FAQ TRANSLATIONS -->
     <sys:String x:Key="Faq1Question">How can I track my shipment?</sys:String>

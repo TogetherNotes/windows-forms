@@ -11,6 +11,14 @@
     <sys:String x:Key="ConfirmExit">¿Quieres salir?</sys:String>
     <sys:String x:Key="LogOut">Salir</sys:String>
     <sys:String x:Key="Yes">Sí</sys:String>
+    
+    <sys:String x:Key="Administrators">Administradores</sys:String>
+    <sys:String x:Key="Artists">Artistas</sys:String>
+    <sys:String x:Key="Spaces">Espacios</sys:String>
+    
+    <sys:String x:Key="Username">Usuario</sys:String>
+    <sys:String x:Key="Password">Contraseña</sys:String>
+    <sys:String x:Key="LogIn">Iniciar sesión</sys:String>
 
     <!-- FAQ TRANSLATIONS -->
     <sys:String x:Key="Faq1Question">¿Cómo puedo rastrear mi envío?</sys:String>

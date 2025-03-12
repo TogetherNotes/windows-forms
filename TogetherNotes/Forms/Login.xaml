@@ -15,7 +15,7 @@
             <Image Source="/Resources/logo_wbg_cut.png"
            Width="100" Height="100"/>
 
-            <TextBlock Text="Together Notes"
+            <TextBlock Text="TogetherNotes"
                Foreground="White"
                FontSize="25"
                FontWeight="Medium"
@@ -24,7 +24,7 @@
 
 
 
-            <TextBlock Text="Username"
+            <TextBlock Text="{DynamicResource Username}"
                Foreground="DarkGray"
                FontSize="12"
                FontWeight="Medium"
@@ -51,7 +51,7 @@
                 </TextBox.Background>
             </TextBox>
 
-            <TextBlock Text="Password"
+            <TextBlock Text="{DynamicResource Password}"
                Foreground="DarkGray"
                FontSize="12"
                FontWeight="Medium"
@@ -81,7 +81,7 @@
             <Button x:Name="btnLogin"
             Command="{Binding LoginCommand}"
             BorderThickness="0"
-            Content="LOG IN"
+            Content="{DynamicResource LogIn}"
             Foreground="White"
             FontSize="12"
             FontFamily="Montserrat"
