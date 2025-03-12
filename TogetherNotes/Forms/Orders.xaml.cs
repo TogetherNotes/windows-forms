@@ -1,28 +1,39 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
+﻿using System.Windows.Controls;
+using GMap.NET;
+using GMap.NET.MapProviders;
 
 namespace TogetherNotes.Forms
 {
-    /// <summary>
-    /// Lógica de interacción para Orders.xaml
-    /// </summary>
     public partial class Orders : UserControl
     {
         public Orders()
         {
             InitializeComponent();
+            LoadMap();
+        }
+
+        private void LoadMap()
+        {
+            // Configura el proveïdor del mapa en mode fosc
+            MapControl.MapProvider = GMapProviders.OpenStreetMap;
+
+            // Activa el mode només servidor (evita errors)
+            GMaps.Instance.Mode = AccessMode.ServerOnly;
+
+            // Centra el mapa en Barcelona
+            MapControl.Position = new PointLatLng(41.3851, 2.1734);
+
+            // Nivell de zoom
+            MapControl.MinZoom = 5;
+            MapControl.MaxZoom = 18;
+            MapControl.Zoom = 12;
+
+            // Controls d'interacció
+            MapControl.CanDragMap = true;
+            MapControl.DragButton = System.Windows.Input.MouseButton.Left;
+
+            // Desactiva les etiquetes per un look més net
+            MapControl.ShowTileGridLines = false;
         }
     }
 }

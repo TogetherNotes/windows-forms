@@ -5,41 +5,44 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:TogetherNotes.Forms"
              xmlns:vm="clr-namespace:TogetherNotes.ViewModel"
-             mc:Ignorable="d" 
-             d:DesignHeight="645" d:DesignWidth="876"
+             xmlns:gmap="clr-namespace:GMap.NET.WindowsPresentation;assembly=GMap.NET.WindowsPresentation"
+             mc:Ignorable="d"
              Style="{StaticResource Page_Style}">
+
     <UserControl.DataContext>
         <vm:OrderVM />
     </UserControl.DataContext>
 
+    <!-- Contenidor principal per gestionar les capes -->
     <Grid Margin="15">
 
-        <Border CornerRadius="0,20,20,0">
-            <Border.Background>
-                <ImageBrush ImageSource="/Resources/logo_wbg_cut.png"
-                            Stretch="None" />
-            </Border.Background>
+        <!-- Border futurista amb glow i cantonades rodones -->
+        <Border CornerRadius="20"
+                BorderThickness="2"
+                BorderBrush="#8A16C1"
+                ClipToBounds="True"
+                VerticalAlignment="Stretch"
+                HorizontalAlignment="Stretch"
+                Background="Transparent">
+
+            <Border.Effect>
+                <DropShadowEffect Color="#8A16C1" BlurRadius="30" ShadowDepth="0"/>
+            </Border.Effect>
+
+            <!-- Mapa ocupant tota la pantalla dins del Border -->
+            <gmap:GMapControl x:Name="MapControl"
+                              VerticalAlignment="Stretch"
+                              HorizontalAlignment="Stretch"
+                              Zoom="10"
+                              Margin="5">
+                <gmap:GMapControl.Clip>
+                    <RectangleGeometry RadiusX="20" RadiusY="20"
+                                       Rect="0,0,1000,700"/>
+                </gmap:GMapControl.Clip>
+            </gmap:GMapControl>
+
         </Border>
 
-        <Grid>
-
-            <TextBlock Text="DATE  :"
-                       Foreground="#DBDBDB"
-                       FontSize="12"
-                       HorizontalAlignment="Right"
-                       VerticalAlignment="Top"
-                       FontFamily="/Fonts/#Rubik Medium"
-                       Margin="0,145,160,0" />
-
-            <TextBlock Text="{Binding DisplayOrderDate}"
-                       Foreground="#CED565"
-                       FontSize="12"
-                       HorizontalAlignment="Right"
-                       VerticalAlignment="Top"
-                       FontFamily="/Fonts/#Rubik Medium"
-                       Margin="0,145,90,0" />
-
-        </Grid>
-
     </Grid>
+
 </UserControl>
