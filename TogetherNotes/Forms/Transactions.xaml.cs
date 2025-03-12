@@ -1,36 +1,72 @@
-﻿using System.Windows;
+﻿using System;
+using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Media;
-using TogetherNotes.ViewModel;
+using System.Windows.Input;
+using System.Windows.Media.Animation;
 
 namespace TogetherNotes.Forms
 {
     public partial class Transactions : UserControl
     {
+        private const double DefaultSize = 90;
+        private const double SelectedSize = 110;
+        private Image _selectedImage = null;
+
         public Transactions()
         {
             InitializeComponent();
+            ResetFlagSizes();
         }
 
-        private void SetCatalan(object sender, RoutedEventArgs e) => UpdateLanguage("ca", BorderCatalan);
-        private void SetSpanish(object sender, RoutedEventArgs e) => UpdateLanguage("es", BorderSpanish);
-        private void SetEnglish(object sender, RoutedEventArgs e) => UpdateLanguage("en", BorderEnglish);
-
-        private void UpdateLanguage(string languageCode, Border selectedBorder)
+        private void SetCatalan(object sender, MouseButtonEventArgs e)
         {
-            ((App)Application.Current).ChangeLanguage(languageCode);
+            ((App)Application.Current).ChangeLanguage("ca");
+            UpdateFlagSelection(ImgCatalan);
+        }
 
-            // Mantenir el marc només a la bandera seleccionada
-            BorderCatalan.BorderBrush = Brushes.Transparent;
-            BorderSpanish.BorderBrush = Brushes.Transparent;
-            BorderEnglish.BorderBrush = Brushes.Transparent;
-            selectedBorder.BorderBrush = Brushes.White;
+        private void SetSpanish(object sender, MouseButtonEventArgs e)
+        {
+            ((App)Application.Current).ChangeLanguage("es");
+            UpdateFlagSelection(ImgSpanish);
+        }
 
-            // 🔄 Reinicialitzar la vista perquè els bindings es mantinguin
-            var navVM = (NavigationVM)Application.Current.MainWindow.DataContext;
-            var currentView = navVM.CurrentView;
-            navVM.CurrentView = null;
-            navVM.CurrentView = currentView;
+        private void SetEnglish(object sender, MouseButtonEventArgs e)
+        {
+            ((App)Application.Current).ChangeLanguage("en");
+            UpdateFlagSelection(ImgEnglish);
+        }
+
+        private void UpdateFlagSelection(Image selectedImage)
+        {
+            if (_selectedImage == selectedImage) return; // Evitem repetir l'animació
+
+            _selectedImage = selectedImage;
+
+            // Reset totes les banderes a mida per defecte
+            ResetFlagSizes();
+
+            // Ampliem només la seleccionada
+            AnimateFlagSize(selectedImage, SelectedSize);
+        }
+
+        private void ResetFlagSizes()
+        {
+            AnimateFlagSize(ImgCatalan, DefaultSize);
+            AnimateFlagSize(ImgSpanish, DefaultSize);
+            AnimateFlagSize(ImgEnglish, DefaultSize);
+        }
+
+        private void AnimateFlagSize(Image img, double size)
+        {
+            var animation = new DoubleAnimation
+            {
+                To = size,
+                Duration = TimeSpan.FromMilliseconds(200),
+                EasingFunction = new QuadraticEase() { EasingMode = EasingMode.EaseOut }
+            };
+
+            img.BeginAnimation(WidthProperty, animation);
+            img.BeginAnimation(HeightProperty, animation);
         }
 
         private void LogoutClicked(object sender, RoutedEventArgs e)
