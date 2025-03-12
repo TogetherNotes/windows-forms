@@ -65,7 +65,7 @@
         </Grid>
 
         <!-- Botó de Log Out -->
-        <Button Content="Log Out"
+        <Button Content="{DynamicResource LogOut}"
                 Click="LogoutClicked"
                 Width="200" Height="50"
                 Background="Red"

@@ -9,6 +9,8 @@
 
     <!-- GENERAL -->
     <sys:String x:Key="ConfirmExit">¿Quieres salir?</sys:String>
+    <sys:String x:Key="LogOut">Salir</sys:String>
+    <sys:String x:Key="Yes">Sí</sys:String>
 
     <!-- FAQ TRANSLATIONS -->
     <sys:String x:Key="Faq1Question">¿Cómo puedo rastrear mi envío?</sys:String>
