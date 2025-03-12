@@ -2,8 +2,22 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:sys="clr-namespace:System;assembly=mscorlib">
 
+    <!-- PAGES -->
     <sys:String x:Key="Languages">Idiomes</sys:String>
     <sys:String x:Key="SettingsTitle">Configuració</sys:String>
+    <sys:String x:Key="FAQS">Preguntes Freqüents</sys:String>
+
+    <!-- GENERAL -->
     <sys:String x:Key="ConfirmExit">Vols sortir?</sys:String>
+
+    <!-- FAQ TRANSLATIONS -->
+    <sys:String x:Key="Faq1Question">Com puc fer el seguiment del meu enviament?</sys:String>
+    <sys:String x:Key="Faq1Answer">Utilitza el teu ID de seguiment al portal d'enviaments.</sys:String>
+
+    <sys:String x:Key="Faq2Question">Què faig si el meu paquet es retarda?</sys:String>
+    <sys:String x:Key="Faq2Answer">Consulta els detalls de seguiment o contacta amb suport.</sys:String>
+
+    <sys:String x:Key="Faq3Question">Puc canviar l'adreça de lliurament?</sys:String>
+    <sys:String x:Key="Faq3Answer">Sí, dins les primeres 24 hores després de fer la comanda.</sys:String>
 
 </ResourceDictionary>
