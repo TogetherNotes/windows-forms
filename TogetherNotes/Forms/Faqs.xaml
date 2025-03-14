@@ -28,14 +28,15 @@
 
                             <!-- Pregunta -->
                             <Expander.Header>
-                                <TextBlock Text="{Binding Question}" FontWeight="Bold"/>
+                                <TextBlock Text="{Binding Question}" FontWeight="Bold" FontFamily="Playfair Display" />
                             </Expander.Header>
 
                             <!-- Resposta -->
                             <TextBlock Text="{Binding Answer}" 
                                        FontSize="14" Foreground="#DBDBDB" 
                                        TextWrapping="Wrap" 
-                                       Margin="10"/>
+                                       Margin="10"
+                                       FontFamily="Playfair Display" />
                         </Expander>
                     </DataTemplate>
                 </ItemsControl.ItemTemplate>

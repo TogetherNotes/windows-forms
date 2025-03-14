@@ -7,34 +7,33 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
-        <StackPanel Width="220"
+        <StackPanel Width="250"
             Grid.Row="1"
             Orientation="Vertical"
             Margin="0,35,0,0">
 
             <Image Source="/Resources/logo_wbg_cut.png"
-           Width="100" Height="100"/>
+           Width="250" Height="250"/>
 
             <TextBlock Text="TogetherNotes"
                Foreground="White"
-               FontSize="25"
-               FontWeight="Medium"
-               FontFamily="Montserrat"
+               FontSize="36"
+               FontFamily="Playfair Display"
                HorizontalAlignment="Center"/>
 
 
 
             <TextBlock Text="{DynamicResource Username}"
                Foreground="DarkGray"
-               FontSize="12"
+               FontSize="18"
                FontWeight="Medium"
-               FontFamily="Montserrat"                             
+               FontFamily="Playfair Display"                             
                Margin="0,35,0,0"/>
 
             <TextBox x:Name="txtUser" Text="{Binding Username, UpdateSourceTrigger=PropertyChanged}" 
-             FontSize="13"
+             FontSize="16"
              FontWeight="Medium"
-             FontFamily="Montserrat"                            
+             FontFamily="Playfair Display"                            
              Foreground="White"
              CaretBrush="LightGray"
              BorderBrush="DarkGray"
@@ -42,7 +41,7 @@
              Height="28"
              VerticalContentAlignment="Center"
              Margin="0,5,0,0"
-             Padding="20,0,0,0">
+             Padding="30,0,0,0">
 
                 <TextBox.Background>
                     <ImageBrush ImageSource="/Resources/user-icon.png"
@@ -53,15 +52,15 @@
 
             <TextBlock Text="{DynamicResource Password}"
                Foreground="DarkGray"
-               FontSize="12"
+               FontSize="18"
                FontWeight="Medium"
-               FontFamily="Montserrat"                             
+               FontFamily="Playfair Display"                             
                Margin="0,15,0,0"/>
 
             <PasswordBox x:Name="txtPass"
              FontSize="13"
              FontWeight="Medium"
-             FontFamily="Montserrat"                            
+             FontFamily="Playfair Display"                            
              Foreground="White"
              CaretBrush="LightGray"
              BorderBrush="DarkGray"
@@ -69,7 +68,7 @@
              Height="28"
              VerticalContentAlignment="Center"
              Margin="0,5,0,0"
-             Padding="20,0,0,0"
+             Padding="30,0,0,0"
              PasswordChanged="txtPass_PasswordChanged">
                 <PasswordBox.Background>
                     <ImageBrush ImageSource="/Resources/key-icon.png"
@@ -83,8 +82,8 @@
             BorderThickness="0"
             Content="{DynamicResource LogIn}"
             Foreground="White"
-            FontSize="12"
-            FontFamily="Montserrat"
+            FontSize="16"
+            FontFamily="Playfair Display"
             Cursor="Hand"                           
             Margin="0,50,0,0">
 
@@ -101,7 +100,7 @@
 
                 <Button.Template>
                     <ControlTemplate TargetType="Button">
-                        <Border Width="150" Height="40"
+                        <Border Width="200" Height="40"
                         CornerRadius="20"
                         Background="{TemplateBinding Background}">
                             <ContentPresenter VerticalAlignment="Center"

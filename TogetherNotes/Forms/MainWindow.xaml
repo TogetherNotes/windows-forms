@@ -48,7 +48,7 @@
                         <ColumnDefinition Width="Auto"/>
                     </Grid.ColumnDefinitions>
 
-                    <Label Content="Together Notes" Foreground="White" VerticalAlignment="Center" Margin="10,0,0,0" />
+                    <Label Content="Together Notes" Foreground="White" VerticalAlignment="Center" Margin="10,0,0,0" FontFamily="Playfair Display" />
 
                     <StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Right">
                         <Button Click="MinimizeWindow" Width="30" Background="Transparent" BorderBrush="Transparent">
