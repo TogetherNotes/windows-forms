@@ -5,9 +5,6 @@ using System.Windows.Controls;
 
 namespace TogetherNotes.Forms
 {
-    /// <summary>
-    /// Lógica de interacción para Products.xaml
-    /// </summary>
     public partial class Calendar : UserControl
     {
         public List<Event> Events { get; set; }

@@ -180,7 +180,7 @@
                     <Menu:Btn Style="{StaticResource BtnStyle}"
                         Click="ShutdownWindow"
                         Grid.Row="1" GroupName="NavigationButton">
-                        
+
                         <Grid>
                             <Image Source="/Resources/apagar.png"
                             Style="{StaticResource Image_Style}" />
