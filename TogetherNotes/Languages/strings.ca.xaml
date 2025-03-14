@@ -20,6 +20,9 @@
     <sys:String x:Key="Password">Contrasenya</sys:String>
     <sys:String x:Key="LogIn">Inicia Sessió</sys:String>
 
+    <sys:String x:Key="Hour">Hora</sys:String>
+    <sys:String x:Key="Event">Event</sys:String>
+
     <!-- FAQ TRANSLATIONS -->
     <sys:String x:Key="Faq1Question">Com puc fer el seguiment del meu enviament?</sys:String>
     <sys:String x:Key="Faq1Answer">Utilitza el teu ID de seguiment al portal d'enviaments.</sys:String>

@@ -502,8 +502,8 @@
 
         <ListView.View>
             <GridView>
-                <GridViewColumn Header="Hora" DisplayMemberBinding="{Binding Time}" Width="80" />
-                <GridViewColumn Header="Evento" DisplayMemberBinding="{Binding Title}" Width="240" />
+                <GridViewColumn Header="{DynamicResource Hour}" DisplayMemberBinding="{Binding Time}" Width="80" />
+                <GridViewColumn Header="{DynamicResource Event}" DisplayMemberBinding="{Binding Title}" Width="240" />
             </GridView>
         </ListView.View>
 

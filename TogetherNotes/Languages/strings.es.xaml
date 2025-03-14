@@ -20,6 +20,9 @@
     <sys:String x:Key="Password">Contraseña</sys:String>
     <sys:String x:Key="LogIn">Iniciar sesión</sys:String>
 
+    <sys:String x:Key="Hour">Hora</sys:String>
+    <sys:String x:Key="Event">Evento</sys:String>
+
     <!-- FAQ TRANSLATIONS -->
     <sys:String x:Key="Faq1Question">¿Cómo puedo rastrear mi envío?</sys:String>
     <sys:String x:Key="Faq1Answer">Usa tu ID de rastreo en el portal de envíos.</sys:String>
