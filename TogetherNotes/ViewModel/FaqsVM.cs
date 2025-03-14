@@ -3,11 +3,11 @@ using TogetherNotes.Utils;
 
 namespace TogetherNotes.ViewModel
 {
-    class ShipmentVM : ViewModelBase
+    class FaqsVM : ViewModelBase
     {
         public ObservableCollection<ShipmentFAQ> Questions { get; set; }
 
-        public ShipmentVM()
+        public FaqsVM()
         {
             Questions = new ObservableCollection<ShipmentFAQ>
             {

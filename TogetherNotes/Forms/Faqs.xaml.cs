@@ -5,9 +5,9 @@ namespace TogetherNotes.Forms
     /// <summary>
     /// Lógica de interacción para Shipment.xaml
     /// </summary>
-    public partial class Shipment : UserControl
+    public partial class Faqs : UserControl
     {
-        public Shipment()
+        public Faqs()
         {
             InitializeComponent();
         }

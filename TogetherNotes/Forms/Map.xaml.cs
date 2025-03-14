@@ -6,11 +6,11 @@ using GMap.NET.MapProviders;
 
 namespace TogetherNotes.Forms
 {
-    public partial class Orders : UserControl
+    public partial class Map : UserControl
     {
         private RectangleGeometry clipGeometry;
 
-        public Orders()
+        public Map()
         {
             InitializeComponent();
             LoadMap();

@@ -1,13 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using TogetherNotes.Models;
 
 namespace TogetherNotes.ViewModel
 {
-    class OrderVM :Utils.ViewModelBase
+    class MapVM :Utils.ViewModelBase
     {
         private readonly PageModel _pageModel;
         public DateTime DisplayOrderDate
@@ -16,7 +12,7 @@ namespace TogetherNotes.ViewModel
             set { _pageModel.OrderDate = value; OnPropertyChanged(); }
         }
 
-        public OrderVM()
+        public MapVM()
         {
             _pageModel = new PageModel();
             

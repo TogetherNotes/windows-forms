@@ -31,9 +31,9 @@ namespace TogetherNotes.ViewModel
         private void Home(object obj) { if (IsAuthenticated) CurrentView = new HomeVM(); }
         private void Users(object obj) { if (IsAuthenticated) CurrentView = new UsersVM(); }
         private void Calendar(object obj) { if (IsAuthenticated) CurrentView = new CalendarVM(); }
-        private void Order(object obj) { if (IsAuthenticated) CurrentView = new OrderVM(); }
-        private void Transaction(object obj) { if (IsAuthenticated) CurrentView = new TransactionVM(); }
-        private void Shipment(object obj) { if (IsAuthenticated) CurrentView = new ShipmentVM(); }
+        private void Map(object obj) { if (IsAuthenticated) CurrentView = new MapVM(); }
+        private void Transaction(object obj) { if (IsAuthenticated) CurrentView = new SettingVM(); }
+        private void Faq(object obj) { if (IsAuthenticated) CurrentView = new FaqsVM(); }
         private void Setting(object obj) { if (IsAuthenticated) CurrentView = new SettingVM(); }
 
         public NavigationVM()
@@ -41,9 +41,9 @@ namespace TogetherNotes.ViewModel
             HomeCommand = new RelayCommand(Home);
             UsersCommand = new RelayCommand(Users);
             CalendarCommand = new RelayCommand(Calendar);
-            OrdersCommand = new RelayCommand(Order);
+            OrdersCommand = new RelayCommand(Map);
             TransactionsCommand = new RelayCommand(Transaction);
-            ShipmentsCommand = new RelayCommand(Shipment);
+            ShipmentsCommand = new RelayCommand(Faq);
             SettingsCommand = new RelayCommand(Setting);
 
             // Inicializar vista de login

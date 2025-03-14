@@ -1,4 +1,4 @@
-﻿<UserControl x:Class="TogetherNotes.Forms.Orders"
+﻿<UserControl x:Class="TogetherNotes.Forms.Map"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -10,7 +10,7 @@
              Style="{StaticResource Page_Style}">
 
     <UserControl.DataContext>
-        <vm:OrderVM />
+        <vm:MapVM />
     </UserControl.DataContext>
 
     <Grid Margin="15">

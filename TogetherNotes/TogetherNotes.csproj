@@ -101,20 +101,17 @@
     <Compile Include="Forms\Login.xaml.cs">
       <DependentUpon>Login.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Forms\Orders.xaml.cs">
-      <DependentUpon>Orders.xaml</DependentUpon>
+    <Compile Include="Forms\Map.xaml.cs">
+      <DependentUpon>Map.xaml</DependentUpon>
     </Compile>
     <Compile Include="Forms\Calendar.xaml.cs">
       <DependentUpon>Calendar.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Forms\Faqs.xaml.cs">
+      <DependentUpon>Faqs.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Forms\Settings.xaml.cs">
       <DependentUpon>Settings.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\Shipment.xaml.cs">
-      <DependentUpon>Shipment.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\Transactions.xaml.cs">
-      <DependentUpon>Transactions.xaml</DependentUpon>
     </Compile>
     <Compile Include="Utils\Btn.cs" />
     <Compile Include="Utils\RelayCommand.cs" />
@@ -123,11 +120,10 @@
     <Compile Include="ViewModel\HomeVM.cs" />
     <Compile Include="ViewModel\LoginVM.cs" />
     <Compile Include="ViewModel\NavigationVM.cs" />
-    <Compile Include="ViewModel\OrderVM.cs" />
+    <Compile Include="ViewModel\MapVM.cs" />
     <Compile Include="ViewModel\CalendarVM.cs" />
+    <Compile Include="ViewModel\FaqsVM.cs" />
     <Compile Include="ViewModel\SettingVM.cs" />
-    <Compile Include="ViewModel\ShipmentVM.cs" />
-    <Compile Include="ViewModel\TransactionVM.cs" />
     <Page Include="Forms\Users.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -156,7 +152,7 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="Forms\Orders.xaml">
+    <Page Include="Forms\Map.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -164,15 +160,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Forms\Faqs.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Forms\Settings.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Forms\Shipment.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Forms\Transactions.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -238,6 +230,7 @@
     </EmbeddedResource>
     <Resource Include="Fonts\PlayfairDisplay.ttf" />
     <Resource Include="Fonts\PlayfairDisplay-Medium.ttf" />
+    <None Include="Docs\REFACTORING_CLASSES.md" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

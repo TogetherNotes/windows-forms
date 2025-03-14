@@ -1,4 +1,4 @@
-﻿<UserControl x:Class="TogetherNotes.Forms.Shipment"
+﻿<UserControl x:Class="TogetherNotes.Forms.Faqs"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
@@ -9,7 +9,7 @@
              d:DesignHeight="400" d:DesignWidth="600">
 
     <UserControl.DataContext>
-        <vm:ShipmentVM/>
+        <vm:FaqsVM/>
     </UserControl.DataContext>
 
     <Grid Margin="15">
