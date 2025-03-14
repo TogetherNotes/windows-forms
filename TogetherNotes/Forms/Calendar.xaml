@@ -476,6 +476,8 @@
                         <Setter Property="Foreground" Value="White"/>
                         <Setter Property="BorderBrush" Value="Transparent"/>
                         <Setter Property="BorderThickness" Value="1"/>
+                        <Setter Property="FontSize" Value="18"/>
+                        <Setter Property="FontFamily" Value="/Fonts/PlayfairDisplay.ttf"/>
                         <Setter Property="Effect">
                             <Setter.Value>
                                 <DropShadowEffect Color="White" BlurRadius="20" Direction="270" ShadowDepth="0"/>
