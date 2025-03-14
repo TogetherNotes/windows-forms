@@ -112,10 +112,10 @@
 
                         </Menu:Btn>
 
-                        <!--// Products //-->
+                        <!--// Calendar //-->
 
                         <Menu:Btn Style="{StaticResource BtnStyle}"
-                              Command="{Binding ProductsCommand}"
+                              Command="{Binding CalendarCommand}"
                                   Margin="0,15,0,0" GroupName="NavigationButton">
 
                             <Grid>

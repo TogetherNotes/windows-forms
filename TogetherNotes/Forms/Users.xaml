@@ -4,7 +4,8 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              mc:Ignorable="d" 
-             d:DesignHeight="645" d:DesignWidth="876">
+             d:DesignHeight="645" d:DesignWidth="876"
+             Style="{StaticResource Page_Style}">
 
     <UserControl.Resources>
         <!-- Cargar los estilos externos -->
