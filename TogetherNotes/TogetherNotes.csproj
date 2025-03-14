@@ -230,6 +230,7 @@
     </EmbeddedResource>
     <Resource Include="Fonts\PlayfairDisplay.ttf" />
     <Resource Include="Fonts\PlayfairDisplay-Medium.ttf" />
+    <None Include="Docs\CREATING_CLASSES.md" />
     <None Include="Docs\REFACTORING_CLASSES.md" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
