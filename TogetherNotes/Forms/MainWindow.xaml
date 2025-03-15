@@ -9,14 +9,15 @@
         WindowStartupLocation="CenterScreen"
         xmlns:vm="clr-namespace:TogetherNotes.ViewModel"
         Title="MainWindow" Height="675" Width="1200"
-        WindowStyle="None" ResizeMode="NoResize"
-        Background="Transparent" Icon="/Resources/logo_wbg_cut.png">
+        WindowStyle="None" ResizeMode="NoResize" AllowsTransparency="True"
+        Background="#01000000" Icon="/Resources/logo_wbg_cut.png">
 
     <Window.DataContext>
         <vm:NavigationVM />
     </Window.DataContext>
 
-    <Border CornerRadius="10" BorderThickness="2" Opacity="0.95">
+    <!-- Aquest Border dibuixa el fons amb cantonades arrodonides -->
+    <Border CornerRadius="10" BorderThickness="2" Opacity="0.95" ClipToBounds="True">
         <Border.BorderBrush>
             <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
                 <GradientStop Color="#462AD8" Offset="0"/>
@@ -25,6 +26,7 @@
             </LinearGradientBrush>
         </Border.BorderBrush>
 
+        <!-- Ús d'una única definició de Background -->
         <Border.Background>
             <LinearGradientBrush StartPoint="0,1" EndPoint="1,0">
                 <GradientStop Color="#2A3A44" Offset="0"/>
@@ -35,13 +37,13 @@
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="30"/>
-                <!-- Fila para la barra de título -->
+                <!-- Fila per la barra de títol -->
                 <RowDefinition Height="*"/>
-                <!-- Resto del espacio disponible -->
+                <!-- Resta de l'espai disponible -->
             </Grid.RowDefinitions>
 
-            <!-- Barra de título -->
-            <Border Grid.Row="0" CornerRadius="10,10,0,0"  Background="#1E2A33" Margin="0,1,0,0">
+            <!-- Barra de títol -->
+            <Border Grid.Row="0" CornerRadius="10,10,0,0" Background="#1E2A33" Margin="0,1,0,0">
                 <Grid MouseDown="DockPanel_MouseDown">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*"/>
@@ -61,142 +63,100 @@
                 </Grid>
             </Border>
 
+            <!-- Contingut principal -->
             <Grid Grid.Row="1" Background="Transparent">
-
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="74"/>
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
 
-                <!--// Navigation panel //-->
-
+                <!-- Navigation Panel -->
                 <Grid Grid.Column="0">
-
                     <Grid.RowDefinitions>
                         <RowDefinition Height="*"/>
-                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="Auto"/>
                     </Grid.RowDefinitions>
 
-                    <Border  Background="#272B2F"/>
+                    <Border Background="#272B2F"/>
 
                     <StackPanel Height="650" VerticalAlignment="Stretch">
-
-                        <!--// Home //-->
-
+                        <!-- Home -->
                         <Menu:Btn Style="{StaticResource BtnStyle}"
-                              Command="{Binding HomeCommand}"
-                              IsChecked="True" Margin="0,15,0,0"
+                                  Command="{Binding HomeCommand}"
+                                  IsChecked="True" Margin="0,15,0,0"
                                   GroupName="NavigationButton">
-
                             <Grid>
-
                                 <Image Source="/Resources/home.png"
                                        Style="{StaticResource Image_Style}"/>
-
                             </Grid>
-
                         </Menu:Btn>
 
-                        <!--// Customer //-->
-
+                        <!-- Customer -->
                         <Menu:Btn Style="{StaticResource BtnStyle}"
                                   Command="{Binding UsersCommand}"
                                   Margin="0,15,0,0" GroupName="NavigationButton">
-
                             <Grid>
-
                                 <Image Source="/Resources/user.png"
                                        Style="{StaticResource Image_Style}"/>
-
                             </Grid>
-
                         </Menu:Btn>
 
-                        <!--// Calendar //-->
-
+                        <!-- Calendar -->
                         <Menu:Btn Style="{StaticResource BtnStyle}"
-                              Command="{Binding CalendarCommand}"
+                                  Command="{Binding CalendarCommand}"
                                   Margin="0,15,0,0" GroupName="NavigationButton">
-
                             <Grid>
-
                                 <Image Source="/Resources/calendar.png"
                                        Style="{StaticResource Image_Style}"/>
-
                             </Grid>
-
                         </Menu:Btn>
 
-                        <!--// Orders //-->
-
+                        <!-- Orders -->
                         <Menu:Btn Style="{StaticResource BtnStyle}"
-                              Command="{Binding OrdersCommand}"
+                                  Command="{Binding OrdersCommand}"
                                   Margin="0,15,0,0" GroupName="NavigationButton">
-
                             <Grid>
-
                                 <Image Source="/Resources/map.png"
                                        Style="{StaticResource Image_Style}"/>
-
                             </Grid>
-
                         </Menu:Btn>
 
-                        <!--// Transactions //-->
-
+                        <!-- Transactions -->
                         <Menu:Btn Style="{StaticResource BtnStyle}"
-                              Command="{Binding TransactionsCommand}"
+                                  Command="{Binding TransactionsCommand}"
                                   Margin="0,15,0,0" GroupName="NavigationButton">
-
                             <Grid>
-
                                 <Image Source="/Resources/settings.png"
                                        Style="{StaticResource Image_Style}"/>
-
-
                             </Grid>
-
                         </Menu:Btn>
 
-                        <!--// Shipments //-->
-
+                        <!-- Shipments -->
                         <Menu:Btn Style="{StaticResource BtnStyle}"
-                              Command="{Binding ShipmentsCommand}"
+                                  Command="{Binding ShipmentsCommand}"
                                   Margin="0,15,0,0" GroupName="NavigationButton">
-
                             <Grid>
-
                                 <Image Source="/Resources/info.png"
                                        Style="{StaticResource Image_Style}"/>
-
                             </Grid>
-
                         </Menu:Btn>
-
                     </StackPanel>
 
-                    <!--// Power Off //-->
-
+                    <!-- Botó de Power Off -->
                     <Menu:Btn Style="{StaticResource BtnStyle}"
-                        Click="ShutdownWindow"
-                        Grid.Row="1" GroupName="NavigationButton">
-
+                              Click="ShutdownWindow"
+                              Grid.Row="1" GroupName="NavigationButton">
                         <Grid>
                             <Image Source="/Resources/apagar.png"
-                            Style="{StaticResource Image_Style}" />
+                                   Style="{StaticResource Image_Style}" />
                         </Grid>
                     </Menu:Btn>
-
-
                 </Grid>
 
+                <!-- Contingut dinàmic -->
                 <Grid Grid.Column="1">
-
-                    <ContentControl x:Name="Pages"
-                                Content="{Binding CurrentView}" />
-
+                    <ContentControl x:Name="Pages" Content="{Binding CurrentView}" />
                 </Grid>
-
             </Grid>
         </Grid>
     </Border>
