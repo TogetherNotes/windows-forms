@@ -5,43 +5,51 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              mc:Ignorable="d" 
              d:DesignHeight="645" d:DesignWidth="876"
-             Style="{StaticResource Page_Style}">
+             Style="{StaticResource Page_Style}"
+             xmlns:utils="clr-namespace:TogetherNotes.Utils">
 
     <UserControl.Resources>
-        <!-- Cargar los estilos externos -->
-        <ResourceDictionary Source="/Styles/UsersButton.xaml" />
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/Styles/UsersButton.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+
+            <!-- Agregamos correctamente el conversor -->
+            <utils:NullToVisibilityConverter x:Key="NullToVisibilityConverter"/>
+        </ResourceDictionary>
     </UserControl.Resources>
 
     <Grid Margin="15" VerticalAlignment="Center">
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="*"/>
-        </Grid.ColumnDefinitions>
+        <ContentControl Content="{Binding CurrentUserView}" />
 
-        <!-- Botón de Admin -->
-        <Button Grid.Column="0" Style="{StaticResource ImageButtonStyle}">
-            <StackPanel Orientation="Vertical">
-                <Image Source="/Resources/admin_wbg.png" Width="250" Height="250"/>
-                <TextBlock Text="{DynamicResource Administrators}" HorizontalAlignment="Center" Style="{StaticResource WhiteTextStyle}" />
-            </StackPanel>
-        </Button>
+        <!-- Menú Principal -->
+        <Grid x:Name="UserSelectionGrid" Visibility="{Binding CurrentUserView, Converter={StaticResource NullToVisibilityConverter}}">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
 
-        <!-- Botón de Músico -->
-        <Button Grid.Column="1" Style="{StaticResource ImageButtonStyle}">
-            <StackPanel Orientation="Vertical">
-                <Image Source="/Resources/musician_wbg.png" Width="250" Height="250"/>
-                <TextBlock Text="{DynamicResource Artists}" HorizontalAlignment="Center" Style="{StaticResource WhiteTextStyle}"/>
-            </StackPanel>
-        </Button>
+            <Button Grid.Column="0" Style="{StaticResource ImageButtonStyle}" Command="{Binding ShowAdminCommand}">
+                <StackPanel Orientation="Vertical">
+                    <Image Source="/Resources/admin_wbg.png" Width="250" Height="250"/>
+                    <TextBlock Text="Administradores" HorizontalAlignment="Center" />
+                </StackPanel>
+            </Button>
 
-        <!-- Botón de Restaurante -->
-        <Button Grid.Column="2" Style="{StaticResource ImageButtonStyle}">
-            <StackPanel Orientation="Vertical">
-                <Image Source="/Resources/restaurant_wbg.png" Width="250" Height="250"/>
-                <TextBlock Text="{DynamicResource Spaces}" HorizontalAlignment="Center" Style="{StaticResource WhiteTextStyle}"/>
-            </StackPanel>
-        </Button>
+            <Button Grid.Column="1" Style="{StaticResource ImageButtonStyle}" Command="{Binding ShowMusicianCommand}">
+                <StackPanel Orientation="Vertical">
+                    <Image Source="/Resources/musician_wbg.png" Width="250" Height="250"/>
+                    <TextBlock Text="Músicos" HorizontalAlignment="Center" />
+                </StackPanel>
+            </Button>
 
+            <Button Grid.Column="2" Style="{StaticResource ImageButtonStyle}" Command="{Binding ShowRestaurantCommand}">
+                <StackPanel Orientation="Vertical">
+                    <Image Source="/Resources/restaurant_wbg.png" Width="250" Height="250"/>
+                    <TextBlock Text="Restaurantes" HorizontalAlignment="Center" />
+                </StackPanel>
+            </Button>
+        </Grid>
     </Grid>
 </UserControl>

@@ -34,7 +34,6 @@ namespace TogetherNotes.ViewModel
         private void Transaction(object obj) { if (IsAuthenticated) CurrentView = new SettingVM(); }
         private void Faq(object obj) { if (IsAuthenticated) CurrentView = new FaqsVM(); }
         private void Setting(object obj) { if (IsAuthenticated) CurrentView = new SettingVM(); }
-
         public NavigationVM()
         {
             HomeCommand = new RelayCommand(Home);
