@@ -33,21 +33,21 @@
             <Button Grid.Column="0" Style="{StaticResource ImageButtonStyle}" Command="{Binding ShowAdminCommand}">
                 <StackPanel Orientation="Vertical">
                     <Image Source="/Resources/admin_wbg.png" Width="250" Height="250"/>
-                    <TextBlock Text="Administradores" HorizontalAlignment="Center" />
+                    <TextBlock Text="{DynamicResource Administrators}" HorizontalAlignment="Center" Style="{StaticResource WhiteTextStyle}"/>
                 </StackPanel>
             </Button>
 
             <Button Grid.Column="1" Style="{StaticResource ImageButtonStyle}" Command="{Binding ShowMusicianCommand}">
                 <StackPanel Orientation="Vertical">
                     <Image Source="/Resources/musician_wbg.png" Width="250" Height="250"/>
-                    <TextBlock Text="Músicos" HorizontalAlignment="Center" />
+                    <TextBlock Text="{DynamicResource Artists}" HorizontalAlignment="Center" Style="{StaticResource WhiteTextStyle}"/>
                 </StackPanel>
             </Button>
 
             <Button Grid.Column="2" Style="{StaticResource ImageButtonStyle}" Command="{Binding ShowRestaurantCommand}">
                 <StackPanel Orientation="Vertical">
                     <Image Source="/Resources/restaurant_wbg.png" Width="250" Height="250"/>
-                    <TextBlock Text="Restaurantes" HorizontalAlignment="Center" />
+                    <TextBlock Text="{DynamicResource Spaces}" HorizontalAlignment="Center" Style="{StaticResource WhiteTextStyle}"/>
                 </StackPanel>
             </Button>
         </Grid>

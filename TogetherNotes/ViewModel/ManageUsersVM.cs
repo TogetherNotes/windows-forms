@@ -8,7 +8,7 @@ using TogetherNotes.Utils;
 
 namespace TogetherNotes.ViewModel
 {
-    class ManageUsersVM
+    public class ManageUsersVM
     {
         private UsersVM _parentVM;
 
