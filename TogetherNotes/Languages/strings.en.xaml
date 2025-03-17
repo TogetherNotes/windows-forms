@@ -23,6 +23,17 @@
     <sys:String x:Key="Hour">Hour</sys:String>
     <sys:String x:Key="Event">Event</sys:String>
 
+    <sys:String x:Key="Dashboard">Dashboard</sys:String>
+    <sys:String x:Key="EventsToday">Events Today</sys:String>
+    <sys:String x:Key="TotalSuperAdmins">Total SuperAdmins</sys:String>
+    <sys:String x:Key="TotalAdmins">Total Admins</sys:String>
+    <sys:String x:Key="TotalMaintenanceUsers">Total Maintenance Users</sys:String>
+    <sys:String x:Key="TotalAppUsers">Total App Users</sys:String>
+    <sys:String x:Key="TotalArtists">Total Artists</sys:String>
+    <sys:String x:Key="TotalSpaces">Total Spaces</sys:String>
+    <sys:String x:Key="TotalMatches">Total Matches</sys:String>
+    <sys:String x:Key="TotalEventsDone">Total Events Done</sys:String>
+
     <!-- FAQ TRANSLATIONS -->
     <sys:String x:Key="Faq1Question">How can I track my shipment?</sys:String>
     <sys:String x:Key="Faq1Answer">Use your tracking ID in the shipment portal.</sys:String>
