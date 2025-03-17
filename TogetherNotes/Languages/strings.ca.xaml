@@ -26,13 +26,13 @@
     <sys:String x:Key="Dashboard">Panell General</sys:String>
     <sys:String x:Key="EventsToday">Events d'Avui</sys:String>
     <sys:String x:Key="TotalSuperAdmins">Total de SuperAdmins</sys:String>
-    <sys:String x:Key="TotalAdmins">Total d'Admins</sys:String>
-    <sys:String x:Key="TotalMaintenanceUsers">Total d'Usuaris de Mantenimient</sys:String>
-    <sys:String x:Key="TotalAppUsers">Total d'Usuaris de l'App</sys:String>
-    <sys:String x:Key="TotalArtists">Total d'Artistes</sys:String>
-    <sys:String x:Key="TotalSpaces">Total d'Espais</sys:String>
-    <sys:String x:Key="TotalMatches">Total d'Emparallaments</sys:String>
-    <sys:String x:Key="TotalEventsDone">Total d'Events Fets</sys:String>
+    <sys:String x:Key="TotalAdmins">Admins</sys:String>
+    <sys:String x:Key="TotalMaintenanceUsers">Usuaris de Mantenimient</sys:String>
+    <sys:String x:Key="TotalAppUsers">Usuaris de l'App</sys:String>
+    <sys:String x:Key="TotalArtists">Artistes</sys:String>
+    <sys:String x:Key="TotalSpaces">Espais</sys:String>
+    <sys:String x:Key="TotalMatches">Emparallaments</sys:String>
+    <sys:String x:Key="TotalEventsDone">Events Fets</sys:String>
 
     <!-- FAQ TRANSLATIONS -->
     <sys:String x:Key="Faq1Question">Com puc fer el seguiment del meu enviament?</sys:String>

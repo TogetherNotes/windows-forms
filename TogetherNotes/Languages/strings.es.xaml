@@ -25,14 +25,14 @@
 
     <sys:String x:Key="Dashboard">Panel General</sys:String>
     <sys:String x:Key="EventsToday">Eventos de Hoy</sys:String>
-    <sys:String x:Key="TotalSuperAdmins">Total de SuperAdmins</sys:String>
-    <sys:String x:Key="TotalAdmins">Total de Admins</sys:String>
-    <sys:String x:Key="TotalMaintenanceUsers">Total de Usuarios de Mantenimiento</sys:String>
-    <sys:String x:Key="TotalAppUsers">Total de Usuarios de la App</sys:String>
-    <sys:String x:Key="TotalArtists">Total de Artistas</sys:String>
-    <sys:String x:Key="TotalSpaces">Total de Espacios</sys:String>
-    <sys:String x:Key="TotalMatches">Total de Emparejamientos</sys:String>
-    <sys:String x:Key="TotalEventsDone">Total de Eventos Hechos</sys:String>
+    <sys:String x:Key="TotalSuperAdmins">SuperAdmins</sys:String>
+    <sys:String x:Key="TotalAdmins">Admins</sys:String>
+    <sys:String x:Key="TotalMaintenanceUsers">Usuarios de Mantenimiento</sys:String>
+    <sys:String x:Key="TotalAppUsers">Usuarios de la App</sys:String>
+    <sys:String x:Key="TotalArtists">Artistas</sys:String>
+    <sys:String x:Key="TotalSpaces">Espacios</sys:String>
+    <sys:String x:Key="TotalMatches">Emparejamientos</sys:String>
+    <sys:String x:Key="TotalEventsDone">Eventos Hechos</sys:String>
 
     <!-- FAQ TRANSLATIONS -->
     <sys:String x:Key="Faq1Question">¿Cómo puedo rastrear mi envío?</sys:String>
