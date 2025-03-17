@@ -35,13 +35,28 @@
     <sys:String x:Key="TotalEventsDone">Events Done</sys:String>
 
     <!-- FAQ TRANSLATIONS -->
-    <sys:String x:Key="Faq1Question">How can I track my shipment?</sys:String>
-    <sys:String x:Key="Faq1Answer">Use your tracking ID in the shipment portal.</sys:String>
+    <sys:String x:Key="Faq1Question">How can I register as an artist?</sys:String>
+    <sys:String x:Key="Faq1Answer">You can sign up through the app by selecting the 'Artist' role and completing your profile.</sys:String>
 
-    <sys:String x:Key="Faq2Question">What should I do if my package is delayed?</sys:String>
-    <sys:String x:Key="Faq2Answer">Check the tracking details or contact support.</sys:String>
+    <sys:String x:Key="Faq2Question">How do venues find artists?</sys:String>
+    <sys:String x:Key="Faq2Answer">Venues can search for artists based on genre, location, and availability through the platform.</sys:String>
 
-    <sys:String x:Key="Faq3Question">Can I change my delivery address?</sys:String>
-    <sys:String x:Key="Faq3Answer">Yes, within 24 hours of placing the order.</sys:String>
+    <sys:String x:Key="Faq3Question">Can I apply for multiple events at the same time?</sys:String>
+    <sys:String x:Key="Faq3Answer">Yes, you can apply to multiple events, and venues will review your application.</sys:String>
+
+    <sys:String x:Key="Faq4Question">How are matches between artists and venues made?</sys:String>
+    <sys:String x:Key="Faq4Answer">The system suggests matches based on preferences, availability, and previous ratings.</sys:String>
+
+    <sys:String x:Key="Faq5Question">What happens after an artist and a venue match?</sys:String>
+    <sys:String x:Key="Faq5Answer">Once a match is confirmed, a contract is generated, and details like schedule and payment are arranged.</sys:String>
+
+    <sys:String x:Key="Faq6Question">Can I rate an event or an artist?</sys:String>
+    <sys:String x:Key="Faq6Answer">Yes, both artists and venues can leave ratings after an event to build trust within the platform.</sys:String>
+
+    <sys:String x:Key="Faq7Question">How do I report an issue or dispute?</sys:String>
+    <sys:String x:Key="Faq7Answer">You can report an issue through the 'Support' section in the app, where an admin will review your case.</sys:String>
+
+    <sys:String x:Key="Faq8Question">Is there a way to communicate with venues or artists?</sys:String>
+    <sys:String x:Key="Faq8Answer">Yes, you can chat with venues or artists through the in-app messaging system once a match is established.</sys:String>
 
 </ResourceDictionary>
