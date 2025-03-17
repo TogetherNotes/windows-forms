@@ -6,93 +6,112 @@
              xmlns:local="clr-namespace:TogetherNotes.Forms"
              xmlns:vm="clr-namespace:TogetherNotes.ViewModel"
              mc:Ignorable="d" 
-             d:DesignHeight="645" d:DesignWidth="876"
+             Height="675" Width="1200"
              Style="{StaticResource Page_Style}">
 
     <Grid Background="#0000">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="677*"/>
+            <ColumnDefinition Width="200*"/>
+        </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
         <!-- Títol -->
-        <TextBlock Text="{DynamicResource Dashboard}" Foreground="White" FontSize="24" FontWeight="Bold" Margin="20"/>
+        <TextBlock Text="{DynamicResource Dashboard}" Foreground="White" FontSize="24" FontWeight="Bold" Margin="20,20,20,20" Grid.ColumnSpan="2"/>
 
         <!-- Contingut del Dashboard -->
-        <Grid Grid.Row="1" Margin="20">
+        <Grid Grid.Row="1" Margin="20,20,20,20" Grid.ColumnSpan="2">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="2*"/>
+                <ColumnDefinition Width="1.8*"/>
+                <!-- Events Today més ample -->
                 <ColumnDefinition Width="1*"/>
             </Grid.ColumnDefinitions>
 
-            <!-- Secció de targetes d'informació -->
-            <StackPanel Grid.Column="0" Orientation="Vertical">
-                <Border Background="#292B3A" Padding="10" CornerRadius="10" Margin="5">
-                    <Grid>
-                        <TextBlock Foreground="White" Text="{DynamicResource EventsToday}" FontSize="16" FontWeight="Bold"/>
-                        <TextBlock Foreground="White" Name="EventsCount" FontSize="24"/>
-                    </Grid>
-                </Border>
+            <!-- Events Today -->
+            <Border Background="#292B3A" Padding="10" CornerRadius="15" Margin="5" Grid.Column="0">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <!-- Títol -->
+                        <RowDefinition Height="*"/>
+                        <!-- Llista d'events ocupa tot l'espai restant -->
+                    </Grid.RowDefinitions>
 
-                <Border Background="#292B3A" Padding="10" CornerRadius="10" Margin="5">
-                    <Grid>
-                        <TextBlock Foreground="White" Text="{DynamicResource TotalSuperAdmins}" FontSize="16" FontWeight="Bold"/>
-                        <TextBlock Foreground="White" Name="SuperAdminCount" FontSize="24"/>
-                    </Grid>
-                </Border>
+                    <TextBlock Foreground="White" Text="{DynamicResource EventsToday}" FontSize="16" FontWeight="Bold" Margin="0,0,0,10"/>
 
-                <Border Background="#292B3A" Padding="10" CornerRadius="10" Margin="5">
-                    <Grid>
-                        <TextBlock Foreground="White" Text="{DynamicResource TotalAdmins}" FontSize="16" FontWeight="Bold"/>
-                        <TextBlock Foreground="White" Name="AdminCount" FontSize="24"/>
-                    </Grid>
-                </Border>
+                    <ListView Name="EventsList" Background="Transparent" Grid.Row="1" VerticalAlignment="Stretch">
+                        <ListViewItem Content="Concert at The Bar - 20:00h"/>
+                        <ListViewItem Content="Jazz Night - 21:30h"/>
+                        <ListViewItem Content="Open Mic - 19:00h"/>
+                    </ListView>
+                </Grid>
+            </Border>
 
-                <Border Background="#292B3A" Padding="10" CornerRadius="10" Margin="5">
-                    <Grid>
-                        <TextBlock Foreground="White" Text="{DynamicResource TotalMaintenanceUsers}" FontSize="16" FontWeight="Bold"/>
-                        <TextBlock Foreground="White" Name="MaintenanceCount" FontSize="24"/>
-                    </Grid>
-                </Border>
+            <!-- Columna dreta -->
+            <Grid Grid.Column="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <!-- Primera fila: estadístiques -->
+                    <RowDefinition Height="Auto"/>
+                    <!-- Segona fila: estadístiques -->
+                    <RowDefinition Height="*"/>
+                    <!-- Espai restant per mantenir simetria -->
+                </Grid.RowDefinitions>
 
-                <Border Background="#292B3A" Padding="10" CornerRadius="10" Margin="5">
-                    <Grid>
-                        <TextBlock Foreground="White" Text="{DynamicResource TotalAppUsers}" FontSize="16" FontWeight="Bold"/>
-                        <TextBlock Foreground="White" Name="AppUsersCount" FontSize="24"/>
-                    </Grid>
-                </Border>
+                <!-- Primera fila (SuperAdmins, Admins, Manteniment) -->
+                <StackPanel Orientation="Horizontal" Grid.Row="0" HorizontalAlignment="Center">
+                    <Border Background="#292B3A" Padding="10" CornerRadius="15" Margin="5" Width="120" Height="120">
+                        <Grid>
+                            <TextBlock Foreground="White" Text="SuperAdmins" FontSize="14" FontWeight="Bold" TextAlignment="Center"/>
+                            <TextBlock Foreground="White" Text="5" FontSize="28" FontWeight="Bold" VerticalAlignment="Bottom" TextAlignment="Center"/>
+                        </Grid>
+                    </Border>
 
-                <Border Background="#292B3A" Padding="10" CornerRadius="10" Margin="5">
-                    <Grid>
-                        <TextBlock Foreground="White" Text="{DynamicResource TotalArtists}" FontSize="16" FontWeight="Bold"/>
-                        <TextBlock Foreground="White" Name="ArtistCount" FontSize="24"/>
-                    </Grid>
-                </Border>
+                    <Border Background="#292B3A" Padding="10" CornerRadius="15" Margin="5" Width="120" Height="120">
+                        <Grid>
+                            <TextBlock Foreground="White" Text="Admins" FontSize="14" FontWeight="Bold" TextAlignment="Center"/>
+                            <TextBlock Foreground="White" Text="12" FontSize="28" FontWeight="Bold" VerticalAlignment="Bottom" TextAlignment="Center"/>
+                        </Grid>
+                    </Border>
 
-                <Border Background="#292B3A" Padding="10" CornerRadius="10" Margin="5">
-                    <Grid>
-                        <TextBlock Foreground="White" Text="{DynamicResource TotalSpaces}" FontSize="16" FontWeight="Bold"/>
-                        <TextBlock Foreground="White" Name="SpacesCount" FontSize="24"/>
-                    </Grid>
-                </Border>
-            </StackPanel>
+                    <Border Background="#292B3A" Padding="10" CornerRadius="15" Margin="5" Width="120" Height="120">
+                        <Grid>
+                            <TextBlock Foreground="White" Text="Manteniment" FontSize="14" FontWeight="Bold" TextAlignment="Center"/>
+                            <TextBlock Foreground="White" Text="3" FontSize="28" FontWeight="Bold" VerticalAlignment="Bottom" TextAlignment="Center"/>
+                        </Grid>
+                    </Border>
+                </StackPanel>
 
-            <!-- Gràfics -->
-            <StackPanel Grid.Column="1" Orientation="Vertical">
-                <Border Background="#292B3A" Padding="10" CornerRadius="10" Margin="5">
-                    <Grid>
-                        <TextBlock Foreground="White" Text="{DynamicResource TotalMatches}" FontSize="16" FontWeight="Bold"/>
-                        <TextBlock Foreground="White" Name="MatchesCount" FontSize="24"/>
-                    </Grid>
-                </Border>
+                <!-- Segona fila (App Users, Artistes, Espais) -->
+                <StackPanel Orientation="Horizontal" Grid.Row="1" HorizontalAlignment="Center">
+                    <Border Background="#292B3A" Padding="10" CornerRadius="15" Margin="5" Width="120" Height="120">
+                        <Grid>
+                            <TextBlock Foreground="White" Text="App Users" FontSize="14" FontWeight="Bold" TextAlignment="Center"/>
+                            <TextBlock Foreground="White" Text="150" FontSize="28" FontWeight="Bold" VerticalAlignment="Bottom" TextAlignment="Center"/>
+                        </Grid>
+                    </Border>
 
-                <Border Background="#292B3A" Padding="10" CornerRadius="10" Margin="5">
-                    <Grid>
-                        <TextBlock Foreground="White" Text="{DynamicResource TotalEventsDone}" FontSize="16" FontWeight="Bold"/>
-                        <TextBlock Foreground="White" Name="EventsDoneCount" FontSize="24"/>
-                    </Grid>
-                </Border>
-            </StackPanel>
+                    <Border Background="#292B3A" Padding="10" CornerRadius="15" Margin="5" Width="120" Height="120">
+                        <Grid>
+                            <TextBlock Foreground="White" Text="Artistes" FontSize="14" FontWeight="Bold" TextAlignment="Center"/>
+                            <TextBlock Foreground="White" Text="42" FontSize="28" FontWeight="Bold" VerticalAlignment="Bottom" TextAlignment="Center"/>
+                        </Grid>
+                    </Border>
+
+                    <Border Background="#292B3A" Padding="10" CornerRadius="15" Margin="5" Width="120" Height="120">
+                        <Grid>
+                            <TextBlock Foreground="White" Text="Espais" FontSize="14" FontWeight="Bold" TextAlignment="Center"/>
+                            <TextBlock Foreground="White" Text="29" FontSize="28" FontWeight="Bold" VerticalAlignment="Bottom" TextAlignment="Center"/>
+                        </Grid>
+                    </Border>
+                </StackPanel>
+
+                <!-- Espai restant per mantenir simetria -->
+                <Grid Grid.Row="2"/>
+            </Grid>
         </Grid>
     </Grid>
 

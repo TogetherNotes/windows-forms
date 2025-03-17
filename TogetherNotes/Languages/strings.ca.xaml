@@ -25,7 +25,7 @@
 
     <sys:String x:Key="Dashboard">Panell General</sys:String>
     <sys:String x:Key="EventsToday">Events d'Avui</sys:String>
-    <sys:String x:Key="TotalSuperAdmins">Total de SuperAdmins</sys:String>
+    <sys:String x:Key="TotalSuperAdmins">SuperAdmins</sys:String>
     <sys:String x:Key="TotalAdmins">Admins</sys:String>
     <sys:String x:Key="TotalMaintenanceUsers">Usuaris de Mantenimient</sys:String>
     <sys:String x:Key="TotalAppUsers">Usuaris de l'App</sys:String>
