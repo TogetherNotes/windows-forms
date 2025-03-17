@@ -1,17 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.ComponentModel;
+using System.Runtime.CompilerServices;
 using System.Windows.Input;
 using TogetherNotes.Utils;
 
 namespace TogetherNotes.ViewModel
 {
-    public class ManageUsersVM
+    public class ManageUsersVM : INotifyPropertyChanged
     {
         private UsersVM _parentVM;
-
         public ICommand BackCommand { get; }
 
         public ManageUsersVM(UsersVM parentVM)
@@ -24,6 +20,12 @@ namespace TogetherNotes.ViewModel
         {
             _parentVM.CurrentUserView = null;
         }
-    }
 
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        protected void OnPropertyChanged([CallerMemberName] string propertyName = null)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
+    }
 }

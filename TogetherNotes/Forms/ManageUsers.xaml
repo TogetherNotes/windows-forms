@@ -5,13 +5,76 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:TogetherNotes.Forms"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
+             d:DesignHeight="646" d:DesignWidth="876">
+
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/Styles/UsersButton.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </UserControl.Resources>
+
     <Grid>
-        <Button Content="Volver" Command="{Binding BackCommand}" />
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="2*"/>
+            <ColumnDefinition Width="1.5*"/>
+        </Grid.ColumnDefinitions>
 
+        <!-- Botón de volver -->
+        <Button Command="{Binding BackCommand}" Style="{StaticResource ImageButtonStyle}"
+                Width="50" Height="50" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10">
+            <Image Source="/Resources/atras.png"/>
+        </Button>
 
+        <!-- Contenedor de búsqueda -->
+        <StackPanel Grid.Column="1" Margin="20">
+            <TextBlock Text="Buscar usuario" Foreground="DarkGray" FontSize="18" FontWeight="Medium" FontFamily="Playfair Display" Margin="0,0,0,10"/>
+            <TextBox x:Name="searchedUser" FontSize="16" Foreground="White" CaretBrush="LightGray"
+                     BorderBrush="DarkGray" BorderThickness="0,0,0,2" Height="28" Padding="30,0,0,0">
+                <TextBox.Background>
+                    <ImageBrush ImageSource="/Resources/user-icon.png" Stretch="None" AlignmentX="Left"/>
+                </TextBox.Background>
+            </TextBox>
+            <ListView Height="500" Margin="0,20,0,0"/>
+        </StackPanel>
 
+        <!-- Formulario de usuario -->
+        <StackPanel Grid.Column="2" Margin="20">
+            <TextBlock Text="Nombre" Foreground="DarkGray" FontSize="18" FontWeight="Medium" FontFamily="Playfair Display" Margin="0,0,0,10"/>
+            <TextBox x:Name="nameUser" FontSize="16" Foreground="White" CaretBrush="LightGray"
+                     BorderBrush="DarkGray" BorderThickness="0,0,0,2" Height="28" Background="Transparent"/>
+
+            <TextBlock Text="Contraseña" Foreground="DarkGray" FontSize="18" FontWeight="Medium" FontFamily="Playfair Display" Margin="0,15,0,10"/>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="40"/>
+                </Grid.ColumnDefinitions>
+
+                <PasswordBox x:Name="PasswordBox" FontSize="16" Foreground="White" CaretBrush="LightGray"
+                             BorderBrush="DarkGray" BorderThickness="0,0,0,2" Height="28" Background="Transparent"
+                             Grid.Column="0" PasswordChanged="PasswordBox_PasswordChanged"/>
+
+                <TextBox x:Name="PasswordTextBox" FontSize="16" Foreground="White"
+                         CaretBrush="LightGray" BorderBrush="DarkGray" BorderThickness="0,0,0,2"
+                         Height="28" Background="Transparent" Visibility="Collapsed" Grid.Column="0"/>
+
+                <Button Content="👁" Width="30" Height="28" HorizontalAlignment="Right"
+                        Click="TogglePasswordVisibility" Grid.Column="1"/>
+            </Grid>
+
+            <TextBlock Text="Correo electrónico" Foreground="DarkGray" FontSize="18" FontWeight="Medium" FontFamily="Playfair Display" Margin="0,15,0,10"/>
+            <TextBox x:Name="Mail" FontSize="16" Foreground="White" CaretBrush="LightGray"
+                     BorderBrush="DarkGray" BorderThickness="0,0,0,2" Height="28" Background="Transparent"/>
+
+            <TextBlock Text="Rol" Foreground="DarkGray" FontSize="18" FontWeight="Medium" FontFamily="Playfair Display" Margin="0,15,0,10"/>
+            <ComboBox x:Name="roleComboBox">
+                <ComboBoxItem Content="Admin"/>
+                <ComboBoxItem Content="Gestor"/>
+                <ComboBoxItem Content="Mantenimiento"/>
+            </ComboBox>
+        </StackPanel>
     </Grid>
 </UserControl>
-
-    

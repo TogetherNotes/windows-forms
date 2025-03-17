@@ -23,6 +23,8 @@
     <sys:String x:Key="Hour">Hour</sys:String>
     <sys:String x:Key="Event">Event</sys:String>
 
+    <sys:String x:Key="Search">Buscar usuari</sys:String>
+
     <!-- FAQ TRANSLATIONS -->
     <sys:String x:Key="Faq1Question">How can I track my shipment?</sys:String>
     <sys:String x:Key="Faq1Answer">Use your tracking ID in the shipment portal.</sys:String>

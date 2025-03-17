@@ -23,6 +23,8 @@
     <sys:String x:Key="Hour">Hora</sys:String>
     <sys:String x:Key="Event">Evento</sys:String>
 
+    <sys:String x:Key="Search">Buscar usuario</sys:String>
+
     <!-- FAQ TRANSLATIONS -->
     <sys:String x:Key="Faq1Question">¿Cómo puedo rastrear mi envío?</sys:String>
     <sys:String x:Key="Faq1Answer">Usa tu ID de rastreo en el portal de envíos.</sys:String>
