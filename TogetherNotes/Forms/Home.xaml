@@ -30,7 +30,7 @@
                 <Border Background="#292B3A" Padding="10" CornerRadius="10" Margin="5">
                     <Grid>
                         <TextBlock Foreground="White" Text="{DynamicResource EventsToday}" FontSize="16" FontWeight="Bold"/>
-                        <ListView Name="EventsList" Background="Transparent"/>
+                        <TextBlock Foreground="White" Name="EventsCount" FontSize="24"/>
                     </Grid>
                 </Border>
 
