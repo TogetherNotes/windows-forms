@@ -222,7 +222,7 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Models\PageModel.cs" />
+    <Compile Include="PageModel\PageModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -253,7 +253,9 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Models\" />
+  </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\logo_wbg_cut.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
