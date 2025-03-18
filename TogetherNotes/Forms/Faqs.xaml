@@ -24,7 +24,9 @@
                     <DataTemplate>
                         <Expander Background="#272B2F" Foreground="White"
                                   Padding="10" Margin="0,5,0,5"
-                                  BorderBrush="#8A16C1" BorderThickness="1">
+                                  BorderBrush="#8A16C1" BorderThickness="1"
+                                  Expanded="Expander_Expanded"
+                                  Tag="{Binding}">
 
                             <!-- Pregunta -->
                             <Expander.Header>
