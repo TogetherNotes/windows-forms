@@ -1,7 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
-using TogetherNotes.ViewModel;
 
 namespace TogetherNotes.Forms
 {
@@ -12,14 +12,37 @@ namespace TogetherNotes.Forms
     {
         private bool _isPasswordVisible = false;
 
+        // Clase User para los datos de prueba
+        public class User
+        {
+            public int Id { get; set; }
+            public string Fullname { get; set; }
+            public string Mail { get; set; }
+            public string Password { get; set; }
+            public string Role { get; set; }
+        }
+
         public ManageUsers()
         {
             InitializeComponent();
+            // Llamamos al método para cargar los usuarios de prueba en el DataGrid
+            LoadTestData();
         }
 
-        public ManageUsers(UsersVM parentVM) : this()
+        private void LoadTestData()
         {
-            this.DataContext = new ManageUsersVM(parentVM);
+            // Crear algunos datos de prueba
+            List<User> users = new List<User>
+            {
+                new User { Id = 1, Fullname = "Juan Pérez", Mail = "juan.perez@email.com", Password = "12345", Role = "Administrador" },
+                new User { Id = 2, Fullname = "Ana González", Mail = "ana.gonzalez@email.com", Password = "password123", Role = "Administrador" },
+                new User { Id = 3, Fullname = "Carlos López", Mail = "carlos.lopez@email.com", Password = "qwerty", Role = "Administrador" },
+                new User { Id = 4, Fullname = "María Fernández", Mail = "maria.fernandez@email.com", Password = "admin123", Role = "Administrador" },
+                new User { Id = 5, Fullname = "Pedro García", Mail = "pedro.garcia@email.com", Password = "adminpass", Role = "Administrador" }
+            };
+
+            // Asignamos la lista de usuarios al DataGrid
+            usersDataGrid.ItemsSource = users;
         }
 
         private void TogglePasswordVisibility(object sender, RoutedEventArgs e)
@@ -45,6 +68,5 @@ namespace TogetherNotes.Forms
             if (!_isPasswordVisible) // Solo actualiza si está oculto
                 PasswordTextBox.Text = PasswordBox.Password;
         }
-
     }
 }

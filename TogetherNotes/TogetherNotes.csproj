@@ -225,7 +225,7 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Models\PageModel.cs" />
+    <Compile Include="PageModel\PageModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>

@@ -12,8 +12,41 @@
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="/Styles/UsersButton.xaml"/>
             </ResourceDictionary.MergedDictionaries>
+
+            <!-- Estilo para DataGrid -->
+            <Style TargetType="DataGrid">
+                <Setter Property="RowHeaderWidth" Value="0" />
+                <Setter Property="HorizontalScrollBarVisibility" Value="Auto"/>
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="{x:Type DataGrid}">
+                            <Border Background="DarkSlateGray" BorderBrush="DarkGray" BorderThickness="2" CornerRadius="10">
+                                <Grid>
+                                    <!-- Header y Body separados -->
+                                    <Grid>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="Auto"/>
+                                            <RowDefinition Height="*"/>
+                                        </Grid.RowDefinitions>
+
+                                        <!-- Cabecera del DataGrid -->
+                                        <DataGridColumnHeadersPresenter Grid.Row="0" HorizontalAlignment="Stretch" />
+
+                                        <!-- Cuerpo del DataGrid -->
+                                        <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
+                                            <ItemsPresenter />
+                                        </ScrollViewer>
+                                    </Grid>
+                                </Grid>
+                            </Border>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
         </ResourceDictionary>
     </UserControl.Resources>
+
+
 
     <Grid>
         <Grid.ColumnDefinitions>
@@ -32,12 +65,47 @@
         <StackPanel Grid.Column="1" Margin="20">
             <TextBlock Text="Buscar usuario" Foreground="DarkGray" FontSize="18" FontWeight="Medium" FontFamily="Playfair Display" Margin="0,0,0,10"/>
             <TextBox x:Name="searchedUser" FontSize="16" Foreground="White" CaretBrush="LightGray"
-                     BorderBrush="DarkGray" BorderThickness="0,0,0,2" Height="28" Padding="30,0,0,0">
+                     BorderBrush="DarkGray" BorderThickness="0,0,0,2" Height="28" Padding="30,0,0,0"
+                     Margin="0,0,0,20">
                 <TextBox.Background>
                     <ImageBrush ImageSource="/Resources/user-icon.png" Stretch="None" AlignmentX="Left"/>
                 </TextBox.Background>
             </TextBox>
-            <ListView Height="500" Margin="0,20,0,0"/>
+
+
+
+            <DataGrid x:Name="usersDataGrid" AutoGenerateColumns="False" Margin="5" Height="450" 
+                      Background="Transparent" BorderBrush="Transparent" BorderThickness="0" 
+                      RowHeaderWidth="0" HorizontalScrollBarVisibility="Auto" GridLinesVisibility="None"
+                      FontSize="18" FontFamily="Playfair Display">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="ID" Binding="{Binding Id}" Width="50"/>
+                    <DataGridTextColumn Header="Nombre" Binding="{Binding Fullname}" Width="*"/>
+                </DataGrid.Columns>
+
+                <DataGrid.CellStyle>
+                    <Style TargetType="DataGridCell">
+                        <Setter Property="Background" Value="DarkSlateGray"/>
+                        <Setter Property="Foreground" Value="White"/>
+                        <Setter Property="BorderBrush" Value="Transparent"/>
+                        <Setter Property="BorderThickness" Value="0"/>
+                        <Setter Property="Height" Value="30"/>
+                    </Style>
+                </DataGrid.CellStyle>
+
+                <DataGrid.ColumnHeaderStyle>
+                    <Style TargetType="DataGridColumnHeader">
+                        <Setter Property="Background" Value="DarkGray"/>
+                        <Setter Property="Foreground" Value="White"/>
+                        <Setter Property="Height" Value="40"/>
+                        <Setter Property="BorderBrush" Value="Transparent"/>
+                        <Setter Property="BorderThickness" Value="0"/>
+                        <Setter Property="Margin" Value="0,0,0,10"/>
+                    </Style>
+                </DataGrid.ColumnHeaderStyle>
+            </DataGrid>
+
+
         </StackPanel>
 
         <!-- Formulario de usuario -->
@@ -46,31 +114,31 @@
             <TextBox x:Name="nameUser" FontSize="16" Foreground="White" CaretBrush="LightGray"
                      BorderBrush="DarkGray" BorderThickness="0,0,0,2" Height="28" Background="Transparent"/>
 
-            <TextBlock Text="Contraseña" Foreground="DarkGray" FontSize="18" FontWeight="Medium" FontFamily="Playfair Display" Margin="0,15,0,10"/>
+            <TextBlock Text="Contraseña" Foreground="DarkGray" FontSize="20" FontWeight="Medium" FontFamily="Playfair Display" Margin="0,15,0,10"/>
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*" />
                     <ColumnDefinition Width="40"/>
                 </Grid.ColumnDefinitions>
 
-                <PasswordBox x:Name="PasswordBox" FontSize="16" Foreground="White" CaretBrush="LightGray"
+                <PasswordBox x:Name="PasswordBox" FontSize="18" Foreground="White" CaretBrush="LightGray"
                              BorderBrush="DarkGray" BorderThickness="0,0,0,2" Height="28" Background="Transparent"
                              Grid.Column="0" PasswordChanged="PasswordBox_PasswordChanged"/>
 
-                <TextBox x:Name="PasswordTextBox" FontSize="16" Foreground="White"
+                <TextBox x:Name="PasswordTextBox" FontSize="18" Foreground="White"
                          CaretBrush="LightGray" BorderBrush="DarkGray" BorderThickness="0,0,0,2"
                          Height="28" Background="Transparent" Visibility="Collapsed" Grid.Column="0"/>
 
                 <Button Content="👁" Width="30" Height="28" HorizontalAlignment="Right"
-                        Click="TogglePasswordVisibility" Grid.Column="1"/>
+                        Click="TogglePasswordVisibility" Grid.Column="1" Style="{StaticResource ImageButtonStyle}" Foreground="White" VerticalAlignment="Center"/>
             </Grid>
 
-            <TextBlock Text="Correo electrónico" Foreground="DarkGray" FontSize="18" FontWeight="Medium" FontFamily="Playfair Display" Margin="0,15,0,10"/>
-            <TextBox x:Name="Mail" FontSize="16" Foreground="White" CaretBrush="LightGray"
+            <TextBlock Text="Correo electrónico" Foreground="DarkGray" FontSize="20" FontWeight="Medium" FontFamily="Playfair Display" Margin="0,15,0,10"/>
+            <TextBox x:Name="Mail" FontSize="18" Foreground="White" CaretBrush="LightGray"
                      BorderBrush="DarkGray" BorderThickness="0,0,0,2" Height="28" Background="Transparent"/>
 
-            <TextBlock Text="Rol" Foreground="DarkGray" FontSize="18" FontWeight="Medium" FontFamily="Playfair Display" Margin="0,15,0,10"/>
-            <ComboBox x:Name="roleComboBox">
+            <TextBlock Text="Rol" Foreground="DarkGray" FontSize="20" FontWeight="Medium" FontFamily="Playfair Display" Margin="0,15,0,10"/>
+            <ComboBox x:Name="roleComboBox" FontSize="18" FontFamily="Playfair Display" Background="Transparent" BorderThickness="0" BorderBrush="Transparent">
                 <ComboBoxItem Content="Admin"/>
                 <ComboBoxItem Content="Gestor"/>
                 <ComboBoxItem Content="Mantenimiento"/>
