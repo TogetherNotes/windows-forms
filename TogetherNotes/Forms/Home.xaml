@@ -12,17 +12,17 @@
 
     <Grid Background="#0000">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="677*"/>
-            <ColumnDefinition Width="200*"/>
+            <ColumnDefinition Width="500"/>
+            <ColumnDefinition Width="100*"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
-            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
             <RowDefinition Height="250"/>
         </Grid.RowDefinitions>
 
         <!-- Títol -->
-        <TextBlock Text="{DynamicResource Dashboard}" Foreground="White" FontSize="24" FontWeight="Bold" Margin="20,20,20,20" Grid.ColumnSpan="2"/>
+        <TextBlock Text="{DynamicResource Dashboard}" Foreground="White" FontSize="24" FontWeight="Bold" Margin="20,20,20,5" Grid.ColumnSpan="2"/>
 
         <!-- Contingut del Dashboard -->
         <Grid Grid.Row="1" Margin="10,10,10,10" Grid.ColumnSpan="2">
@@ -32,7 +32,7 @@
             </Grid.ColumnDefinitions>
 
             <!-- Events Today -->
-            <Border Background="#292B3A" Padding="10" CornerRadius="15" Margin="5" Grid.Column="0">
+            <Border Background="#292B3A" Padding="10" CornerRadius="15" Margin="5,5,5,0" Grid.Column="0">
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto"/>
