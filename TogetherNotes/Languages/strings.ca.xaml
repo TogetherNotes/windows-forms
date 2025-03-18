@@ -33,6 +33,7 @@
     <sys:String x:Key="TotalSpaces">Espais</sys:String>
     <sys:String x:Key="TotalMatches">Emparallaments</sys:String>
     <sys:String x:Key="TotalEventsDone">Events Fets</sys:String>
+    <sys:String x:Key="UserRegistrationsperMonth">Registre d'Usuaris per Mes</sys:String>
 
     <!-- FAQ TRANSLATIONS -->
     <sys:String x:Key="Faq1Question">Com puc registrar-me com a artista?</sys:String>
