@@ -71,7 +71,20 @@ namespace TogetherNotes.Forms
 
         private void LogoutClicked(object sender, RoutedEventArgs e)
         {
-            Application.Current.Shutdown();
+            if (Application.Current.MainWindow.DataContext is TogetherNotes.ViewModel.NavigationVM navigationVM)
+            {
+                navigationVM.IsAuthenticated = false;
+
+                // Creem un nou LoginVM i assegurem que OnLoginSuccess es configura correctament
+                var loginVM = new TogetherNotes.ViewModel.LoginVM();
+                loginVM.OnLoginSuccess = () =>
+                {
+                    navigationVM.IsAuthenticated = true;
+                    navigationVM.CurrentView = new TogetherNotes.ViewModel.HomeVM(); // Torna al Dashboard
+                };
+
+                navigationVM.CurrentView = loginVM;
+            }
         }
     }
 }

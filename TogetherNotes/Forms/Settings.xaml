@@ -67,6 +67,7 @@
 
         <!-- Botó de Log Out -->
         <Button Content="{DynamicResource LogOut}"
+                Command="{Binding LogoutCommand}"
                 Click="LogoutClicked"
                 Width="200" Height="50"
                 Background="Red"

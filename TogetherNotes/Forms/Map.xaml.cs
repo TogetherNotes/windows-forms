@@ -34,11 +34,11 @@ namespace TogetherNotes.Forms
 
         private void LoadMap()
         {
+            // Desactiva l'ús de SQLite per evitar errors
+            GMaps.Instance.Mode = AccessMode.ServerOnly;
+
             // Configura el proveïdor del mapa en mode fosc
             MapControl.MapProvider = GMapProviders.OpenStreetMap;
-
-            // Activa el mode només servidor (evita errors)
-            GMaps.Instance.Mode = AccessMode.ServerOnly;
 
             // Centra el mapa en Barcelona
             MapControl.Position = new PointLatLng(41.3851, 2.1734);

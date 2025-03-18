@@ -37,7 +37,7 @@ namespace TogetherNotes.ViewModel
             }
             else
             {
-                System.Windows.MessageBox.Show("Usuario o contraseña incorrectos", "Error", System.Windows.MessageBoxButton.OK, System.Windows.MessageBoxImage.Error);
+                System.Windows.MessageBox.Show("Usuari o credencials incorrectes", "Error", System.Windows.MessageBoxButton.OK, System.Windows.MessageBoxImage.Information);
             }
         }
     }
