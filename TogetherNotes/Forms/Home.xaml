@@ -107,13 +107,25 @@
             </Grid>
         </Grid>
 
-        <!-- 📊 Gràfica a la part inferior -->
+        <!-- Gràfica a la part inferior -->
         <Border Background="#454860" Padding="10" CornerRadius="15" Margin="20" Grid.Row="2" Grid.ColumnSpan="2">
             <Grid>
-                <TextBlock Foreground="White" Text="{DynamicResource UserRegistrationsperMonth}" FontSize="16" FontWeight="Bold" Margin="0,0,0,10"/>
-                <lvc:CartesianChart Name="UserChart" Grid.Row="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <!-- Títol -->
+                    <RowDefinition Height="20"/>
+                    <!-- Espai addicional -->
+                    <RowDefinition Height="*"/>
+                    <!-- Gràfica -->
+                </Grid.RowDefinitions>
+
+                <TextBlock Foreground="White" Text="{DynamicResource UserRegistrationsperMonth}" 
+                   FontSize="16" FontWeight="Bold" Margin="0,0,0,10" Grid.Row="0"/>
+
+                <lvc:CartesianChart Name="UserChart" Grid.Row="2">
                     <lvc:CartesianChart.Series>
-                        <lvc:ColumnSeries Title="Registrations" Values="{Binding UserRegistrations}"/>
+                        <lvc:LineSeries Title="Registrations" Values="{Binding UserRegistrations}"
+                                PointGeometrySize="10" StrokeThickness="2"/>
                     </lvc:CartesianChart.Series>
                     <lvc:CartesianChart.AxisX>
                         <lvc:Axis Title="Months" Labels="{Binding Months}"/>
