@@ -26,6 +26,7 @@ namespace TogetherNotes.ViewModel
         public ICommand TransactionsCommand { get; set; }
         public ICommand ShipmentsCommand { get; set; }
         public ICommand SettingsCommand { get; set; }
+        public ICommand LogoutCommand { get; set; }
 
         private void Home(object obj) { if (IsAuthenticated) CurrentView = new HomeVM(); }
         private void Users(object obj) { if (IsAuthenticated) CurrentView = new UsersVM(); }
@@ -44,13 +45,13 @@ namespace TogetherNotes.ViewModel
             ShipmentsCommand = new RelayCommand(Faq);
             SettingsCommand = new RelayCommand(Setting);
 
-            // Inicializar vista de login
+            // Inicialitzar la vista amb Login
             IsAuthenticated = false;
             var loginVM = new LoginVM();
             loginVM.OnLoginSuccess = () =>
             {
                 IsAuthenticated = true;
-                CurrentView = new HomeVM();
+                CurrentView = new HomeVM(); // Dashboard després del login
             };
 
             CurrentView = loginVM;

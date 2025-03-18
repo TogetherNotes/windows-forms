@@ -21,11 +21,12 @@
 
         <!-- Títol "Languages" amb suport per multi-idioma -->
         <TextBlock Text="{DynamicResource Languages}"
-           FontSize="24" FontWeight="Bold"
-           Foreground="White"
-           HorizontalAlignment="Center"
-           VerticalAlignment="Top"
-           Margin="0,30,0,20"/>
+                   FontSize="24" FontWeight="Bold"
+                   Foreground="White"
+                   HorizontalAlignment="Center"
+                   VerticalAlignment="Top"
+                   Margin="0,30,0,20"
+                   FontFamily="Playfair Display" />
 
         <!-- Grid per centrar les banderes i separar-les adequadament -->
         <Grid Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center">
@@ -66,6 +67,7 @@
 
         <!-- Botó de Log Out -->
         <Button Content="{DynamicResource LogOut}"
+                Command="{Binding LogoutCommand}"
                 Click="LogoutClicked"
                 Width="200" Height="50"
                 Background="Red"
@@ -73,6 +75,7 @@
                 FontSize="16"
                 FontWeight="Bold"
                 BorderBrush="Black"
+                FontFamily="Playfair Display" 
                 HorizontalAlignment="Center"
                 VerticalAlignment="Bottom"
                 Grid.Row="2"

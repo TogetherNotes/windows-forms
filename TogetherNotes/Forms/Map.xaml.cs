@@ -8,25 +8,37 @@ namespace TogetherNotes.Forms
 {
     public partial class Map : UserControl
     {
-        private RectangleGeometry clipGeometry;
+        private readonly RectangleGeometry clipGeometry;
 
         public Map()
         {
             InitializeComponent();
-            LoadMap();
 
             // Inicialitzem el Clip
             clipGeometry = new RectangleGeometry();
             MapControl.Clip = clipGeometry;
+
+            // Asegurem que el MapControl es carrega abans d'executar la configuració
+            MapControl.Loaded += MapControl_Loaded;
+            MapControl.SizeChanged += MapControl_SizeChanged;
+        }
+
+        private void MapControl_Loaded(object sender, RoutedEventArgs e)
+        {
+            // Carreguem i configurem el mapa només quan el MapControl s'ha carregat completament
+            LoadMap();
+
+            // Establim el Clip inicial
+            UpdateMapClip();
         }
 
         private void LoadMap()
         {
+            // Desactiva l'ús de SQLite per evitar errors
+            GMaps.Instance.Mode = AccessMode.ServerOnly;
+
             // Configura el proveïdor del mapa en mode fosc
             MapControl.MapProvider = GMapProviders.OpenStreetMap;
-
-            // Activa el mode només servidor (evita errors)
-            GMaps.Instance.Mode = AccessMode.ServerOnly;
 
             // Centra el mapa en Barcelona
             MapControl.Position = new PointLatLng(41.3851, 2.1734);
@@ -42,12 +54,6 @@ namespace TogetherNotes.Forms
 
             // Desactiva les etiquetes per un look més net
             MapControl.ShowTileGridLines = false;
-        }
-
-        private void MapControl_Loaded(object sender, RoutedEventArgs e)
-        {
-            // Establim el Clip inicial
-            UpdateMapClip();
         }
 
         private void MapControl_SizeChanged(object sender, SizeChangedEventArgs e)

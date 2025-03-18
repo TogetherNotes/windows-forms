@@ -430,17 +430,17 @@
             </Calendar>
         </Viewbox>
 
-        <Border CornerRadius="10" BorderBrush="#FF00FF" BorderThickness="2" Grid.Column="1">
+        <Border CornerRadius="10" BorderBrush="#FF00FF" BorderThickness="3" Grid.Column="1">
             <ListView Name="EventsList"
-              Background="#1B2A34"
-              IsHitTestVisible="False"
-              Foreground="White"
-              FontSize="14"
-              Padding="10"
-              SelectionMode="Single"
-              HorizontalAlignment="Stretch"
-              VerticalAlignment="Stretch"
-              ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+          Background="#1B2A34"
+          IsHitTestVisible="False"
+          Foreground="White"
+          FontSize="14"
+          Padding="10"
+          SelectionMode="Single"
+          HorizontalAlignment="Stretch"
+          VerticalAlignment="Stretch"
+          ScrollViewer.HorizontalScrollBarVisibility="Disabled">
 
                 <ListView.Resources>
                     <!-- Estilo para los encabezados -->
@@ -454,14 +454,43 @@
                             <Setter.Value>
                                 <ControlTemplate TargetType="GridViewColumnHeader">
                                     <Border Background="{TemplateBinding Background}"
-                                    BorderBrush="#FF00FF"
-                                    BorderThickness="1"
-                                    CornerRadius="5"
-                                    Margin="4.5,0,4.5,20">
-                                        <TextBlock Text="{TemplateBinding Content}" 
-                                           HorizontalAlignment="Center" 
-                                           VerticalAlignment="Center"/>
+                                BorderBrush="#FF00FF"
+                                BorderThickness="1"
+                                CornerRadius="10"
+                                Margin="4.5,0,4.5,20">
+                                        <TextBlock Text="{TemplateBinding Content}"
+                                       HorizontalAlignment="Center"
+                                       VerticalAlignment="Center"/>
                                     </Border>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                    </Style>
+
+                    <!-- Plantilla para redondear bordes del ListView -->
+                    <Style TargetType="ListView">
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="ListView">
+                                    <Border Name="Bd"
+                                CornerRadius="10"
+                                Background="{TemplateBinding Background}"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}"
+                                SnapsToDevicePixels="true">
+                                        <ScrollViewer Style="{DynamicResource {x:Static GridView.GridViewScrollViewerStyleKey}}"
+                                          Padding="{TemplateBinding Padding}">
+                                            <ItemsPresenter SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"/>
+                                        </ScrollViewer>
+                                    </Border>
+                                    <ControlTemplate.Triggers>
+                                        <Trigger Property="IsGrouping" Value="true">
+                                            <Setter Property="ScrollViewer.CanContentScroll" Value="false"/>
+                                        </Trigger>
+                                        <Trigger Property="IsEnabled" Value="false">
+                                            <Setter TargetName="Bd" Property="Background" Value="{DynamicResource {x:Static SystemColors.ControlBrushKey}}"/>
+                                        </Trigger>
+                                    </ControlTemplate.Triggers>
                                 </ControlTemplate>
                             </Setter.Value>
                         </Setter>
@@ -500,16 +529,14 @@
                     </Style>
                 </ListView.ItemContainerStyle>
 
-
-
                 <ListView.View>
                     <GridView>
                         <GridViewColumn Header="{DynamicResource Hour}" DisplayMemberBinding="{Binding Time}" Width="80" />
                         <GridViewColumn Header="{DynamicResource Event}" DisplayMemberBinding="{Binding Title}" Width="240" />
                     </GridView>
                 </ListView.View>
-
             </ListView>
+
         </Border>
 
     </Grid>

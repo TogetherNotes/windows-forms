@@ -24,18 +24,21 @@
                     <DataTemplate>
                         <Expander Background="#272B2F" Foreground="White"
                                   Padding="10" Margin="0,5,0,5"
-                                  BorderBrush="#8A16C1" BorderThickness="1">
+                                  BorderBrush="#8A16C1" BorderThickness="1"
+                                  Expanded="Expander_Expanded"
+                                  Tag="{Binding}">
 
                             <!-- Pregunta -->
                             <Expander.Header>
-                                <TextBlock Text="{Binding Question}" FontWeight="Bold"/>
+                                <TextBlock Text="{Binding Question}" FontWeight="Bold" FontFamily="Playfair Display" />
                             </Expander.Header>
 
                             <!-- Resposta -->
                             <TextBlock Text="{Binding Answer}" 
                                        FontSize="14" Foreground="#DBDBDB" 
                                        TextWrapping="Wrap" 
-                                       Margin="10"/>
+                                       Margin="10"
+                                       FontFamily="Playfair Display" />
                         </Expander>
                     </DataTemplate>
                 </ItemsControl.ItemTemplate>
