@@ -16,9 +16,9 @@ namespace TogetherNotes.ViewModel
         public ICommand ShowMusicianCommand { get; set; }
         public ICommand ShowRestaurantCommand { get; set; }
 
-        private void ShowAdmin(object obj) { CurrentUserView = new ManageUsersVM(this); }
-        private void ShowMusician(object obj) { CurrentUserView = new ManageUsersVM(this); }
-        private void ShowRestaurant(object obj) { CurrentUserView = new ManageUsersVM(this); }
+        private void ShowAdmin(object obj) { CurrentUserView = new ManageAdminVM(this); }
+        private void ShowMusician(object obj) { CurrentUserView = new ManageAdminVM(this); }
+        private void ShowRestaurant(object obj) { CurrentUserView = new ManageAdminVM(this); }
 
         public UsersVM()
         {

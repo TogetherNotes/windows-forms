@@ -32,8 +32,8 @@
         <view:Login/>
     </DataTemplate>
 
-    <DataTemplate DataType="{x:Type vm:ManageUsersVM}">
-        <view:ManageUsers/>
+    <DataTemplate DataType="{x:Type vm:ManageAdminVM}">
+        <view:ManageAdmin/>
     </DataTemplate>
 
 </ResourceDictionary>

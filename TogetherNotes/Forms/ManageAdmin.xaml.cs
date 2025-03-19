@@ -9,7 +9,7 @@ using System.Windows.Data;
 
 namespace TogetherNotes.Forms
 {
-    public partial class ManageUsers : UserControl
+    public partial class ManageAdmin : UserControl
     {
         private bool _isPasswordVisible = false;
         private ObservableCollection<User> users;
@@ -24,7 +24,7 @@ namespace TogetherNotes.Forms
             public string Role { get; set; }
         }
 
-        public ManageUsers()
+        public ManageAdmin()
         {
             InitializeComponent();
             LoadTestData();
@@ -72,7 +72,7 @@ namespace TogetherNotes.Forms
             usersView.Refresh();
         }
 
-        private void usersDataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void UsersDataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (usersDataGrid.SelectedItem is User selectedUser)
             {

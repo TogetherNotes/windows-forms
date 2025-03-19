@@ -5,12 +5,12 @@ using TogetherNotes.Utils;
 
 namespace TogetherNotes.ViewModel
 {
-    public class ManageUsersVM : INotifyPropertyChanged
+    public class ManageAdminVM : INotifyPropertyChanged
     {
         private UsersVM _parentVM;
         public ICommand BackCommand { get; }
 
-        public ManageUsersVM(UsersVM parentVM)
+        public ManageAdminVM(UsersVM parentVM)
         {
             _parentVM = parentVM;
             BackCommand = new RelayCommand(Back);
