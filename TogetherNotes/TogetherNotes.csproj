@@ -106,6 +106,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Forms\ManageAdmin.xaml.cs">
+      <DependentUpon>ManageAdmin.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Forms\Users.xaml.cs">
       <DependentUpon>Users.xaml</DependentUpon>
     </Compile>
@@ -203,8 +206,10 @@
       <DependentUpon>TogetherNotesModel.edmx</DependentUpon>
     </Compile>
     <Compile Include="Utils\Btn.cs" />
+    <Compile Include="Utils\NullToVisibilityConverter.cs" />
     <Compile Include="Utils\RelayCommand.cs" />
     <Compile Include="Utils\ViewModelBase.cs" />
+    <Compile Include="ViewModel\ManageAdminVM.cs" />
     <Compile Include="ViewModel\UsersVM.cs" />
     <Compile Include="ViewModel\HomeVM.cs" />
     <Compile Include="ViewModel\LoginVM.cs" />
@@ -213,6 +218,10 @@
     <Compile Include="ViewModel\CalendarVM.cs" />
     <Compile Include="ViewModel\FaqsVM.cs" />
     <Compile Include="ViewModel\SettingVM.cs" />
+    <Page Include="Forms\ManageAdmin.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Forms\Users.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -337,7 +346,11 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Resource Include="Resources\atras.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+  </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\logo_wbg_cut.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
