@@ -35,6 +35,13 @@
     <sys:String x:Key="TotalEventsDone">Events Fets</sys:String>
     <sys:String x:Key="UserRegistrationsperMonth">Registre d'Usuaris per Mes</sys:String>
 
+    <sys:String x:Key="Name">Nom</sys:String>
+    <sys:String x:Key="Role">Rol</sys:String>
+    <sys:String x:Key="Email">Correu</sys:String>
+    <sys:String x:Key="Save">Guardar</sys:String>
+    <sys:String x:Key="Delete">Eliminar</sys:String>
+    <sys:String x:Key="SearchUser">Buscar Usuari</sys:String>
+
     <!-- FAQ TRANSLATIONS -->
     <sys:String x:Key="Faq1Question">Com puc registrar-me com a artista?</sys:String>
     <sys:String x:Key="Faq1Answer">Pots registrar-te a l'aplicació seleccionant el rol d’'Artista' i completant el teu perfil.</sys:String>

@@ -35,6 +35,13 @@
     <sys:String x:Key="TotalEventsDone">Events Done</sys:String>
     <sys:String x:Key="UserRegistrationsperMonth">User Registrations per Month</sys:String>
 
+    <sys:String x:Key="Name">Name</sys:String>
+    <sys:String x:Key="Role">Role</sys:String>
+    <sys:String x:Key="Email">Email</sys:String>
+    <sys:String x:Key="Save">Save</sys:String>
+    <sys:String x:Key="Delete">Delete</sys:String>
+    <sys:String x:Key="SearchUser">Search User</sys:String>
+
     <!-- FAQ TRANSLATIONS -->
     <sys:String x:Key="Faq1Question">How can I register as an artist?</sys:String>
     <sys:String x:Key="Faq1Answer">You can sign up through the app by selecting the 'Artist' role and completing your profile.</sys:String>

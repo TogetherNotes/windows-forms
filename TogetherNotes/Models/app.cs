@@ -24,7 +24,6 @@ namespace TogetherNotes.Models
             this.incidences = new HashSet<incidences>();
             this.rating1 = new HashSet<rating>();
             this.rating2 = new HashSet<rating>();
-            this.genres = new HashSet<genres>();
             this.app1 = new HashSet<app>();
             this.app2 = new HashSet<app>();
         }
@@ -45,6 +44,7 @@ namespace TogetherNotes.Models
         public virtual files files { get; set; }
         public virtual languages languages { get; set; }
         public virtual notifications notifications { get; set; }
+        public virtual artists artists { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<chats> chats { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
@@ -60,8 +60,6 @@ namespace TogetherNotes.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<rating> rating2 { get; set; }
         public virtual spaces spaces { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<genres> genres { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<app> app1 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

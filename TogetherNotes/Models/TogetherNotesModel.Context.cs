@@ -27,11 +27,9 @@ namespace TogetherNotes.Models
     
         public virtual DbSet<activity> activity { get; set; }
         public virtual DbSet<admin> admin { get; set; }
-        public virtual DbSet<app> app { get; set; }
         public virtual DbSet<chats> chats { get; set; }
         public virtual DbSet<contracts> contracts { get; set; }
         public virtual DbSet<files> files { get; set; }
-        public virtual DbSet<genres> genres { get; set; }
         public virtual DbSet<incidences> incidences { get; set; }
         public virtual DbSet<languages> languages { get; set; }
         public virtual DbSet<messages> messages { get; set; }
@@ -39,5 +37,8 @@ namespace TogetherNotes.Models
         public virtual DbSet<rating> rating { get; set; }
         public virtual DbSet<roles> roles { get; set; }
         public virtual DbSet<spaces> spaces { get; set; }
+        public virtual DbSet<app> app { get; set; }
+        public virtual DbSet<artists> artists { get; set; }
+        public virtual DbSet<genres> genres { get; set; }
     }
 }
