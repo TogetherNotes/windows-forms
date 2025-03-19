@@ -33,7 +33,7 @@ namespace TogetherNotes.ViewModel
         {
             if (IsAuthenticated)
             {
-                CurrentView = new UsersVM();
+                CurrentView = new ManageAdminVM();
             }
 
         }
