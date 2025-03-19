@@ -157,12 +157,27 @@
     <Compile Include="Models\languages.cs">
       <DependentUpon>TogetherNotesModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Management\ActivityOrm.cs" />
+    <Compile Include="Models\Management\AdminOrm.cs" />
+    <Compile Include="Models\Management\AppOrm.cs" />
+    <Compile Include="Models\Management\ChatsOrm.cs" />
+    <Compile Include="Models\Management\ContractsOrm.cs" />
+    <Compile Include="Models\Management\FilesOrm.cs" />
+    <Compile Include="Models\Management\GenresOrm.cs" />
+    <Compile Include="Models\Management\IncidencesOrm.cs" />
+    <Compile Include="Models\Management\LanguagesOrm.cs" />
+    <Compile Include="Models\Management\MessagesOrm.cs" />
+    <Compile Include="Models\Management\NotificationsOrm.cs" />
+    <Compile Include="Models\Management\RatingOrm.cs" />
+    <Compile Include="Models\Management\RolesOrm.cs" />
+    <Compile Include="Models\Management\SpacesOrm.cs" />
     <Compile Include="Models\messages.cs">
       <DependentUpon>TogetherNotesModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\notifications.cs">
       <DependentUpon>TogetherNotesModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Management\Orm.cs" />
     <Compile Include="Models\rating.cs">
       <DependentUpon>TogetherNotesModel.tt</DependentUpon>
     </Compile>
