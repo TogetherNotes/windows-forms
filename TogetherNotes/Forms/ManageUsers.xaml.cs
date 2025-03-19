@@ -1,18 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
+using System.Collections.ObjectModel;
 
 namespace TogetherNotes.Forms
 {
-    /// <summary>
-    /// Lógica de interacción para ManageUsers.xaml
-    /// </summary>
     public partial class ManageUsers : UserControl
     {
         private bool _isPasswordVisible = false;
+        private ObservableCollection<User> users;
 
-        // Clase User para los datos de prueba
         public class User
         {
             public int Id { get; set; }
@@ -25,24 +24,39 @@ namespace TogetherNotes.Forms
         public ManageUsers()
         {
             InitializeComponent();
-            // Llamamos al método para cargar los usuarios de prueba en el DataGrid
             LoadTestData();
         }
 
         private void LoadTestData()
         {
-            // Crear algunos datos de prueba
-            List<User> users = new List<User>
+            users = new ObservableCollection<User>
             {
-                new User { Id = 1, Fullname = "Juan Pérez", Mail = "juan.perez@email.com", Password = "12345", Role = "Administrador" },
-                new User { Id = 2, Fullname = "Ana González", Mail = "ana.gonzalez@email.com", Password = "password123", Role = "Administrador" },
-                new User { Id = 3, Fullname = "Carlos López", Mail = "carlos.lopez@email.com", Password = "qwerty", Role = "Administrador" },
-                new User { Id = 4, Fullname = "María Fernández", Mail = "maria.fernandez@email.com", Password = "admin123", Role = "Administrador" },
-                new User { Id = 5, Fullname = "Pedro García", Mail = "pedro.garcia@email.com", Password = "adminpass", Role = "Administrador" }
+                new User { Id = 1, Fullname = "Juan Pérez", Mail = "juan.perez@email.com", Password = "12345", Role = "Admin" },
+                new User { Id = 2, Fullname = "Ana González", Mail = "ana.gonzalez@email.com", Password = "password123", Role = "Gestor" },
+                new User { Id = 3, Fullname = "Carlos López", Mail = "carlos.lopez@email.com", Password = "qwerty", Role = "Mantenimiento" },
+                new User { Id = 4, Fullname = "María Fernández", Mail = "maria.fernandez@email.com", Password = "admin123", Role = "Admin" },
+                new User { Id = 5, Fullname = "Pedro García", Mail = "pedro.garcia@email.com", Password = "adminpass", Role = "Gestor" }
             };
 
-            // Asignamos la lista de usuarios al DataGrid
             usersDataGrid.ItemsSource = users;
+        }
+
+        private void searchedUser_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            string searchText = searchedUser.Text.ToLower();
+            usersDataGrid.ItemsSource = users.Where(u => u.Fullname.ToLower().Contains(searchText)).ToList();
+        }
+
+        private void usersDataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (usersDataGrid.SelectedItem is User selectedUser)
+            {
+                nameUser.Text = selectedUser.Fullname;
+                Mail.Text = selectedUser.Mail;
+                PasswordBox.Password = selectedUser.Password;
+                PasswordTextBox.Text = selectedUser.Password;
+                roleComboBox.SelectedItem = roleComboBox.Items.Cast<ComboBoxItem>().FirstOrDefault(i => i.Content.ToString() == selectedUser.Role);
+            }
         }
 
         private void TogglePasswordVisibility(object sender, RoutedEventArgs e)
@@ -51,13 +65,13 @@ namespace TogetherNotes.Forms
 
             if (_isPasswordVisible)
             {
-                PasswordTextBox.Text = PasswordBox.Password; // Sincroniza el texto
+                PasswordTextBox.Text = PasswordBox.Password;
                 PasswordTextBox.Visibility = Visibility.Visible;
                 PasswordBox.Visibility = Visibility.Collapsed;
             }
             else
             {
-                PasswordBox.Password = PasswordTextBox.Text; // Devuelve el texto al PasswordBox
+                PasswordBox.Password = PasswordTextBox.Text;
                 PasswordTextBox.Visibility = Visibility.Collapsed;
                 PasswordBox.Visibility = Visibility.Visible;
             }
@@ -65,7 +79,7 @@ namespace TogetherNotes.Forms
 
         private void PasswordBox_PasswordChanged(object sender, RoutedEventArgs e)
         {
-            if (!_isPasswordVisible) // Solo actualiza si está oculto
+            if (!_isPasswordVisible)
                 PasswordTextBox.Text = PasswordBox.Password;
         }
     }
