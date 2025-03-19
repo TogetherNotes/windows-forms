@@ -61,21 +61,21 @@
                 <StackPanel Orientation="Horizontal" Grid.Row="0" HorizontalAlignment="Center">
                     <Border Background="#454860" Padding="10" CornerRadius="15" Margin="5" Width="120" Height="120">
                         <Grid>
-                            <TextBlock Foreground="White" Text="SuperAdmins" FontSize="14" FontWeight="Bold" TextAlignment="Center"/>
+                            <TextBlock Foreground="White" Text="{DynamicResource TotalSuperAdmins}" FontSize="14" FontWeight="Bold" TextAlignment="Center"/>
                             <TextBlock Foreground="White" Text="5" FontSize="28" FontWeight="Bold" VerticalAlignment="Bottom" TextAlignment="Center"/>
                         </Grid>
                     </Border>
 
                     <Border Background="#454860" Padding="10" CornerRadius="15" Margin="5" Width="120" Height="120">
                         <Grid>
-                            <TextBlock Foreground="White" Text="Admins" FontSize="14" FontWeight="Bold" TextAlignment="Center"/>
+                            <TextBlock Foreground="White" Text="{DynamicResource TotalAdmins}" FontSize="14" FontWeight="Bold" TextAlignment="Center"/>
                             <TextBlock Foreground="White" Text="12" FontSize="28" FontWeight="Bold" VerticalAlignment="Bottom" TextAlignment="Center"/>
                         </Grid>
                     </Border>
 
                     <Border Background="#454860" Padding="10" CornerRadius="15" Margin="5" Width="120" Height="120">
                         <Grid>
-                            <TextBlock Foreground="White" Text="Manteniment" FontSize="14" FontWeight="Bold" TextAlignment="Center"/>
+                            <TextBlock Foreground="White" Text="{DynamicResource TotalMaintenanceUsers}" FontSize="14" FontWeight="Bold" TextAlignment="Center"/>
                             <TextBlock Foreground="White" Text="3" FontSize="28" FontWeight="Bold" VerticalAlignment="Bottom" TextAlignment="Center"/>
                         </Grid>
                     </Border>
@@ -85,21 +85,21 @@
                 <StackPanel Orientation="Horizontal" Grid.Row="1" HorizontalAlignment="Center">
                     <Border Background="#454860" Padding="10" CornerRadius="15" Margin="5" Width="120" Height="120">
                         <Grid>
-                            <TextBlock Foreground="White" Text="App Users" FontSize="14" FontWeight="Bold" TextAlignment="Center"/>
+                            <TextBlock Foreground="White" Text="{DynamicResource TotalAppUsers}" FontSize="14" FontWeight="Bold" TextAlignment="Center"/>
                             <TextBlock Foreground="White" Text="150" FontSize="28" FontWeight="Bold" VerticalAlignment="Bottom" TextAlignment="Center"/>
                         </Grid>
                     </Border>
 
                     <Border Background="#454860" Padding="10" CornerRadius="15" Margin="5" Width="120" Height="120">
                         <Grid>
-                            <TextBlock Foreground="White" Text="Artistes" FontSize="14" FontWeight="Bold" TextAlignment="Center"/>
+                            <TextBlock Foreground="White" Text="{DynamicResource TotalArtists}" FontSize="14" FontWeight="Bold" TextAlignment="Center"/>
                             <TextBlock Foreground="White" Text="42" FontSize="28" FontWeight="Bold" VerticalAlignment="Bottom" TextAlignment="Center"/>
                         </Grid>
                     </Border>
 
                     <Border Background="#454860" Padding="10" CornerRadius="15" Margin="5" Width="120" Height="120">
                         <Grid>
-                            <TextBlock Foreground="White" Text="Espais" FontSize="14" FontWeight="Bold" TextAlignment="Center"/>
+                            <TextBlock Foreground="White" Text="{DynamicResource TotalSpaces}" FontSize="14" FontWeight="Bold" TextAlignment="Center"/>
                             <TextBlock Foreground="White" Text="29" FontSize="28" FontWeight="Bold" VerticalAlignment="Bottom" TextAlignment="Center"/>
                         </Grid>
                     </Border>

@@ -27,8 +27,8 @@
     <sys:String x:Key="EventsToday">Eventos de Hoy</sys:String>
     <sys:String x:Key="TotalSuperAdmins">SuperAdmins</sys:String>
     <sys:String x:Key="TotalAdmins">Admins</sys:String>
-    <sys:String x:Key="TotalMaintenanceUsers">Usuarios de Mantenimiento</sys:String>
-    <sys:String x:Key="TotalAppUsers">Usuarios de la App</sys:String>
+    <sys:String x:Key="TotalMaintenanceUsers">Mantenimiento</sys:String>
+    <sys:String x:Key="TotalAppUsers">App</sys:String>
     <sys:String x:Key="TotalArtists">Artistas</sys:String>
     <sys:String x:Key="TotalSpaces">Espacios</sys:String>
     <sys:String x:Key="TotalMatches">Emparejamientos</sys:String>

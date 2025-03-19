@@ -27,8 +27,8 @@
     <sys:String x:Key="EventsToday">Events Today</sys:String>
     <sys:String x:Key="TotalSuperAdmins">SuperAdmins</sys:String>
     <sys:String x:Key="TotalAdmins">Admins</sys:String>
-    <sys:String x:Key="TotalMaintenanceUsers">Maintenance Users</sys:String>
-    <sys:String x:Key="TotalAppUsers">App Users</sys:String>
+    <sys:String x:Key="TotalMaintenanceUsers">Maintenance</sys:String>
+    <sys:String x:Key="TotalAppUsers">App</sys:String>
     <sys:String x:Key="TotalArtists">Artists</sys:String>
     <sys:String x:Key="TotalSpaces">Spaces</sys:String>
     <sys:String x:Key="TotalMatches">Matches</sys:String>
