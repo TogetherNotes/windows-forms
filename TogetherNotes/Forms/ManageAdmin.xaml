@@ -31,21 +31,16 @@
                                         <RowDefinition Height="*"/>
                                     </Grid.RowDefinitions>
                                     <DataGridColumnHeadersPresenter Grid.Row="0"/>
+                                    
                                     <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto">
-                                        <ItemsPresenter x:Name="itemsPresenter"/>
+                                        <ItemsPresenter/>
                                     </ScrollViewer>
                                 </Grid>
                             </Border>
-                            <ControlTemplate.Triggers>
-                                <DataTrigger Binding="{Binding Items.Count, RelativeSource={RelativeSource AncestorType=DataGrid}}" Value="1">
-                                    <Setter TargetName="itemsPresenter" Property="Visibility" Value="Collapsed"/>
-                                </DataTrigger>
-                            </ControlTemplate.Triggers>
                         </ControlTemplate>
                     </Setter.Value>
                 </Setter>
             </Style>
-
 
             <Style TargetType="DataGridColumnHeader">
                 <Setter Property="Template">
@@ -99,10 +94,7 @@
             <Style TargetType="DataGridRow">
                 <Setter Property="Background" Value="#1B2A34"/>
             </Style>
-
-
             
-
         </ResourceDictionary>
     </UserControl.Resources>
 
