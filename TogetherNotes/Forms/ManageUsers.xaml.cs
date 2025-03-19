@@ -4,6 +4,8 @@ using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
+using System.Windows.Data;
 
 namespace TogetherNotes.Forms
 {
@@ -11,6 +13,7 @@ namespace TogetherNotes.Forms
     {
         private bool _isPasswordVisible = false;
         private ObservableCollection<User> users;
+        private ICollectionView usersView;
 
         public class User
         {
@@ -25,6 +28,23 @@ namespace TogetherNotes.Forms
         {
             InitializeComponent();
             LoadTestData();
+            SetupUserFilter();
+        }
+
+        private void SetupUserFilter()
+        {
+            if (usersView != null)
+            {
+                usersView.Filter = item =>
+                {
+                    if (item is User user)
+                    {
+                        return string.IsNullOrEmpty(searchedUser.Text) ||
+                               user.Fullname.ToLower().Contains(searchedUser.Text.ToLower());
+                    }
+                    return false;
+                };
+            }
         }
 
         private void LoadTestData()
@@ -38,13 +58,13 @@ namespace TogetherNotes.Forms
                 new User { Id = 5, Fullname = "Pedro García", Mail = "pedro.garcia@email.com", Password = "adminpass", Role = "Gestor" }
             };
 
-            usersDataGrid.ItemsSource = users;
+            usersView = CollectionViewSource.GetDefaultView(users);
+            usersDataGrid.ItemsSource = usersView;
         }
 
         private void searchedUser_TextChanged(object sender, TextChangedEventArgs e)
         {
-            string searchText = searchedUser.Text.ToLower();
-            usersDataGrid.ItemsSource = users.Where(u => u.Fullname.ToLower().Contains(searchText)).ToList();
+            usersView.Refresh();
         }
 
         private void usersDataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)

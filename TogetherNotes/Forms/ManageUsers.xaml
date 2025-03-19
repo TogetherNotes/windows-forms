@@ -17,32 +17,92 @@
             <Style TargetType="DataGrid">
                 <Setter Property="RowHeaderWidth" Value="0" />
                 <Setter Property="HorizontalScrollBarVisibility" Value="Auto"/>
+                <Setter Property="BorderThickness" Value="0"/>
+                <Setter Property="Background" Value="#454860"/>
+                <Setter Property="Foreground" Value="White"/>
                 <Setter Property="Template">
                     <Setter.Value>
-                        <ControlTemplate TargetType="{x:Type DataGrid}">
-                            <Border Background="DarkSlateGray" BorderBrush="DarkGray" BorderThickness="2" CornerRadius="10">
+                        <ControlTemplate TargetType="DataGrid">
+                            <Border Background="#1B2A34" BorderBrush="#FF00FF" 
+                        BorderThickness="2" CornerRadius="15">
                                 <Grid>
-                                    <!-- Header y Body separados -->
-                                    <Grid>
-                                        <Grid.RowDefinitions>
-                                            <RowDefinition Height="Auto"/>
-                                            <RowDefinition Height="*"/>
-                                        </Grid.RowDefinitions>
-
-                                        <!-- Cabecera del DataGrid -->
-                                        <DataGridColumnHeadersPresenter Grid.Row="0" HorizontalAlignment="Stretch" />
-
-                                        <!-- Cuerpo del DataGrid -->
-                                        <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
-                                            <ItemsPresenter/>
-                                        </ScrollViewer>
-                                    </Grid>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="*"/>
+                                    </Grid.RowDefinitions>
+                                    <DataGridColumnHeadersPresenter Grid.Row="0"/>
+                                    <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto">
+                                        <ItemsPresenter x:Name="itemsPresenter"/>
+                                    </ScrollViewer>
                                 </Grid>
                             </Border>
+                            <ControlTemplate.Triggers>
+                                <DataTrigger Binding="{Binding Items.Count, RelativeSource={RelativeSource AncestorType=DataGrid}}" Value="1">
+                                    <Setter TargetName="itemsPresenter" Property="Visibility" Value="Collapsed"/>
+                                </DataTrigger>
+                            </ControlTemplate.Triggers>
                         </ControlTemplate>
                     </Setter.Value>
                 </Setter>
             </Style>
+
+
+            <Style TargetType="DataGridColumnHeader">
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="DataGridColumnHeader">
+                            <Border Background="{TemplateBinding Background}"
+                        BorderBrush="{TemplateBinding BorderBrush}"
+                        BorderThickness="{TemplateBinding BorderThickness}"
+                        CornerRadius="10,10,0,0"
+                        Padding="5"
+                        Margin="0">
+                                <ContentPresenter HorizontalAlignment="Center"
+                                      VerticalAlignment="Center" />
+                            </Border>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+                <Setter Property="Background" Value="#1B2A34"/>
+                <Setter Property="Foreground" Value="White"/>
+                <Setter Property="Height" Value="40"/>
+                <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                <Setter Property="FontSize" Value="22"/>
+                <Setter Property="FontFamily" Value="Playfair Display"/>
+                <Setter Property="FontWeight" Value="SemiBold"/>
+                <Setter Property="VerticalContentAlignment" Value="Center"/>
+            </Style>
+
+            <Style TargetType="DataGridCell">
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="DataGridCell">
+                            <Border Background="{TemplateBinding Background}"
+                        BorderBrush="{TemplateBinding BorderBrush}"
+                        BorderThickness="1"
+                        CornerRadius="10"
+                        Padding="10"
+                        Margin="2">
+                                <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            </Border>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+                <Setter Property="Background" Value="#454860"/>
+                <Setter Property="Foreground" Value="White"/>
+                <Setter Property="BorderBrush" Value="DarkGray"/>
+                <Setter Property="BorderThickness" Value="1"/>
+                <Setter Property="FontFamily" Value="Playfair Display"/>
+                <Setter Property="Margin" Value="2"/>
+            </Style>
+
+            <Style TargetType="DataGridRow">
+                <Setter Property="Background" Value="#1B2A34"/>
+            </Style>
+
+
+            
+
         </ResourceDictionary>
     </UserControl.Resources>
 
@@ -74,35 +134,14 @@
 
 
 
-            <DataGrid x:Name="usersDataGrid" AutoGenerateColumns="False" Margin="5" Height="450" 
-                      Background="Transparent" BorderBrush="Transparent" BorderThickness="0" IsReadOnly="True"
-                      RowHeaderWidth="0" HorizontalScrollBarVisibility="Auto" GridLinesVisibility="None"
-                      FontSize="18" FontFamily="Playfair Display" CanUserAddRows="False" SelectionChanged="usersDataGrid_SelectionChanged">
+            <DataGrid x:Name="usersDataGrid" AutoGenerateColumns="False" Height="450" 
+                  IsReadOnly="True" BorderThickness="0" GridLinesVisibility="None"
+                  FontSize="18" CanUserAddRows="False" SelectionChanged="usersDataGrid_SelectionChanged">
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="ID" Binding="{Binding Id}" Width="50"/>
                     <DataGridTextColumn Header="Nombre" Binding="{Binding Fullname}" Width="*"/>
                 </DataGrid.Columns>
-
-                <DataGrid.CellStyle>
-                    <Style TargetType="DataGridCell">
-                        <Setter Property="Background" Value="DarkSlateGray"/>
-                        <Setter Property="Foreground" Value="White"/>
-                        <Setter Property="BorderBrush" Value="Transparent"/>
-                        <Setter Property="BorderThickness" Value="0"/>
-                        <Setter Property="Height" Value="30"/>
-                    </Style>
-                </DataGrid.CellStyle>
-
-                <DataGrid.ColumnHeaderStyle>
-                    <Style TargetType="DataGridColumnHeader">
-                        <Setter Property="Background" Value="DarkGray"/>
-                        <Setter Property="Foreground" Value="White"/>
-                        <Setter Property="Height" Value="40"/>
-                        <Setter Property="BorderBrush" Value="Transparent"/>
-                        <Setter Property="BorderThickness" Value="0"/>
-                        <Setter Property="Margin" Value="0,0,0,10"/>
-                    </Style>
-                </DataGrid.ColumnHeaderStyle>
+                
             </DataGrid>
 
 
@@ -138,11 +177,17 @@
                      BorderBrush="DarkGray" BorderThickness="0,0,0,2" Height="28" Background="Transparent"/>
 
             <TextBlock Text="Rol" Foreground="DarkGray" FontSize="20" FontWeight="Medium" FontFamily="Playfair Display" Margin="0,15,0,10"/>
-            <ComboBox x:Name="roleComboBox" FontSize="18" FontFamily="Playfair Display" Background="Transparent" BorderThickness="0" BorderBrush="Transparent">
+            <ComboBox x:Name="roleComboBox"
+                      FontSize="18"
+                      FontFamily="Playfair Display"
+                      Background="Transparent"
+                      BorderThickness="0"
+                      BorderBrush="Transparent">
                 <ComboBoxItem Content="Admin"/>
-                <ComboBoxItem Content="Gestor"/>
+                <ComboBoxItem Content="Gestor" />
                 <ComboBoxItem Content="Mantenimiento"/>
             </ComboBox>
+
         </StackPanel>
     </Grid>
 </UserControl>
