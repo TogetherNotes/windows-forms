@@ -81,7 +81,7 @@
                         BorderBrush="{TemplateBinding BorderBrush}"
                         BorderThickness="1"
                         CornerRadius="10"
-                        Padding="10"
+                        Padding="8"
                         Margin="2">
                                 <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
                             </Border>
@@ -150,7 +150,7 @@
         <!-- Formulario de usuario -->
         <StackPanel Grid.Column="2" Margin="20">
             <TextBlock Text="Nombre" Foreground="DarkGray" FontSize="18" FontWeight="Medium" FontFamily="Playfair Display" Margin="0,0,0,10"/>
-            <TextBox x:Name="nameUser" FontSize="16" Foreground="White" CaretBrush="LightGray"
+            <TextBox x:Name="nameUser" FontSize="18" Foreground="White" CaretBrush="LightGray" FontFamily="Playfair Display"
                      BorderBrush="DarkGray" BorderThickness="0,0,0,2" Height="28" Background="Transparent"/>
 
             <TextBlock Text="Contraseña" Foreground="DarkGray" FontSize="20" FontWeight="Medium" FontFamily="Playfair Display" Margin="0,15,0,10"/>
@@ -188,6 +188,69 @@
                 <ComboBoxItem Content="Mantenimiento"/>
             </ComboBox>
 
+
+            <StackPanel Orientation="Horizontal" Margin="0,60,0,0">
+                <Button x:Name="btnSave"
+                        BorderThickness="0"
+                        Content="Guardar"
+                        Foreground="White"
+                        FontSize="20"
+                        FontFamily="Playfair Display"
+                        Cursor="Hand"                           
+                        
+                        Click="SaveUser" >          
+                    <Button.Style>
+                        <Style TargetType="Button">
+                            <Setter Property="Background" Value="#462AD8"/>
+                            <Style.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter Property="Background" Value="#28AEED"/>
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Button.Style>
+                    <Button.Template>
+                        <ControlTemplate TargetType="Button">
+                            <Border Width="150" Height="40"
+                                    CornerRadius="20"
+                                    Background="{TemplateBinding Background}">
+                                <ContentPresenter VerticalAlignment="Center"
+                                  HorizontalAlignment="Center"/>
+                            </Border>
+                        </ControlTemplate>
+                    </Button.Template>
+                </Button>
+                <Button x:Name="btnDelete"
+                        BorderThickness="0"
+                        Content="Eliminar"
+                        Foreground="White"
+                        FontSize="20"
+                        FontFamily="Playfair Display"
+                        Cursor="Hand"                           
+                        Margin="60,0,0,0"
+                        Click="DeleteUser">
+                    <Button.Style>
+                        <Style TargetType="Button">
+                            <Setter Property="Background" Value="#462AD8"/>
+                            <Style.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter Property="Background" Value="Red"/>
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Button.Style>
+                    <Button.Template>
+                        <ControlTemplate TargetType="Button">
+                            <Border Width="150" Height="40"
+                                    CornerRadius="20"
+                                    Background="{TemplateBinding Background}">      
+                                <ContentPresenter VerticalAlignment="Center"
+                                                  HorizontalAlignment="Center"/>
+                            </Border>
+                        </ControlTemplate>
+                    </Button.Template>
+                </Button>
+            </StackPanel>
         </StackPanel>
     </Grid>
 </UserControl>

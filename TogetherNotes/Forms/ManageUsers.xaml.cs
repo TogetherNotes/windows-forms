@@ -55,7 +55,12 @@ namespace TogetherNotes.Forms
                 new User { Id = 2, Fullname = "Ana González", Mail = "ana.gonzalez@email.com", Password = "password123", Role = "Gestor" },
                 new User { Id = 3, Fullname = "Carlos López", Mail = "carlos.lopez@email.com", Password = "qwerty", Role = "Mantenimiento" },
                 new User { Id = 4, Fullname = "María Fernández", Mail = "maria.fernandez@email.com", Password = "admin123", Role = "Admin" },
-                new User { Id = 5, Fullname = "Pedro García", Mail = "pedro.garcia@email.com", Password = "adminpass", Role = "Gestor" }
+                new User { Id = 5, Fullname = "Pedro García", Mail = "pedro.garcia@email.com", Password = "adminpass", Role = "Gestor" },
+                new User { Id = 6, Fullname = "Juan Pérez", Mail = "juan.perez@email.com", Password = "12345", Role = "Admin" },
+                new User { Id = 7, Fullname = "Ana González", Mail = "ana.gonzalez@email.com", Password = "password123", Role = "Gestor" },
+                new User { Id = 8, Fullname = "Carlos López", Mail = "carlos.lopez@email.com", Password = "qwerty", Role = "Mantenimiento" },
+                new User { Id = 9, Fullname = "María Fernández", Mail = "maria.fernandez@email.com", Password = "admin123", Role = "Admin" },
+                new User { Id = 10, Fullname = "Pedro García", Mail = "pedro.garcia@email.com", Password = "adminpass", Role = "Gestor" }
             };
 
             usersView = CollectionViewSource.GetDefaultView(users);
@@ -102,5 +107,51 @@ namespace TogetherNotes.Forms
             if (!_isPasswordVisible)
                 PasswordTextBox.Text = PasswordBox.Password;
         }
+
+        private void SaveUser(object sender, RoutedEventArgs e)
+        {
+            if (usersDataGrid.SelectedItem is User selectedUser)
+            {
+                selectedUser.Fullname = nameUser.Text;
+                selectedUser.Mail = Mail.Text;
+                selectedUser.Password = PasswordTextBox.Text;
+                selectedUser.Role = (roleComboBox.SelectedItem as ComboBoxItem)?.Content.ToString();
+            }
+            else
+            {
+                User newUser = new User
+                {
+                    Id = users.Count + 1, 
+                    Fullname = nameUser.Text,
+                    Mail = Mail.Text,
+                    Password = PasswordBox.Password,
+                    Role = (roleComboBox.SelectedItem as ComboBoxItem)?.Content.ToString()
+                };
+                users.Add(newUser);
+            }
+            usersView.Refresh();
+            ClearForm();
+        }
+
+        private void DeleteUser(object sender, RoutedEventArgs e)
+        {
+            if (usersDataGrid.SelectedItem is User selectedUser)
+            {
+                users.Remove(selectedUser);
+                usersView.Refresh();
+                ClearForm();
+            }
+        }
+
+        private void ClearForm()
+        {
+            nameUser.Text = string.Empty;
+            Mail.Text = string.Empty;
+            PasswordBox.Password = string.Empty;
+            PasswordTextBox.Text = string.Empty;
+            roleComboBox.SelectedIndex = -1;
+            usersDataGrid.SelectedItem = null;
+        }
+
     }
 }
