@@ -72,7 +72,7 @@ namespace TogetherNotes.Forms
             usersView.Refresh();
         }
 
-        private void UsersDataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void usersDataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (usersDataGrid.SelectedItem is User selectedUser)
             {

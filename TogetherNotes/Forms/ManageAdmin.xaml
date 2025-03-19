@@ -132,23 +132,11 @@
                 </TextBox.Background>
             </TextBox>
 
-            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="10">
-                <Button x:Name="btnPrevious" Content="← Anterior" Click="PreviousPage"
-            FontSize="18" Foreground="White" Background="#462AD8" 
-            Width="120" Height="40" Cursor="Hand" Margin="5"/>
-
-                <TextBlock Text="{Binding ElementName=usersDataGrid, Path=Items.Count, StringFormat='Página {_currentPage} de {_totalPages}'}"
-               Foreground="White" FontSize="18" VerticalAlignment="Center" Margin="10"/>
-
-                <Button x:Name="btnNext" Content="Siguiente →" Click="NextPage"
-            FontSize="18" Foreground="White" Background="#462AD8" 
-            Width="120" Height="40" Cursor="Hand" Margin="5"/>
-            </StackPanel>
 
 
             <DataGrid x:Name="usersDataGrid" AutoGenerateColumns="False" Height="450" 
                   IsReadOnly="True" BorderThickness="0" GridLinesVisibility="None"
-                  FontSize="18" CanUserAddRows="False" SelectionChanged="UsersDataGrid_SelectionChanged">
+                  FontSize="18" CanUserAddRows="False" SelectionChanged="usersDataGrid_SelectionChanged">
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="ID" Binding="{Binding Id}" Width="50"/>
                     <DataGridTextColumn Header="Nombre" Binding="{Binding Fullname}" Width="*"/>
