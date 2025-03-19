@@ -51,16 +51,16 @@ namespace TogetherNotes.Forms
         {
             users = new ObservableCollection<User>
             {
-                new User { Id = 1, Fullname = "Juan Pérez", Mail = "juan.perez@email.com", Password = "12345", Role = "Admin" },
-                new User { Id = 2, Fullname = "Ana González", Mail = "ana.gonzalez@email.com", Password = "password123", Role = "Gestor" },
-                new User { Id = 3, Fullname = "Carlos López", Mail = "carlos.lopez@email.com", Password = "qwerty", Role = "Mantenimiento" },
-                new User { Id = 4, Fullname = "María Fernández", Mail = "maria.fernandez@email.com", Password = "admin123", Role = "Admin" },
-                new User { Id = 5, Fullname = "Pedro García", Mail = "pedro.garcia@email.com", Password = "adminpass", Role = "Gestor" },
-                new User { Id = 6, Fullname = "Juan Pérez", Mail = "juan.perez@email.com", Password = "12345", Role = "Admin" },
-                new User { Id = 7, Fullname = "Ana González", Mail = "ana.gonzalez@email.com", Password = "password123", Role = "Gestor" },
-                new User { Id = 8, Fullname = "Carlos López", Mail = "carlos.lopez@email.com", Password = "qwerty", Role = "Mantenimiento" },
-                new User { Id = 9, Fullname = "María Fernández", Mail = "maria.fernandez@email.com", Password = "admin123", Role = "Admin" },
-                new User { Id = 10, Fullname = "Pedro García", Mail = "pedro.garcia@email.com", Password = "adminpass", Role = "Gestor" }
+                new User { Id = 1, Fullname = "Juan Pérez", Mail = "juan.perez@email.com", Password = "12345", Role = "Root" },
+                new User { Id = 2, Fullname = "Ana González", Mail = "ana.gonzalez@email.com", Password = "password123", Role = "Admin" },
+                new User { Id = 3, Fullname = "Carlos López", Mail = "carlos.lopez@email.com", Password = "qwerty", Role = "Mant" },
+                new User { Id = 4, Fullname = "María Fernández", Mail = "maria.fernandez@email.com", Password = "admin123", Role = "Root" },
+                new User { Id = 5, Fullname = "Pedro García", Mail = "pedro.garcia@email.com", Password = "adminpass", Role = "Admin" },
+                new User { Id = 6, Fullname = "Juan Pérez", Mail = "juan.perez@email.com", Password = "12345", Role = "Root" },
+                new User { Id = 7, Fullname = "Ana González", Mail = "ana.gonzalez@email.com", Password = "password123", Role = "Admin" },
+                new User { Id = 8, Fullname = "Carlos López", Mail = "carlos.lopez@email.com", Password = "qwerty", Role = "Mant" },
+                new User { Id = 9, Fullname = "María Fernández", Mail = "maria.fernandez@email.com", Password = "admin123", Role = "Root" },
+                new User { Id = 10, Fullname = "Pedro García", Mail = "pedro.garcia@email.com", Password = "adminpass", Role = "Admin" }
             };
 
             usersView = CollectionViewSource.GetDefaultView(users);

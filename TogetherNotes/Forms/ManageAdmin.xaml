@@ -132,6 +132,7 @@
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="ID" Binding="{Binding Id}" Width="50"/>
                     <DataGridTextColumn Header="Nombre" Binding="{Binding Fullname}" Width="*"/>
+                    <DataGridTextColumn Header="Role" Binding="{Binding Role}" Width="0.3*"/>
                 </DataGrid.Columns>
                 
             </DataGrid>
@@ -175,9 +176,9 @@
                       Background="Transparent"
                       BorderThickness="0"
                       BorderBrush="Transparent">
-                <ComboBoxItem Content="Admin"/>
-                <ComboBoxItem Content="Gestor" />
-                <ComboBoxItem Content="Mantenimiento"/>
+                <ComboBoxItem Content="Root"/>
+                <ComboBoxItem Content="Admin" />
+                <ComboBoxItem Content="Mant"/>
             </ComboBox>
 
 
