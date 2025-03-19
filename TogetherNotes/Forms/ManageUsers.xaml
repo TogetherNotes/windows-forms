@@ -75,7 +75,7 @@
 
 
             <DataGrid x:Name="usersDataGrid" AutoGenerateColumns="False" Margin="5" Height="450" 
-                      Background="Transparent" BorderBrush="Transparent" BorderThickness="0" 
+                      Background="Transparent" BorderBrush="Transparent" BorderThickness="0" IsReadOnly="True"
                       RowHeaderWidth="0" HorizontalScrollBarVisibility="Auto" GridLinesVisibility="None"
                       FontSize="18" FontFamily="Playfair Display" CanUserAddRows="False" SelectionChanged="usersDataGrid_SelectionChanged">
                 <DataGrid.Columns>
