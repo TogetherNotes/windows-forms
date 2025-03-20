@@ -30,10 +30,9 @@ namespace TogetherNotes.ViewModel
 
         private void Login(object obj)
         {
-            // Simulación de validación de credenciales
             if (Username == "admin" && Password == "1234")
             {
-                OnLoginSuccess?.Invoke(); // Notificar que el login fue exitoso
+                OnLoginSuccess?.Invoke(); 
             }
             else
             {
