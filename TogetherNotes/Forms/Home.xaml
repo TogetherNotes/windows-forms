@@ -62,21 +62,21 @@
                     <Border Background="#454860" Padding="10" CornerRadius="15" Margin="5" Width="120" Height="120">
                         <Grid>
                             <TextBlock Foreground="White" Text="{DynamicResource TotalSuperAdmins}" FontSize="14" FontWeight="Bold" TextAlignment="Center"/>
-                            <TextBlock Foreground="White" Text="5" FontSize="28" FontWeight="Bold" VerticalAlignment="Center" TextAlignment="Center"/>
+                            <TextBlock Foreground="White" Text="{Binding TotalSuperAdmins}" FontSize="28" FontWeight="Bold" VerticalAlignment="Center" TextAlignment="Center"/>
                         </Grid>
                     </Border>
 
                     <Border Background="#454860" Padding="10" CornerRadius="15" Margin="5" Width="120" Height="120">
                         <Grid>
                             <TextBlock Foreground="White" Text="{DynamicResource TotalAdmins}" FontSize="14" FontWeight="Bold" TextAlignment="Center"/>
-                            <TextBlock Foreground="White" Text="12" FontSize="28" FontWeight="Bold" VerticalAlignment="Center" TextAlignment="Center"/>
+                            <TextBlock Foreground="White" Text="{Binding TotalAdmins}" FontSize="28" FontWeight="Bold" VerticalAlignment="Center" TextAlignment="Center"/>
                         </Grid>
                     </Border>
 
                     <Border Background="#454860" Padding="10" CornerRadius="15" Margin="5" Width="120" Height="120">
                         <Grid>
                             <TextBlock Foreground="White" Text="{DynamicResource TotalMaintenanceUsers}" FontSize="14" FontWeight="Bold" TextAlignment="Center"/>
-                            <TextBlock Foreground="White" Text="3" FontSize="28" FontWeight="Bold" VerticalAlignment="Center" TextAlignment="Center"/>
+                            <TextBlock Foreground="White" Text="{Binding TotalMaintenanceUsers}" FontSize="28" FontWeight="Bold" VerticalAlignment="Center" TextAlignment="Center"/>
                         </Grid>
                     </Border>
                 </StackPanel>

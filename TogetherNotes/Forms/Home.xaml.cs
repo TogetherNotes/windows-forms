@@ -4,6 +4,7 @@ using System.Linq;
 using System.Windows.Controls;
 using LiveCharts;
 using LiveCharts.Wpf;
+using TogetherNotes.ViewModel;
 
 namespace TogetherNotes.Forms
 {
@@ -16,7 +17,7 @@ namespace TogetherNotes.Forms
         {
             InitializeComponent();
             LoadChartData();
-            DataContext = this;
+            this.DataContext = new HomeVM();
         }
 
         private void LoadChartData()
