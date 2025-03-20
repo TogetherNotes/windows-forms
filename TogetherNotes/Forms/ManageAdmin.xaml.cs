@@ -153,5 +153,38 @@ namespace TogetherNotes.Forms
             usersDataGrid.SelectedItem = null;
         }
 
+
+        private void roleComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (roleComboBox.SelectedItem is ComboBoxItem selectedItem)
+            {
+                string selectedRole = selectedItem.Content.ToString();
+
+                // Ocultar todos por defecto
+                RatingBlock.Visibility = Visibility.Collapsed;
+                RatingBox.Visibility = Visibility.Collapsed;
+                CapacityBlock.Visibility = Visibility.Collapsed;
+                CapacityBox.Visibility = Visibility.Collapsed;
+                genreBlock.Visibility = Visibility.Collapsed;
+                GenreBox.Visibility = Visibility.Collapsed;
+
+                // Mostrar según el rol seleccionado
+                if (selectedRole == "Art")
+                {
+                    RatingBlock.Visibility = Visibility.Visible;
+                    RatingBox.Visibility = Visibility.Visible;
+                    genreBlock.Visibility = Visibility.Visible;
+                    GenreBox.Visibility = Visibility.Visible;
+                }
+                else if (selectedRole == "Space")
+                {
+                    RatingBlock.Visibility = Visibility.Visible;
+                    RatingBox.Visibility = Visibility.Visible;
+                    CapacityBlock.Visibility = Visibility.Visible;
+                    CapacityBox.Visibility = Visibility.Visible;
+                }
+            }
+        }
+
     }
 }

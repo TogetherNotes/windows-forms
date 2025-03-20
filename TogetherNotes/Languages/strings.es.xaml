@@ -41,6 +41,9 @@
     <sys:String x:Key="Save">Guardar</sys:String>
     <sys:String x:Key="Delete">Borrar</sys:String>
     <sys:String x:Key="SearchUser">Buscar Usuario</sys:String>
+    <sys:String x:Key="Rating">Valoración</sys:String>
+    <sys:String x:Key="Capacity">Capacidad</sys:String>
+    <sys:String x:Key="Genre">Genero</sys:String>
 
     <!-- FAQ TRANSLATIONS -->
     <sys:String x:Key="Faq1Question">¿Cómo puedo registrarme como artista?</sys:String>

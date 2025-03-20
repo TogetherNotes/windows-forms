@@ -41,6 +41,9 @@
     <sys:String x:Key="Save">Save</sys:String>
     <sys:String x:Key="Delete">Delete</sys:String>
     <sys:String x:Key="SearchUser">Search User</sys:String>
+    <sys:String x:Key="Rating">Rating</sys:String>
+    <sys:String x:Key="Capacity">Capacity</sys:String>
+    <sys:String x:Key="Genre">Genre</sys:String>
 
     <!-- FAQ TRANSLATIONS -->
     <sys:String x:Key="Faq1Question">How can I register as an artist?</sys:String>
