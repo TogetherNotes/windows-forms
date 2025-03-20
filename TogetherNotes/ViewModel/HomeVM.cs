@@ -61,9 +61,9 @@ namespace TogetherNotes.ViewModel
             TotalSuperAdmins = AdminOrm.SelectTotalOfAdmin(1);
             TotalAdmins = AdminOrm.SelectTotalOfAdmin(2);
             TotalMaintenanceUsers = AdminOrm.SelectTotalOfAdmin(3);
-            TotalAppUsers = 150;
-            TotalArtists = 42;
-            TotalSpaces = 29;
+            TotalAppUsers = AppOrm.SelectTotalOfApp();
+            TotalArtists = AppOrm.SelectTotalOfAppWithRole("Artist");
+            TotalSpaces = AppOrm.SelectTotalOfAppWithRole("Space");
         }
     }
 }
