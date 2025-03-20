@@ -44,6 +44,7 @@
     <sys:String x:Key="Rating">Valoración</sys:String>
     <sys:String x:Key="Capacity">Capacidad</sys:String>
     <sys:String x:Key="Genre">Genero</sys:String>
+    <sys:String x:Key="Clear">Limpiar</sys:String>
 
     <!-- FAQ TRANSLATIONS -->
     <sys:String x:Key="Faq1Question">¿Cómo puedo registrarme como artista?</sys:String>

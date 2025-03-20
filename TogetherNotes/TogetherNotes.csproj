@@ -109,8 +109,8 @@
     <Compile Include="Forms\ManageAdmin.xaml.cs">
       <DependentUpon>ManageAdmin.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Forms\Users.xaml.cs">
-      <DependentUpon>Users.xaml</DependentUpon>
+    <Compile Include="Forms\ManageApp.xaml.cs">
+      <DependentUpon>ManageApp.xaml</DependentUpon>
     </Compile>
     <Compile Include="Forms\ExitConfirmation.xaml.cs">
       <DependentUpon>ExitConfirmation.xaml</DependentUpon>
@@ -214,7 +214,7 @@
     <Compile Include="Utils\RelayCommand.cs" />
     <Compile Include="Utils\ViewModelBase.cs" />
     <Compile Include="ViewModel\ManageAdminVM.cs" />
-    <Compile Include="ViewModel\UsersVM.cs" />
+    <Compile Include="ViewModel\ManageAppVM.cs" />
     <Compile Include="ViewModel\HomeVM.cs" />
     <Compile Include="ViewModel\LoginVM.cs" />
     <Compile Include="ViewModel\NavigationVM.cs" />
@@ -226,7 +226,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Forms\Users.xaml">
+    <Page Include="Forms\ManageApp.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
