@@ -57,7 +57,6 @@ namespace TogetherNotes.ViewModel
 
         public HomeVM()
         {
-            // Simulación de datos (en una aplicación real, esto vendría de una base de datos o servicio)
             TotalSuperAdmins = AdminOrm.SelectTotalOfAdmin(1);
             TotalAdmins = AdminOrm.SelectTotalOfAdmin(2);
             TotalMaintenanceUsers = AdminOrm.SelectTotalOfAdmin(3);

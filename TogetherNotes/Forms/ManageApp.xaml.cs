@@ -81,6 +81,13 @@ namespace TogetherNotes.Forms
         private void searchedUser_TextChanged(object sender, TextChangedEventArgs e)
         {
             usersView.Refresh();
+
+            if (!usersView.Cast<User>().Any())
+            {
+                searchedUser.Text = string.Empty;
+                MessageBox.Show("No se encontraron usuarios.", "Búsqueda", MessageBoxButton.OK, MessageBoxImage.Information);
+                usersView.Refresh();
+            }
         }
 
         private void usersDataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
