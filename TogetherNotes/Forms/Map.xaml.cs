@@ -3,12 +3,14 @@ using System.Windows;
 using System.Windows.Media;
 using GMap.NET;
 using GMap.NET.MapProviders;
+using TogetherNotes.ViewModel;
 
 namespace TogetherNotes.Forms
 {
     public partial class Map : UserControl
     {
         private readonly RectangleGeometry clipGeometry;
+        private MapVM _viewModel;
 
         public Map()
         {
@@ -18,7 +20,11 @@ namespace TogetherNotes.Forms
             clipGeometry = new RectangleGeometry();
             MapControl.Clip = clipGeometry;
 
-            // Asegurem que el MapControl es carrega abans d'executar la configuració
+            // Inicialitzem el ViewModel
+            _viewModel = new MapVM();
+            this.DataContext = _viewModel;
+
+            // Events
             MapControl.Loaded += MapControl_Loaded;
             MapControl.SizeChanged += MapControl_SizeChanged;
         }
@@ -30,6 +36,9 @@ namespace TogetherNotes.Forms
 
             // Establim el Clip inicial
             UpdateMapClip();
+
+            // 🔹 Carregar els marcadors després de la configuració del mapa
+            LoadMarkers();
         }
 
         private void LoadMap()
@@ -67,6 +76,17 @@ namespace TogetherNotes.Forms
             clipGeometry.Rect = new Rect(0, 0, MapControl.ActualWidth, MapControl.ActualHeight);
             clipGeometry.RadiusX = 20;
             clipGeometry.RadiusY = 20;
+        }
+
+        private void LoadMarkers()
+        {
+            // 🔹 Esborrem els marcadors antics
+            MapControl.Markers.Clear();
+
+            foreach (var marker in _viewModel.Markers)
+            {
+                MapControl.Markers.Add(marker);
+            }
         }
     }
 }

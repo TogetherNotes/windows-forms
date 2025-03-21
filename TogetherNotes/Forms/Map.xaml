@@ -31,12 +31,12 @@
 
             <!-- Mapa ocupant tota la pantalla -->
             <gmap:GMapControl x:Name="MapControl"
-                              VerticalAlignment="Stretch"
-                              HorizontalAlignment="Stretch"
-                              Zoom="14"
-                              Margin="0"
-                              Loaded="MapControl_Loaded"
-                              SizeChanged="MapControl_SizeChanged"/>
+                  VerticalAlignment="Stretch"
+                  HorizontalAlignment="Stretch"
+                  Zoom="14"
+                  Margin="0"
+                  Loaded="MapControl_Loaded"
+                  SizeChanged="MapControl_SizeChanged"/>
 
         </Border>
 
