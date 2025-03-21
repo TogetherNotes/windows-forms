@@ -30,14 +30,11 @@ namespace TogetherNotes.Models.Management
         {
             try
             {
-                using (var db = Orm.db)
-                {
-                    var user = db.admin
-                        .Where(a => a.name == email && a.password == password)
-                        .FirstOrDefault();
+                var user = Orm.db.admin
+                    .Where(a => a.name == email && a.password == password)
+                    .FirstOrDefault();
 
-                    return user != null;
-                }
+                return user != null;
             }
             catch (SqlException ex)
             {
@@ -50,5 +47,6 @@ namespace TogetherNotes.Models.Management
 
             return false;
         }
+
     }
 }
