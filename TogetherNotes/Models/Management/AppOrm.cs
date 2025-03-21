@@ -1,4 +1,6 @@
-﻿using System.Linq;
+﻿using System.Data.SqlClient;
+using System;
+using System.Linq;
 
 namespace TogetherNotes.Models.Management
 {
@@ -6,19 +8,41 @@ namespace TogetherNotes.Models.Management
     {
         public static int SelectTotalOfApp()
         {
-            int totalApp = Orm.db.app
-                    .Count();
+            try
+            {
+                return Orm.db.app.Count();
+            }
+            catch (SqlException ex)
+            {
+                Console.WriteLine(Orm.ErrorMessage(ex)); 
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("General error: " + ex.Message);
+            }
 
-            return totalApp;
+            return 0; 
         }
 
         public static int SelectTotalOfAppWithRole(string role)
         {
-            int totalApp = Orm.db.app
+            try
+            {
+                return Orm.db.app
                     .Where(app => app.role == role)
                     .Count();
+            }
+            catch (SqlException ex)
+            {
+                Console.WriteLine(Orm.ErrorMessage(ex)); 
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("General error: " + ex.Message);
+            }
 
-            return totalApp;
+            return 0; 
         }
+
     }
 }
