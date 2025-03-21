@@ -1,10 +1,11 @@
-﻿using System.ComponentModel;
-using TogetherNotes.Models;
+﻿using System.Collections.Generic;
+using System.ComponentModel;
+using LiveCharts;
 using TogetherNotes.Models.Management;
 
 namespace TogetherNotes.ViewModel
 {
-    class HomeVM
+    class HomeVM : INotifyPropertyChanged
     {
         private int _totalSuperAdmins;
         private int _totalAdmins;
@@ -49,6 +50,21 @@ namespace TogetherNotes.ViewModel
             set { _totalSpaces = value; OnPropertyChanged(nameof(TotalSpaces)); }
         }
 
+        // Propietats de la gràfica
+        private ChartValues<int> _userRegistrations;
+        public ChartValues<int> UserRegistrations
+        {
+            get { return _userRegistrations; }
+            set { _userRegistrations = value; OnPropertyChanged(nameof(UserRegistrations)); }
+        }
+
+        private List<string> _months;
+        public List<string> Months
+        {
+            get { return _months; }
+            set { _months = value; OnPropertyChanged(nameof(Months)); }
+        }
+
         public event PropertyChangedEventHandler PropertyChanged;
         protected void OnPropertyChanged(string propertyName)
         {
@@ -57,12 +73,20 @@ namespace TogetherNotes.ViewModel
 
         public HomeVM()
         {
+            LoadChartData();
+
             TotalSuperAdmins = AdminOrm.SelectTotalOfAdmin(1);
             TotalAdmins = AdminOrm.SelectTotalOfAdmin(2);
             TotalMaintenanceUsers = AdminOrm.SelectTotalOfAdmin(3);
             TotalAppUsers = AppOrm.SelectTotalOfApp();
             TotalArtists = AppOrm.SelectTotalOfAppWithRole("Artist");
             TotalSpaces = AppOrm.SelectTotalOfAppWithRole("Space");
+        }
+
+        private void LoadChartData()
+        {
+            Months = new List<string> { "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec" };
+            UserRegistrations = new ChartValues<int> { 10, 25, 30, 50, 40, 60, 90, 70, 85, 100, 120, 150 };
         }
     }
 }
