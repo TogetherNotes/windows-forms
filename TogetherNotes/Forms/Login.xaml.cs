@@ -9,6 +9,8 @@ namespace TogetherNotes.Forms
         public Login()
         {
             InitializeComponent();
+            var viewModel = new LoginVM();
+            DataContext = viewModel;
         }
 
         private void txtPass_PasswordChanged(object sender, RoutedEventArgs e)

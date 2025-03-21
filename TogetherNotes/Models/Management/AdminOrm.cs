@@ -25,5 +25,30 @@ namespace TogetherNotes.Models.Management
 
             return 0; 
         }
+
+        public static bool ValidateUser(string email, string password)
+        {
+            try
+            {
+                using (var db = Orm.db)
+                {
+                    var user = db.admin
+                        .Where(a => a.name == email && a.password == password)
+                        .FirstOrDefault();
+
+                    return user != null;
+                }
+            }
+            catch (SqlException ex)
+            {
+                Console.WriteLine(Orm.ErrorMessage(ex));
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("General error: " + ex.Message);
+            }
+
+            return false;
+        }
     }
 }
