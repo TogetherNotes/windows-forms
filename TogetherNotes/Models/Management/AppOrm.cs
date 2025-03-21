@@ -1,6 +1,7 @@
 ﻿using System.Data.SqlClient;
 using System;
 using System.Linq;
+using System.Collections.Generic;
 
 namespace TogetherNotes.Models.Management
 {
@@ -40,7 +41,7 @@ namespace TogetherNotes.Models.Management
             }
             catch (SqlException ex)
             {
-                Console.WriteLine(Orm.ErrorMessage(ex)); 
+                Console.WriteLine(Orm.ErrorMessage(ex));
             }
             catch (Exception ex)
             {
