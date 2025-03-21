@@ -342,6 +342,23 @@
       <DependentUpon>TogetherNotesModel.edmx</DependentUpon>
     </None>
     <None Include="packages.config" />
+    <None Include="Properties\DataSources\TogetherNotes.Models.activity.datasource" />
+    <None Include="Properties\DataSources\TogetherNotes.Models.admin.datasource" />
+    <None Include="Properties\DataSources\TogetherNotes.Models.app.datasource" />
+    <None Include="Properties\DataSources\TogetherNotes.Models.artists.datasource" />
+    <None Include="Properties\DataSources\TogetherNotes.Models.chats.datasource" />
+    <None Include="Properties\DataSources\TogetherNotes.Models.contracts.datasource" />
+    <None Include="Properties\DataSources\TogetherNotes.Models.files.datasource" />
+    <None Include="Properties\DataSources\TogetherNotes.Models.genres.datasource" />
+    <None Include="Properties\DataSources\TogetherNotes.Models.incidences.datasource" />
+    <None Include="Properties\DataSources\TogetherNotes.Models.languages.datasource" />
+    <None Include="Properties\DataSources\TogetherNotes.Models.messages.datasource" />
+    <None Include="Properties\DataSources\TogetherNotes.Models.notifications.datasource" />
+    <None Include="Properties\DataSources\TogetherNotes.Models.Orm.datasource" />
+    <None Include="Properties\DataSources\TogetherNotes.Models.PageModel.datasource" />
+    <None Include="Properties\DataSources\TogetherNotes.Models.rating.datasource" />
+    <None Include="Properties\DataSources\TogetherNotes.Models.roles.datasource" />
+    <None Include="Properties\DataSources\TogetherNotes.Models.spaces.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
