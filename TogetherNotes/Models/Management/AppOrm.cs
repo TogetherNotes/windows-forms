@@ -53,14 +53,28 @@ namespace TogetherNotes.Models.Management
 
         public static List<Location> SelectAllLocations()
         {
-            return Orm.db.app
-                .Where(app => app.latitude != null && app.longitude != null)
-                .Select(app => new Location
-                {
-                    Latitude = (double)app.latitude,
-                    Longitude = (double)app.longitude
-                })
-                .ToList();
+            try
+            {
+                return Orm.db.app
+                    .Where(app => app.latitude != null && app.longitude != null)
+                    .Select(app => new Location
+                    {
+                        Latitude = (double)app.latitude,
+                        Longitude = (double)app.longitude
+                    })
+                    .ToList();
+            }
+            catch (SqlException ex)
+            {
+                Console.WriteLine(Orm.ErrorMessage(ex)); 
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("soy GAY" + ex.Message);
+            }
+
+            return new List<Location>();
         }
+
     }
 }
