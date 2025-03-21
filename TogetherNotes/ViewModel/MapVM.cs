@@ -1,9 +1,11 @@
-﻿using System.Collections.ObjectModel;
+﻿using System;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Media.Imaging;
 using GMap.NET;
 using GMap.NET.WindowsPresentation;
-using System.Windows.Media;
-using System.Windows.Shapes;
 using TogetherNotes.Models.Management;
 
 namespace TogetherNotes.ViewModel
@@ -40,16 +42,18 @@ namespace TogetherNotes.ViewModel
 
             foreach (var location in locations)
             {
+                // Crear la icona del marcador
+                var image = new Image
+                {
+                    Source = new BitmapImage(new Uri("pack://application:,,,/Resources/marker.png")),
+                    Width = 30,
+                    Height = 30
+                };
+
+                // Crear i afegir el marcador
                 var marker = new GMapMarker(new PointLatLng(location.Latitude, location.Longitude))
                 {
-                    Shape = new Ellipse
-                    {
-                        Width = 12,
-                        Height = 12,
-                        Stroke = Brushes.White,
-                        StrokeThickness = 2,
-                        Fill = Brushes.Red,
-                    }
+                    Shape = image
                 };
 
                 Markers.Add(marker);
