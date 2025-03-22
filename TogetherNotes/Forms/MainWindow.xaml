@@ -111,9 +111,9 @@
                             </Grid>
                         </Menu:Btn>
 
-                        <!-- Orders -->
+                        <!-- Map -->
                         <Menu:Btn Style="{StaticResource BtnStyle}"
-                                  Command="{Binding OrdersCommand}"
+                                  Command="{Binding MapCommand}"
                                   Margin="0,15,0,0" GroupName="NavigationButton">
                             <Grid>
                                 <Image Source="/Resources/map.png"
@@ -121,9 +121,9 @@
                             </Grid>
                         </Menu:Btn>
 
-                        <!-- Transactions -->
+                        <!-- Settings -->
                         <Menu:Btn Style="{StaticResource BtnStyle}"
-                                  Command="{Binding TransactionsCommand}"
+                                  Command="{Binding SettingsCommand}"
                                   Margin="0,15,0,0" GroupName="NavigationButton">
                             <Grid>
                                 <Image Source="/Resources/settings.png"
@@ -131,9 +131,9 @@
                             </Grid>
                         </Menu:Btn>
 
-                        <!-- Shipments -->
+                        <!-- Faqs -->
                         <Menu:Btn Style="{StaticResource BtnStyle}"
-                                  Command="{Binding ShipmentsCommand}"
+                                  Command="{Binding FaqCommand}"
                                   Margin="0,15,0,0" GroupName="NavigationButton">
                             <Grid>
                                 <Image Source="/Resources/info.png"

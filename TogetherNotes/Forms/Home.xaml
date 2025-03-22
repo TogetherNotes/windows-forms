@@ -39,9 +39,9 @@
                         <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
 
-                    <TextBlock Foreground="White" Text="{DynamicResource EventsToday}" FontSize="16" FontWeight="Bold" Margin="0,0,0,10"/>
+                    <TextBlock Foreground="White" Text="{DynamicResource EventsToday}" FontSize="16" FontWeight="Bold" Margin="0,0,0,10" FontFamily="PlayfairDisplay"/>
 
-                    <ListView Name="EventsList" Background="Transparent" Foreground="White" Grid.Row="1" VerticalAlignment="Stretch" BorderThickness="0">
+                    <ListView Name="EventsList" Background="Transparent" Foreground="White" Grid.Row="1" VerticalAlignment="Stretch" BorderThickness="0" FontFamily="PlayfairDisplay">
                         <ListViewItem Content="Concert at The Bar - 20:00h"/>
                         <ListViewItem Content="Jazz Night - 21:30h"/>
                         <ListViewItem Content="Open Mic - 19:00h"/>
@@ -61,46 +61,46 @@
                 <StackPanel Orientation="Horizontal" Grid.Row="0" HorizontalAlignment="Center">
                     <Border Background="#454860" Padding="10" CornerRadius="15" Margin="5" Width="120" Height="120">
                         <Grid>
-                            <TextBlock Foreground="White" Text="{DynamicResource TotalSuperAdmins}" FontSize="14" FontWeight="Bold" TextAlignment="Center"/>
-                            <TextBlock Foreground="White" Text="{Binding TotalSuperAdmins}" FontSize="28" FontWeight="Bold" VerticalAlignment="Center" TextAlignment="Center"/>
+                            <TextBlock Foreground="White" Text="{DynamicResource TotalSuperAdmins}" FontSize="14" FontWeight="Bold" TextAlignment="Center" FontFamily="PlayfairDisplay"/>
+                            <TextBlock Foreground="White" Text="{Binding TotalSuperAdmins}" FontSize="28" FontWeight="Bold" VerticalAlignment="Center" TextAlignment="Center" FontFamily="PlayfairDisplay"/>
                         </Grid>
                     </Border>
 
                     <Border Background="#454860" Padding="10" CornerRadius="15" Margin="5" Width="120" Height="120">
                         <Grid>
-                            <TextBlock Foreground="White" Text="{DynamicResource TotalAdmins}" FontSize="14" FontWeight="Bold" TextAlignment="Center"/>
-                            <TextBlock Foreground="White" Text="{Binding TotalAdmins}" FontSize="28" FontWeight="Bold" VerticalAlignment="Center" TextAlignment="Center"/>
+                            <TextBlock Foreground="White" Text="{DynamicResource TotalAdmins}" FontSize="14" FontWeight="Bold" TextAlignment="Center" FontFamily="PlayfairDisplay"/>
+                            <TextBlock Foreground="White" Text="{Binding TotalAdmins}" FontSize="28" FontWeight="Bold" VerticalAlignment="Center" TextAlignment="Center" FontFamily="PlayfairDisplay"/>
                         </Grid>
                     </Border>
 
                     <Border Background="#454860" Padding="10" CornerRadius="15" Margin="5" Width="120" Height="120">
                         <Grid>
-                            <TextBlock Foreground="White" Text="{DynamicResource TotalMaintenanceUsers}" FontSize="14" FontWeight="Bold" TextAlignment="Center"/>
-                            <TextBlock Foreground="White" Text="{Binding TotalMaintenanceUsers}" FontSize="28" FontWeight="Bold" VerticalAlignment="Center" TextAlignment="Center"/>
+                            <TextBlock Foreground="White" Text="{DynamicResource TotalMaintenanceUsers}" FontSize="14" FontWeight="Bold" TextAlignment="Center" FontFamily="PlayfairDisplay"/>
+                            <TextBlock Foreground="White" Text="{Binding TotalMaintenanceUsers}" FontSize="28" FontWeight="Bold" VerticalAlignment="Center" TextAlignment="Center" FontFamily="PlayfairDisplay"/>
                         </Grid>
                     </Border>
                 </StackPanel>
 
                 <!-- Segona fila -->
-                <StackPanel Orientation="Horizontal" Grid.Row="1" HorizontalAlignment="Center">
+                <StackPanel Orientation="Horizontal" Grid.Row="1" HorizontalAlignment="Center" >
                     <Border Background="#454860" Padding="10" CornerRadius="15" Margin="5" Width="120" Height="120">
                         <Grid>
-                            <TextBlock Foreground="White" Text="{DynamicResource TotalAppUsers}" FontSize="14" FontWeight="Bold" TextAlignment="Center"/>
-                            <TextBlock Foreground="White" Text="{Binding TotalAppUsers}" FontSize="28" FontWeight="Bold" VerticalAlignment="Center" TextAlignment="Center"/>
+                            <TextBlock Foreground="White" Text="{DynamicResource TotalAppUsers}" FontSize="14" FontWeight="Bold" TextAlignment="Center" FontFamily="PlayfairDisplay"/>
+                            <TextBlock Foreground="White" Text="{Binding TotalAppUsers}" FontSize="28" FontWeight="Bold" VerticalAlignment="Center" TextAlignment="Center" FontFamily="PlayfairDisplay"/>
                         </Grid>
                     </Border>
 
                     <Border Background="#454860" Padding="10" CornerRadius="15" Margin="5" Width="120" Height="120">
                         <Grid>
-                            <TextBlock Foreground="White" Text="{DynamicResource TotalArtists}" FontSize="14" FontWeight="Bold" TextAlignment="Center"/>
-                            <TextBlock Foreground="White" Text="{Binding TotalArtists}" FontSize="28" FontWeight="Bold" VerticalAlignment="Center" TextAlignment="Center"/>
+                            <TextBlock Foreground="White" Text="{DynamicResource TotalArtists}" FontSize="14" FontWeight="Bold" TextAlignment="Center" FontFamily="PlayfairDisplay"/>
+                            <TextBlock Foreground="White" Text="{Binding TotalArtists}" FontSize="28" FontWeight="Bold" VerticalAlignment="Center" TextAlignment="Center" FontFamily="PlayfairDisplay"/>
                         </Grid>
                     </Border>
 
                     <Border Background="#454860" Padding="10" CornerRadius="15" Margin="5" Width="120" Height="120">
                         <Grid>
-                            <TextBlock Foreground="White" Text="{DynamicResource TotalSpaces}" FontSize="14" FontWeight="Bold" TextAlignment="Center"/>
-                            <TextBlock Foreground="White" Text="{Binding TotalSpaces}" FontSize="28" FontWeight="Bold" VerticalAlignment="Center" TextAlignment="Center"/>
+                            <TextBlock Foreground="White" Text="{DynamicResource TotalSpaces}" FontSize="14" FontWeight="Bold" TextAlignment="Center" FontFamily="PlayfairDisplay"/>
+                            <TextBlock Foreground="White" Text="{Binding TotalSpaces}" FontSize="28" FontWeight="Bold" VerticalAlignment="Center" TextAlignment="Center" FontFamily="PlayfairDisplay"/>
                         </Grid>
                     </Border>
                 </StackPanel>
@@ -120,7 +120,7 @@
                 </Grid.RowDefinitions>
 
                 <TextBlock Foreground="White" Text="{DynamicResource UserRegistrationsperMonth}" 
-                   FontSize="16" FontWeight="Bold" Margin="0,0,0,10" Grid.Row="0"/>
+                   FontSize="16" FontWeight="Bold" Margin="0,0,0,10" Grid.Row="0" FontFamily="PlayfairDisplay"/>
 
                 <lvc:CartesianChart Name="UserChart" Grid.Row="2">
                     <lvc:CartesianChart.Series>

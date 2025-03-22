@@ -22,9 +22,8 @@ namespace TogetherNotes.ViewModel
         public ICommand HomeCommand { get; set; }
         public ICommand UsersCommand { get; set; }
         public ICommand CalendarCommand { get; set; }
-        public ICommand OrdersCommand { get; set; }
-        public ICommand TransactionsCommand { get; set; }
-        public ICommand ShipmentsCommand { get; set; }
+        public ICommand MapCommand { get; set; }
+        public ICommand FaqCommand { get; set; }
         public ICommand SettingsCommand { get; set; }
         public ICommand LogoutCommand { get; set; }
 
@@ -39,7 +38,6 @@ namespace TogetherNotes.ViewModel
         }
         private void Calendar(object obj) { if (IsAuthenticated) CurrentView = new CalendarVM(); }
         private void Map(object obj) { if (IsAuthenticated) CurrentView = new MapVM(); }
-        private void Transaction(object obj) { if (IsAuthenticated) CurrentView = new SettingVM(); }
         private void Faq(object obj) { if (IsAuthenticated) CurrentView = new FaqsVM(); }
         private void Setting(object obj) { if (IsAuthenticated) CurrentView = new SettingVM(); }
         public NavigationVM()
@@ -47,9 +45,8 @@ namespace TogetherNotes.ViewModel
             HomeCommand = new RelayCommand(Home);
             UsersCommand = new RelayCommand(Users);
             CalendarCommand = new RelayCommand(Calendar);
-            OrdersCommand = new RelayCommand(Map);
-            TransactionsCommand = new RelayCommand(Transaction);
-            ShipmentsCommand = new RelayCommand(Faq);
+            MapCommand = new RelayCommand(Map);
+            FaqCommand = new RelayCommand(Faq);
             SettingsCommand = new RelayCommand(Setting);
 
             // Inicialitzar la vista amb Login
