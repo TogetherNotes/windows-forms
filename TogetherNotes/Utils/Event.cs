@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace TogetherNotes.Utils
 {
-    class Event
+    public class Event
     {
         public Event(long time, string title)
         {

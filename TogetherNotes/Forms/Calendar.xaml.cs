@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Controls;
+using TogetherNotes.Utils;
 
 namespace TogetherNotes.Forms
 {
@@ -19,13 +20,13 @@ namespace TogetherNotes.Forms
         {
             // Simulación de eventos con timestamps
             Events = new List<Event>
-            {
-                new Event { Timestamp = 1668594900, Title = "Post en redes sociales" },
-                new Event { Timestamp = 1668599400, Title = "Revisar diseño de la app" },
-                new Event { Timestamp = 1668607200, Title = "Construir demo de la app" },
-                new Event { Timestamp = 1668629700, Title = "Cena con John Doe" },
-                new Event { Timestamp = 1668639600, Title = "Enviar correo a Mohammad" }
-            };
+                {
+                    new Event(1668594900, "Post en redes sociales"),
+                    new Event(1668599400, "Revisar diseño de la app"),
+                    new Event(1668607200, "Construir demo de la app"),
+                    new Event(1668629700, "Cena con John Doe"),
+                    new Event(1668639600, "Enviar correo a Mohammad")
+                };
         }
 
         private void Calendar_SelectedDatesChanged(object sender, SelectionChangedEventArgs e)
@@ -48,10 +49,5 @@ namespace TogetherNotes.Forms
         {
             return DateTimeOffset.FromUnixTimeSeconds(timestamp).DateTime;
         }
-    }
-    public class Event
-    {
-        public long Timestamp { get; set; }
-        public string Title { get; set; }
     }
 }
