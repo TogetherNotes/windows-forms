@@ -213,6 +213,7 @@
       <DependentUpon>TogetherNotesModel.edmx</DependentUpon>
     </Compile>
     <Compile Include="Utils\Btn.cs" />
+    <Compile Include="Utils\Event.cs" />
     <Compile Include="Utils\NullToVisibilityConverter.cs" />
     <Compile Include="Utils\RelayCommand.cs" />
     <Compile Include="Utils\ViewModelBase.cs" />
