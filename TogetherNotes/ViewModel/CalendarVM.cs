@@ -29,6 +29,8 @@ namespace TogetherNotes.ViewModel
         public CalendarVM()
         {
             FilteredEvents = new ObservableCollection<object>();
+
+            SelectedDate = DateTime.Now;
         }
 
         private void LoadEventsFromDatabase()
@@ -44,5 +46,4 @@ namespace TogetherNotes.ViewModel
             }
         }
     }
-
 }

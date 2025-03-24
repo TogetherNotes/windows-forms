@@ -1,10 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 
 namespace TogetherNotes.Models.Management
 {
-    public static class ContractOrm
+    public static class ContractsOrm
     {
         public static List<Utils.Event> GetEventsForToday()
         {
@@ -35,6 +36,35 @@ namespace TogetherNotes.Models.Management
             }).ToList();
 
             return events;
+        }
+
+        public static List<object> GetEventsByDate(DateTime selectedDate)
+        {
+            try
+            {
+                var events = Orm.db.contracts
+                    .Select(e => new
+                    {
+                        e.init_hour,
+                        e.meet_type
+                    })
+                    .ToList(); 
+
+               
+                return events
+                    .Where(e => e.init_hour.Date == selectedDate.Date)
+                    .Select(e => new
+                    {
+                        Time = e.init_hour.ToString("HH:mm"),
+                        Title = e.meet_type
+                    })
+                    .ToList<object>();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error en GetEventsByDate: " + ex.Message);
+                return new List<object>();
+            }
         }
     }
 }

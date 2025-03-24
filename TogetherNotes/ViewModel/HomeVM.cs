@@ -96,7 +96,7 @@ namespace TogetherNotes.ViewModel
 
         private void LoadEventsForToday()
         {
-            var events = ContractOrm.GetEventsForToday();
+            var events = ContractsOrm.GetEventsForToday();
             EventsToday = new ObservableCollection<Event>(events);
         }
     }

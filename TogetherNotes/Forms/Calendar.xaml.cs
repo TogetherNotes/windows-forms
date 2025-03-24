@@ -13,6 +13,7 @@ namespace TogetherNotes.Forms
         {
             InitializeComponent();
             DataContext = new CalendarVM();
+            
         }
     }
 }
