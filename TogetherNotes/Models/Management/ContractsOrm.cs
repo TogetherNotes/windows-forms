@@ -23,7 +23,7 @@ namespace TogetherNotes.Models.Management
             // Després: transforma a la classe Utils.Event
             var events = contracts
                 .Select(c => new Utils.Event(
-                    c.InitHour.ToUnixTimeSeconds(),
+                    c.InitHour.ToString("o"), // ISO 8601 format
                     "Event at " + c.InitHour.LocalDateTime.ToShortTimeString()
                 ))
                 .ToList();

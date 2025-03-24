@@ -1,4 +1,6 @@
-﻿namespace TogetherNotes.Utils
+﻿using System;
+
+namespace TogetherNotes.Utils
 {
     public class Event
     {
