@@ -1,25 +1,20 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using TogetherNotes.Models;
+﻿using TogetherNotes.Models;
 
 namespace TogetherNotes.ViewModel
 {
-    class SettingVM : Utils.ViewModelBase
+    class SettingVM :Utils.ViewModelBase
     {
         private readonly PageModel _pageModel;
-        public bool Settings
+        public decimal TransactionAmount
         {
-            get { return _pageModel.LocationStatus; }
-            set { _pageModel.LocationStatus = value; OnPropertyChanged(); }
+            get { return _pageModel.TransactionValue; }
+            set { _pageModel.TransactionValue = value; OnPropertyChanged(); }
         }
 
         public SettingVM()
         {
             _pageModel = new PageModel();
-            Settings = true;
+            TransactionAmount = 5638;
         }
     }
 }

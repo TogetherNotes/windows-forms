@@ -8,16 +8,21 @@
                 Value="Center"/>
         <Setter Property="VerticalAlignment"
                 Value="Center"/>
-        <Setter Property="Margin"
-                Value="0,5,0,0"/>
+        
+        <Setter Property="Background" 
+                Value="Transparent"/>
+        <Setter Property="Foreground"
+                Value="Transparent"/>
+        
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="RadioButton">
 
                     <Border x:Name="border"
                             Height="50"
-                            Width="320"
-                            BorderThickness="0">
+                            Width="74"
+                            BorderThickness="0"
+                            CornerRadius="0,0,0,10">
 
                         <Border.Background>
                             <SolidColorBrush x:Name="BorderBackground"
@@ -31,7 +36,7 @@
                                     Width="4"
                                     HorizontalAlignment="Left"
                                     VerticalAlignment="Center"
-                                    Background="#FFFFFF"/>
+                                    />
 
                             <ContentPresenter/>
 
@@ -89,7 +94,6 @@
                             <Setter Property="Visibility"
                                     TargetName="Indicator"
                                     Value="Visible"/>
-
                         </Trigger>
                             
                     </ControlTemplate.Triggers>

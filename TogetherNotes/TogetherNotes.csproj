@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\EntityFramework.6.5.1\build\EntityFramework.props" Condition="Exists('..\packages\EntityFramework.6.5.1\build\EntityFramework.props')" />
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -14,6 +15,8 @@
     <WarningLevel>4</WarningLevel>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -35,8 +38,59 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="System" />
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.5.1\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.5.1\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="GMap.NET.Core, Version=2.1.7.0, Culture=neutral, PublicKeyToken=b85b9027b614afef, processorArchitecture=MSIL">
+      <HintPath>..\packages\GMap.NET.Core.2.1.7\lib\net472\GMap.NET.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="GMap.NET.WindowsForms, Version=2.1.7.0, Culture=neutral, PublicKeyToken=b85b9027b614afef, processorArchitecture=MSIL">
+      <HintPath>..\packages\GMap.NET.WinForms.2.1.7\lib\net472\GMap.NET.WindowsForms.dll</HintPath>
+    </Reference>
+    <Reference Include="GMap.NET.WindowsPresentation, Version=2.1.7.0, Culture=neutral, PublicKeyToken=b85b9027b614afef, processorArchitecture=MSIL">
+      <HintPath>..\packages\GMap.NET.WinPresentation.2.1.7\lib\net472\GMap.NET.WindowsPresentation.dll</HintPath>
+    </Reference>
+    <Reference Include="LiveCharts, Version=0.9.7.0, Culture=neutral, PublicKeyToken=0bc1f845d1ebb8df, processorArchitecture=MSIL">
+      <HintPath>..\packages\LiveCharts.0.9.7\lib\net45\LiveCharts.dll</HintPath>
+    </Reference>
+    <Reference Include="LiveCharts.Wpf, Version=0.9.7.0, Culture=neutral, PublicKeyToken=0bc1f845d1ebb8df, processorArchitecture=MSIL">
+      <HintPath>..\packages\LiveCharts.Wpf.0.9.7\lib\net45\LiveCharts.Wpf.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.13.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System">
+      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.7.2\System.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Data.Entity">
+      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.7.2\System.Data.Entity.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Data.SqlClient, Version=4.6.2.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Data.SqlClient.4.9.0\lib\net462\System.Data.SqlClient.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Data.SQLite, Version=1.0.119.0, Culture=neutral, PublicKeyToken=db937bc2d44ff139, processorArchitecture=MSIL">
+      <HintPath>..\packages\Stub.System.Data.SQLite.Core.NetFramework.1.0.119.0\lib\net46\System.Data.SQLite.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Data.SQLite.EF6, Version=1.0.119.0, Culture=neutral, PublicKeyToken=db937bc2d44ff139, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Data.SQLite.EF6.1.0.119.0\lib\net46\System.Data.SQLite.EF6.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Data.SQLite.Linq, Version=1.0.119.0, Culture=neutral, PublicKeyToken=db937bc2d44ff139, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Data.SQLite.Linq.1.0.119.0\lib\net46\System.Data.SQLite.Linq.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.Serialization">
+      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.7.2\System.Runtime.Serialization.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Security">
+      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.7.2\System.Security.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Security.Principal.Windows, Version=5.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Security.Principal.Windows.5.0.0\lib\net461\System.Security.Principal.Windows.dll</HintPath>
+    </Reference>
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -55,43 +109,140 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Forms\Customers.xaml.cs">
-      <DependentUpon>Customers.xaml</DependentUpon>
+    <Compile Include="Forms\ManageAdmin.xaml.cs">
+      <DependentUpon>ManageAdmin.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\ManageApp.xaml.cs">
+      <DependentUpon>ManageApp.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\ExitConfirmation.xaml.cs">
+      <DependentUpon>ExitConfirmation.xaml</DependentUpon>
     </Compile>
     <Compile Include="Forms\Home.xaml.cs">
       <DependentUpon>Home.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Forms\Orders.xaml.cs">
-      <DependentUpon>Orders.xaml</DependentUpon>
+    <Compile Include="Forms\Login.xaml.cs">
+      <DependentUpon>Login.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Forms\Products.xaml.cs">
-      <DependentUpon>Products.xaml</DependentUpon>
+    <Compile Include="Forms\Map.xaml.cs">
+      <DependentUpon>Map.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Calendar.xaml.cs">
+      <DependentUpon>Calendar.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Faqs.xaml.cs">
+      <DependentUpon>Faqs.xaml</DependentUpon>
     </Compile>
     <Compile Include="Forms\Settings.xaml.cs">
       <DependentUpon>Settings.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Forms\Shipment.xaml.cs">
-      <DependentUpon>Shipment.xaml</DependentUpon>
+    <Compile Include="Models\activity.cs">
+      <DependentUpon>TogetherNotesModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Forms\Transactions.xaml.cs">
-      <DependentUpon>Transactions.xaml</DependentUpon>
+    <Compile Include="Models\admin.cs">
+      <DependentUpon>TogetherNotesModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\app.cs">
+      <DependentUpon>TogetherNotesModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\artists.cs">
+      <DependentUpon>TogetherNotesModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\chats.cs">
+      <DependentUpon>TogetherNotesModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\contracts.cs">
+      <DependentUpon>TogetherNotesModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\files.cs">
+      <DependentUpon>TogetherNotesModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\genres.cs">
+      <DependentUpon>TogetherNotesModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\incidences.cs">
+      <DependentUpon>TogetherNotesModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\languages.cs">
+      <DependentUpon>TogetherNotesModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Management\ActivityOrm.cs" />
+    <Compile Include="Models\Management\AdminOrm.cs" />
+    <Compile Include="Models\Management\AppOrm.cs" />
+    <Compile Include="Models\Management\ArtistsOrm.cs" />
+    <Compile Include="Models\Management\ChatsOrm.cs" />
+    <Compile Include="Models\Management\ContractsOrm.cs" />
+    <Compile Include="Models\Management\FilesOrm.cs" />
+    <Compile Include="Models\Management\GenresOrm.cs" />
+    <Compile Include="Models\Management\IncidencesOrm.cs" />
+    <Compile Include="Models\Management\LanguagesOrm.cs" />
+    <Compile Include="Models\Management\MessagesOrm.cs" />
+    <Compile Include="Models\Management\NotificationsOrm.cs" />
+    <Compile Include="Models\Management\RatingOrm.cs" />
+    <Compile Include="Models\Management\RolesOrm.cs" />
+    <Compile Include="Models\Management\SpacesOrm.cs" />
+    <Compile Include="Models\messages.cs">
+      <DependentUpon>TogetherNotesModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\notifications.cs">
+      <DependentUpon>TogetherNotesModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Management\Orm.cs" />
+    <Compile Include="Models\rating.cs">
+      <DependentUpon>TogetherNotesModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\roles.cs">
+      <DependentUpon>TogetherNotesModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\spaces.cs">
+      <DependentUpon>TogetherNotesModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\TogetherNotesModel.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>TogetherNotesModel.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\TogetherNotesModel.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>TogetherNotesModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\TogetherNotesModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>TogetherNotesModel.edmx</DependentUpon>
     </Compile>
     <Compile Include="Utils\Btn.cs" />
+    <Compile Include="Utils\Event.cs" />
+    <Compile Include="Utils\NullToVisibilityConverter.cs" />
     <Compile Include="Utils\RelayCommand.cs" />
     <Compile Include="Utils\ViewModelBase.cs" />
-    <Compile Include="ViewModel\CustomerVM.cs" />
+    <Compile Include="ViewModel\ManageAdminVM.cs" />
+    <Compile Include="ViewModel\ManageAppVM.cs" />
     <Compile Include="ViewModel\HomeVM.cs" />
+    <Compile Include="ViewModel\LoginVM.cs" />
     <Compile Include="ViewModel\NavigationVM.cs" />
-    <Compile Include="ViewModel\OrderVM.cs" />
-    <Compile Include="ViewModel\ProductVM.cs" />
+    <Compile Include="ViewModel\MapVM.cs" />
+    <Compile Include="ViewModel\CalendarVM.cs" />
+    <Compile Include="ViewModel\FaqsVM.cs" />
     <Compile Include="ViewModel\SettingVM.cs" />
-    <Compile Include="ViewModel\ShipmentVM.cs" />
-    <Compile Include="ViewModel\TransactionVM.cs" />
-    <Page Include="Forms\Customers.xaml">
+    <Page Include="Forms\ManageAdmin.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Forms\ManageApp.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Forms\ExitConfirmation.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Forms\Home.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Forms\Login.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -107,11 +258,15 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="Forms\Orders.xaml">
+    <Page Include="Forms\Map.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Forms\Products.xaml">
+    <Page Include="Forms\Calendar.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Forms\Faqs.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -119,13 +274,21 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Forms\Shipment.xaml">
-      <SubType>Designer</SubType>
+    <Page Include="Languages\ResourceDictionary.xaml">
       <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
-    <Page Include="Forms\Transactions.xaml">
-      <SubType>Designer</SubType>
+    <Page Include="Languages\strings.ca.xaml">
       <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Languages\strings.en.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Languages\strings.es.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Styles\Button.xaml">
       <SubType>Designer</SubType>
@@ -143,18 +306,17 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Styles\UsersButton.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Utils\DataTemplate.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Languages\strings.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>strings.resx</DependentUpon>
-    </Compile>
-    <Compile Include="Models\PageModel.cs" />
+    <Compile Include="PageModel\PageModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -168,18 +330,39 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <EmbeddedResource Include="Languages\strings.ca.resx" />
-    <EmbeddedResource Include="Languages\strings.es.resx" />
-    <EmbeddedResource Include="Languages\strings.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>strings.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <Resource Include="Fonts\PlayfairDisplay.ttf" />
     <Resource Include="Fonts\PlayfairDisplay-Medium.ttf" />
+    <None Include="Docs\CREATING_CLASSES.md" />
+    <None Include="Docs\REFACTORING_CLASSES.md" />
+    <EntityDeploy Include="Models\TogetherNotesModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>TogetherNotesModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="Models\TogetherNotesModel.edmx.diagram">
+      <DependentUpon>TogetherNotesModel.edmx</DependentUpon>
+    </None>
+    <None Include="packages.config" />
+    <None Include="Properties\DataSources\TogetherNotes.Models.activity.datasource" />
+    <None Include="Properties\DataSources\TogetherNotes.Models.admin.datasource" />
+    <None Include="Properties\DataSources\TogetherNotes.Models.app.datasource" />
+    <None Include="Properties\DataSources\TogetherNotes.Models.artists.datasource" />
+    <None Include="Properties\DataSources\TogetherNotes.Models.chats.datasource" />
+    <None Include="Properties\DataSources\TogetherNotes.Models.contracts.datasource" />
+    <None Include="Properties\DataSources\TogetherNotes.Models.files.datasource" />
+    <None Include="Properties\DataSources\TogetherNotes.Models.genres.datasource" />
+    <None Include="Properties\DataSources\TogetherNotes.Models.incidences.datasource" />
+    <None Include="Properties\DataSources\TogetherNotes.Models.languages.datasource" />
+    <None Include="Properties\DataSources\TogetherNotes.Models.messages.datasource" />
+    <None Include="Properties\DataSources\TogetherNotes.Models.notifications.datasource" />
+    <None Include="Properties\DataSources\TogetherNotes.Models.Orm.datasource" />
+    <None Include="Properties\DataSources\TogetherNotes.Models.PageModel.datasource" />
+    <None Include="Properties\DataSources\TogetherNotes.Models.rating.datasource" />
+    <None Include="Properties\DataSources\TogetherNotes.Models.roles.datasource" />
+    <None Include="Properties\DataSources\TogetherNotes.Models.spaces.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -187,9 +370,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Logic\" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\logo_wbg_cut.png">
@@ -207,5 +387,66 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\calendar.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\home.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\info.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\map.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\settings.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\user.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\apagar.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\user-icon.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\key-icon.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Models\TogetherNotesModel.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>TogetherNotesModel.edmx</DependentUpon>
+      <LastGenOutput>TogetherNotesModel.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\TogetherNotesModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>TogetherNotesModel.edmx</DependentUpon>
+      <LastGenOutput>TogetherNotesModel.cs</LastGenOutput>
+    </Content>
+    <Resource Include="Resources\marker.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>Este proyecto hace referencia a los paquetes NuGet que faltan en este equipo. Use la restauración de paquetes NuGet para descargarlos. Para obtener más información, consulte http://go.microsoft.com/fwlink/?LinkID=322105. El archivo que falta es {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\Stub.System.Data.SQLite.Core.NetFramework.1.0.119.0\build\net46\Stub.System.Data.SQLite.Core.NetFramework.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Stub.System.Data.SQLite.Core.NetFramework.1.0.119.0\build\net46\Stub.System.Data.SQLite.Core.NetFramework.targets'))" />
+    <Error Condition="!Exists('..\packages\EntityFramework.6.5.1\build\EntityFramework.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.5.1\build\EntityFramework.props'))" />
+    <Error Condition="!Exists('..\packages\EntityFramework.6.5.1\build\EntityFramework.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.5.1\build\EntityFramework.targets'))" />
+  </Target>
+  <Import Project="..\packages\Stub.System.Data.SQLite.Core.NetFramework.1.0.119.0\build\net46\Stub.System.Data.SQLite.Core.NetFramework.targets" Condition="Exists('..\packages\Stub.System.Data.SQLite.Core.NetFramework.1.0.119.0\build\net46\Stub.System.Data.SQLite.Core.NetFramework.targets')" />
+  <Import Project="..\packages\EntityFramework.6.5.1\build\EntityFramework.targets" Condition="Exists('..\packages\EntityFramework.6.5.1\build\EntityFramework.targets')" />
 </Project>

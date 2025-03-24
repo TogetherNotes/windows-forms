@@ -8,29 +8,32 @@
         <view:Home/>
     </DataTemplate>
 
-    <DataTemplate DataType="{x:Type vm:CustomerVM}">
-        <view:Customers/>
+    <DataTemplate DataType="{x:Type vm:CalendarVM}">
+        <view:Calendar/>
     </DataTemplate>
 
-    <DataTemplate DataType="{x:Type vm:ProductVM}">
-        <view:Products/>
-    </DataTemplate>
-    
-    <DataTemplate DataType="{x:Type vm:OrderVM}">
-        <view:Orders/>
-    </DataTemplate>
-
-    <DataTemplate DataType="{x:Type vm:TransactionVM}">
-        <view:Transactions/>
-    </DataTemplate>
-
-    <DataTemplate DataType="{x:Type vm:ShipmentVM}">
-        <view:Shipment/>
+    <DataTemplate DataType="{x:Type vm:MapVM}">
+        <view:Map/>
     </DataTemplate>
 
     <DataTemplate DataType="{x:Type vm:SettingVM}">
         <view:Settings/>
     </DataTemplate>
 
+    <DataTemplate DataType="{x:Type vm:FaqsVM}">
+        <view:Faqs/>
+    </DataTemplate>
+
+    <DataTemplate DataType="{x:Type vm:LoginVM}">
+        <view:Login/>
+    </DataTemplate>
+
+    <DataTemplate DataType="{x:Type vm:ManageAdminVM}">
+        <view:ManageAdmin/>
+    </DataTemplate>
+
+    <DataTemplate DataType="{x:Type vm:ManageAppVM}">
+        <view:ManageApp/>
+    </DataTemplate>
+
 </ResourceDictionary>
-    
