@@ -76,5 +76,21 @@ namespace TogetherNotes.Models.Management
             return new List<Location>();
         }
 
+        public static List<app> SelectAllUsers()
+        {
+            try
+            {
+                return Orm.db.app.ToList();
+            }
+            catch (SqlException ex)
+            {
+                Console.WriteLine(Orm.ErrorMessage(ex));
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("General error: " + ex.Message);
+            }
+            return new List<app>();
+        }
     }
 }

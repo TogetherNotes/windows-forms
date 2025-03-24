@@ -6,6 +6,9 @@ using System.Windows.Controls;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Windows.Data;
+using System.Data.SqlClient;
+using TogetherNotes.Models;
+using TogetherNotes.Models.Management;
 
 namespace TogetherNotes.Forms
 {
@@ -27,7 +30,7 @@ namespace TogetherNotes.Forms
         public ManageAdmin()
         {
             InitializeComponent();
-            LoadTestData();
+            LoadUserData();  
             SetupUserFilter();
         }
 
@@ -47,22 +50,39 @@ namespace TogetherNotes.Forms
             }
         }
 
-        private void LoadTestData()
+        private void LoadUserData()
         {
-            users = new ObservableCollection<User>
-            {
-                new User { Id = 1, Fullname = "Juan Pérez", Mail = "juan.perez@email.com", Password = "12345", Role = "Root" },
-                new User { Id = 2, Fullname = "Ana González", Mail = "ana.gonzalez@email.com", Password = "password123", Role = "Admin" },
-                new User { Id = 3, Fullname = "Carlos López", Mail = "carlos.lopez@email.com", Password = "qwerty", Role = "Mant" },
-                new User { Id = 4, Fullname = "María Fernández", Mail = "maria.fernandez@email.com", Password = "admin123", Role = "Root" },
-                new User { Id = 5, Fullname = "Pedro García", Mail = "pedro.garcia@email.com", Password = "adminpass", Role = "Admin" },
-                new User { Id = 6, Fullname = "Juan Pérez", Mail = "juan.perez@email.com", Password = "12345", Role = "Root" },
-                new User { Id = 7, Fullname = "Ana González", Mail = "ana.gonzalez@email.com", Password = "password123", Role = "Admin" },
-                new User { Id = 8, Fullname = "Carlos López", Mail = "carlos.lopez@email.com", Password = "qwerty", Role = "Mant" },
-                new User { Id = 9, Fullname = "María Fernández", Mail = "maria.fernandez@email.com", Password = "admin123", Role = "Root" },
-                new User { Id = 10, Fullname = "Pedro García", Mail = "pedro.garcia@email.com", Password = "adminpass", Role = "Admin" }
-            };
+            // Obtener los administradores y usuarios comunes
+            List<admin> adminsFromDb = AdminOrm.SelectAllAdmins();
+            List<app> usersFromDb = AppOrm.SelectAllUsers();
 
+            // Convertir los administradores a la clase User
+            var adminUsers = adminsFromDb.Select(a => new User
+            {
+                Id = a.id,
+                Fullname = a.name,
+                Mail = a.mail,
+                Password = a.password,
+                Role = a.roles.name,
+            });
+
+            // Convertir los usuarios comunes a la clase User
+            var appUsers = usersFromDb.Select(u => new User
+            {
+                Id = u.id,
+                Fullname = u.name,
+                Mail = u.mail,
+                Password = u.password,
+                Role = u.role,
+            });
+
+            // Combinar las dos listas
+            var allUsers = adminUsers.Concat(appUsers).ToList();
+
+            // Cargar la lista combinada en la vista
+            users = new ObservableCollection<User>(allUsers);
+
+            // Configurar la vista para filtrar usuarios
             usersView = CollectionViewSource.GetDefaultView(users);
             usersDataGrid.ItemsSource = usersView;
         }
@@ -75,7 +95,7 @@ namespace TogetherNotes.Forms
             {
                 searchedUser.Text = string.Empty;
                 MessageBox.Show("No se encontraron usuarios.", "Búsqueda", MessageBoxButton.OK, MessageBoxImage.Information);
-                usersView.Refresh(); 
+                usersView.Refresh();
             }
         }
 
@@ -87,7 +107,26 @@ namespace TogetherNotes.Forms
                 Mail.Text = selectedUser.Mail;
                 PasswordBox.Password = selectedUser.Password;
                 PasswordTextBox.Text = selectedUser.Password;
-                roleComboBox.SelectedItem = roleComboBox.Items.Cast<ComboBoxItem>().FirstOrDefault(i => i.Content.ToString() == selectedUser.Role);
+                if (selectedUser.Role.Equals("root"))
+                {
+                    roleComboBox.SelectedIndex = 0;
+                }
+                else if (selectedUser.Role.Equals("admin"))
+                {
+                    roleComboBox.SelectedIndex = 1;
+                }
+                else if (selectedUser.Role.Equals("mant"))
+                {
+                    roleComboBox.SelectedIndex = 2;
+                }
+                else if (selectedUser.Role.Equals("Artist"))
+                {
+                    roleComboBox.SelectedIndex = 3;
+                }
+                else
+                {
+                    roleComboBox.SelectedIndex = 4;
+                }
             }
         }
 
@@ -128,7 +167,7 @@ namespace TogetherNotes.Forms
             {
                 User newUser = new User
                 {
-                    Id = users.Count + 1, 
+                    Id = users.Count + 1,
                     Fullname = nameUser.Text,
                     Mail = Mail.Text,
                     Password = PasswordBox.Password,
@@ -139,6 +178,7 @@ namespace TogetherNotes.Forms
             usersView.Refresh();
             ClearForm();
         }
+
 
         private void DeleteUser(object sender, RoutedEventArgs e)
         {
