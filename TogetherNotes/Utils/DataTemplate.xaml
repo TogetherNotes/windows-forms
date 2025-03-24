@@ -8,10 +8,6 @@
         <view:Home/>
     </DataTemplate>
 
-    <DataTemplate DataType="{x:Type vm:UsersVM}">
-        <view:Users/>
-    </DataTemplate>
-
     <DataTemplate DataType="{x:Type vm:CalendarVM}">
         <view:Calendar/>
     </DataTemplate>
@@ -34,6 +30,10 @@
 
     <DataTemplate DataType="{x:Type vm:ManageAdminVM}">
         <view:ManageAdmin/>
+    </DataTemplate>
+
+    <DataTemplate DataType="{x:Type vm:ManageAppVM}">
+        <view:ManageApp/>
     </DataTemplate>
 
 </ResourceDictionary>

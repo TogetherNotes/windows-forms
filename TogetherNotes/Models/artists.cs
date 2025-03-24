@@ -12,18 +12,12 @@ namespace TogetherNotes.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class genres
+    public partial class artists
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public genres()
-        {
-            this.artists = new HashSet<artists>();
-        }
+        public int app_user_id { get; set; }
+        public Nullable<int> genre_id { get; set; }
     
-        public int id { get; set; }
-        public string name { get; set; }
-    
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<artists> artists { get; set; }
+        public virtual app app { get; set; }
+        public virtual genres genres { get; set; }
     }
 }

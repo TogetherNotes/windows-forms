@@ -1,10 +1,12 @@
 ﻿using System;
+using System.Windows;
 using System.Windows.Input;
 using TogetherNotes.Utils;
+using TogetherNotes.Models.Management;
 
 namespace TogetherNotes.ViewModel
 {
-    class LoginVM :Utils.ViewModelBase
+    class LoginVM : Utils.ViewModelBase
     {
         private string _username;
         public string Username
@@ -30,14 +32,16 @@ namespace TogetherNotes.ViewModel
 
         private void Login(object obj)
         {
-            // Simulación de validación de credenciales
-            if (Username == "admin" && Password == "1234")
+            // Validem amb la DB
+            bool isValid = AdminOrm.ValidateUser(Username, Password);
+
+            if (isValid)
             {
-                OnLoginSuccess?.Invoke(); // Notificar que el login fue exitoso
+                OnLoginSuccess?.Invoke(); // Notificar que el login ha estat correcte
             }
             else
             {
-                System.Windows.MessageBox.Show("Usuari o credencials incorrectes", "Error", System.Windows.MessageBoxButton.OK, System.Windows.MessageBoxImage.Information);
+                MessageBox.Show("Usuari o contrasenya incorrectes", "Error", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
         }
     }

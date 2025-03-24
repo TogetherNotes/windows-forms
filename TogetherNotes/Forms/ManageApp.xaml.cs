@@ -1,15 +1,26 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Windows;
-using System.Windows.Controls;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Data;
+using System.Windows.Documents;
+using System.Windows.Input;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
+using System.Windows.Shapes;
 
 namespace TogetherNotes.Forms
 {
-    public partial class ManageAdmin : UserControl
+    /// <summary>
+    /// Lógica de interacción para ManageApp.xaml
+    /// </summary>
+    public partial class ManageApp : UserControl
     {
         private bool _isPasswordVisible = false;
         private ObservableCollection<User> users;
@@ -24,7 +35,7 @@ namespace TogetherNotes.Forms
             public string Role { get; set; }
         }
 
-        public ManageAdmin()
+        public ManageApp()
         {
             InitializeComponent();
             LoadTestData();
@@ -51,16 +62,16 @@ namespace TogetherNotes.Forms
         {
             users = new ObservableCollection<User>
             {
-                new User { Id = 1, Fullname = "Juan Pérez", Mail = "juan.perez@email.com", Password = "12345", Role = "Root" },
-                new User { Id = 2, Fullname = "Ana González", Mail = "ana.gonzalez@email.com", Password = "password123", Role = "Admin" },
-                new User { Id = 3, Fullname = "Carlos López", Mail = "carlos.lopez@email.com", Password = "qwerty", Role = "Mant" },
-                new User { Id = 4, Fullname = "María Fernández", Mail = "maria.fernandez@email.com", Password = "admin123", Role = "Root" },
-                new User { Id = 5, Fullname = "Pedro García", Mail = "pedro.garcia@email.com", Password = "adminpass", Role = "Admin" },
-                new User { Id = 6, Fullname = "Juan Pérez", Mail = "juan.perez@email.com", Password = "12345", Role = "Root" },
-                new User { Id = 7, Fullname = "Ana González", Mail = "ana.gonzalez@email.com", Password = "password123", Role = "Admin" },
-                new User { Id = 8, Fullname = "Carlos López", Mail = "carlos.lopez@email.com", Password = "qwerty", Role = "Mant" },
-                new User { Id = 9, Fullname = "María Fernández", Mail = "maria.fernandez@email.com", Password = "admin123", Role = "Root" },
-                new User { Id = 10, Fullname = "Pedro García", Mail = "pedro.garcia@email.com", Password = "adminpass", Role = "Admin" }
+                new User { Id = 1, Fullname = "Juan Pérez", Mail = "juan.perez@email.com", Password = "12345", Role = "Art" },
+                new User { Id = 2, Fullname = "Ana González", Mail = "ana.gonzalez@email.com", Password = "password123", Role = "Space" },
+                new User { Id = 3, Fullname = "Carlos López", Mail = "carlos.lopez@email.com", Password = "qwerty", Role = "Art" },
+                new User { Id = 4, Fullname = "María Fernández", Mail = "maria.fernandez@email.com", Password = "admin123", Role = "Art" },
+                new User { Id = 5, Fullname = "Pedro García", Mail = "pedro.garcia@email.com", Password = "adminpass", Role = "Space" },
+                new User { Id = 6, Fullname = "Juan Pérez", Mail = "juan.perez@email.com", Password = "12345", Role = "Art" },
+                new User { Id = 7, Fullname = "Ana González", Mail = "ana.gonzalez@email.com", Password = "password123", Role = "Space" },
+                new User { Id = 8, Fullname = "Carlos López", Mail = "carlos.lopez@email.com", Password = "qwerty", Role = "Space" },
+                new User { Id = 9, Fullname = "María Fernández", Mail = "maria.fernandez@email.com", Password = "admin123", Role = "Space" },
+                new User { Id = 10, Fullname = "Pedro García", Mail = "pedro.garcia@email.com", Password = "adminpass", Role = "Art" }
             };
 
             usersView = CollectionViewSource.GetDefaultView(users);
@@ -75,7 +86,7 @@ namespace TogetherNotes.Forms
             {
                 searchedUser.Text = string.Empty;
                 MessageBox.Show("No se encontraron usuarios.", "Búsqueda", MessageBoxButton.OK, MessageBoxImage.Information);
-                usersView.Refresh(); 
+                usersView.Refresh();
             }
         }
 
@@ -128,7 +139,7 @@ namespace TogetherNotes.Forms
             {
                 User newUser = new User
                 {
-                    Id = users.Count + 1, 
+                    Id = users.Count + 1,
                     Fullname = nameUser.Text,
                     Mail = Mail.Text,
                     Password = PasswordBox.Password,

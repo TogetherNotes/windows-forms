@@ -25,9 +25,9 @@ namespace TogetherNotes.Models
         public Nullable<int> user1_id { get; set; }
         public Nullable<int> user2_id { get; set; }
     
-        public virtual app app { get; set; }
-        public virtual app app1 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<messages> messages { get; set; }
+        public virtual app app { get; set; }
+        public virtual app app1 { get; set; }
     }
 }

@@ -1,12 +1,11 @@
-﻿<UserControl x:Class="TogetherNotes.Forms.ManageAdmin"
+﻿<UserControl x:Class="TogetherNotes.Forms.ManageApp"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:TogetherNotes.Forms"
              mc:Ignorable="d" 
-             d:DesignHeight="646" d:DesignWidth="876">
-
+             d:DesignHeight="450" d:DesignWidth="800">
     <UserControl.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
@@ -24,7 +23,7 @@
                     <Setter.Value>
                         <ControlTemplate TargetType="DataGrid">
                             <Border Background="#1B2A34" BorderBrush="#FF00FF" 
-                        BorderThickness="2" CornerRadius="15">
+                    BorderThickness="2" CornerRadius="15">
                                 <Grid>
                                     <Grid.RowDefinitions>
                                         <RowDefinition Height="Auto"/>
@@ -47,13 +46,13 @@
                     <Setter.Value>
                         <ControlTemplate TargetType="DataGridColumnHeader">
                             <Border Background="{TemplateBinding Background}"
-                        BorderBrush="{TemplateBinding BorderBrush}"
-                        BorderThickness="{TemplateBinding BorderThickness}"
-                        CornerRadius="10,10,0,0"
-                        Padding="5"
-                        Margin="0">
+                    BorderBrush="{TemplateBinding BorderBrush}"
+                    BorderThickness="{TemplateBinding BorderThickness}"
+                    CornerRadius="10,10,0,0"
+                    Padding="5"
+                    Margin="0">
                                 <ContentPresenter HorizontalAlignment="Center"
-                                      VerticalAlignment="Center" />
+                                  VerticalAlignment="Center" />
                             </Border>
                         </ControlTemplate>
                     </Setter.Value>
@@ -73,11 +72,11 @@
                     <Setter.Value>
                         <ControlTemplate TargetType="DataGridCell">
                             <Border Background="{TemplateBinding Background}"
-                        BorderBrush="{TemplateBinding BorderBrush}"
-                        BorderThickness="1"
-                        CornerRadius="10"
-                        Padding="8"
-                        Margin="2">
+                    BorderBrush="{TemplateBinding BorderBrush}"
+                    BorderThickness="1"
+                    CornerRadius="10"
+                    Padding="8"
+                    Margin="2">
                                 <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
                             </Border>
                         </ControlTemplate>
@@ -109,8 +108,8 @@
         <StackPanel Grid.Column="0" Margin="20">
             <TextBlock Text="{DynamicResource SearchUser}" Foreground="DarkGray" FontSize="18" FontWeight="Medium" FontFamily="Playfair Display" Margin="0,0,0,10"/>
             <TextBox x:Name="searchedUser" FontSize="16" Foreground="White" CaretBrush="LightGray"
-                     BorderBrush="DarkGray" BorderThickness="0,0,0,2" Height="28" Padding="30,0,0,0"
-                     Margin="0,0,0,20" TextChanged="searchedUser_TextChanged">
+                 BorderBrush="DarkGray" BorderThickness="0,0,0,2" Height="28" Padding="30,0,0,0"
+                 Margin="0,0,0,20" TextChanged="searchedUser_TextChanged">
                 <TextBox.Background>
                     <ImageBrush ImageSource="/Resources/user-icon.png" Stretch="None" AlignmentX="Left"/>
                 </TextBox.Background>
@@ -119,14 +118,14 @@
 
 
             <DataGrid x:Name="usersDataGrid" AutoGenerateColumns="False" Height="450" 
-                  IsReadOnly="True" BorderThickness="0" GridLinesVisibility="None"
-                  FontSize="18" CanUserAddRows="False" SelectionChanged="usersDataGrid_SelectionChanged">
+              IsReadOnly="True" BorderThickness="0" GridLinesVisibility="None"
+              FontSize="18" CanUserAddRows="False" SelectionChanged="usersDataGrid_SelectionChanged">
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="ID" Binding="{Binding Id}" Width="50"/>
                     <DataGridTextColumn Header="{DynamicResource Name}" Binding="{Binding Fullname}" Width="*"/>
                     <DataGridTextColumn Header="{DynamicResource Role}" Binding="{Binding Role}" Width="0.3*"/>
                 </DataGrid.Columns>
-                
+
             </DataGrid>
 
 
@@ -136,7 +135,7 @@
         <StackPanel Grid.Column="1" Margin="20">
             <TextBlock Text="{DynamicResource Name}" Foreground="DarkGray" FontSize="18" FontWeight="Medium" FontFamily="Playfair Display" Margin="0,0,0,10"/>
             <TextBox x:Name="nameUser" FontSize="18" Foreground="White" CaretBrush="LightGray" FontFamily="Playfair Display"
-                     BorderBrush="DarkGray" BorderThickness="0,0,0,2" Height="28" Background="Transparent"/>
+                 BorderBrush="DarkGray" BorderThickness="0,0,0,2" Height="28" Background="Transparent"/>
 
             <TextBlock Text="{DynamicResource Password}" Foreground="DarkGray" FontSize="20" FontWeight="Medium" FontFamily="Playfair Display" Margin="0,15,0,10"/>
             <Grid>
@@ -146,56 +145,53 @@
                 </Grid.ColumnDefinitions>
 
                 <PasswordBox x:Name="PasswordBox" FontSize="18" Foreground="White" CaretBrush="LightGray"
-                             BorderBrush="DarkGray" BorderThickness="0,0,0,2" Height="28" Background="Transparent"
-                             Grid.Column="0" PasswordChanged="PasswordBox_PasswordChanged"/>
+                         BorderBrush="DarkGray" BorderThickness="0,0,0,2" Height="28" Background="Transparent"
+                         Grid.Column="0" PasswordChanged="PasswordBox_PasswordChanged"/>
 
                 <TextBox x:Name="PasswordTextBox" FontSize="18" Foreground="White"
-                         CaretBrush="LightGray" BorderBrush="DarkGray" BorderThickness="0,0,0,2"
-                         Height="28" Background="Transparent" Visibility="Collapsed" Grid.Column="0"/>
+                     CaretBrush="LightGray" BorderBrush="DarkGray" BorderThickness="0,0,0,2"
+                     Height="28" Background="Transparent" Visibility="Collapsed" Grid.Column="0"/>
 
                 <Button Content="👁" Width="30" Height="28" HorizontalAlignment="Right"
-                        Click="TogglePasswordVisibility" Grid.Column="1" Style="{StaticResource ImageButtonStyle}" Foreground="White" VerticalAlignment="Center"/>
+                    Click="TogglePasswordVisibility" Grid.Column="1" Style="{StaticResource ImageButtonStyle}" Foreground="White" VerticalAlignment="Center"/>
             </Grid>
 
             <TextBlock Text="{DynamicResource Email}" Foreground="DarkGray" FontSize="20" FontWeight="Medium" FontFamily="Playfair Display" Margin="0,15,0,10"/>
             <TextBox x:Name="Mail" FontSize="18" Foreground="White" CaretBrush="LightGray"
-                     BorderBrush="DarkGray" BorderThickness="0,0,0,2" Height="28" Background="Transparent"/>
+                 BorderBrush="DarkGray" BorderThickness="0,0,0,2" Height="28" Background="Transparent"/>
 
             <TextBlock Text="{DynamicResource Role}" Foreground="DarkGray" FontSize="20" FontWeight="Medium" FontFamily="Playfair Display" Margin="0,15,0,10"/>
             <ComboBox x:Name="roleComboBox"
-                      FontSize="18"
-                      FontFamily="Playfair Display"
-                      Background="Transparent"
-                      BorderThickness="0"
-                      BorderBrush="Transparent"
-                      SelectionChanged="roleComboBox_SelectionChanged">
-                <ComboBoxItem Content="Root"/>
-                <ComboBoxItem Content="Admin"/>
-                <ComboBoxItem Content="Mant"/>
+                  FontSize="18"
+                  FontFamily="Playfair Display"
+                  Background="Transparent"
+                  BorderThickness="0"
+                  BorderBrush="Transparent"
+                  SelectionChanged="roleComboBox_SelectionChanged">
                 <ComboBoxItem Content="Art" x:Name="artistRole"/>
                 <ComboBoxItem Content="Space" x:Name="spaceRole"/>
             </ComboBox>
 
 
 
-            <TextBlock x:Name="RatingBlock" Text="{DynamicResource Rating}" Foreground="DarkGray" FontSize="20" FontWeight="Medium" FontFamily="Playfair Display" Margin="0,15,0,10" Visibility="Collapsed"/>
+            <TextBlock x:Name="RatingBlock" Text="{DynamicResource Rating}" Foreground="DarkGray" FontSize="20" FontWeight="Medium" FontFamily="Playfair Display" Margin="0,15,0,10"/>
 
             <TextBox x:Name="RatingBox" FontSize="18" Foreground="White" CaretBrush="LightGray"
-                     BorderBrush="DarkGray" BorderThickness="0,0,0,2" Height="28" Background="Transparent" Visibility="Collapsed"/>
+                 BorderBrush="DarkGray" BorderThickness="0,0,0,2" Height="28" Background="Transparent" />
 
 
 
             <TextBlock x:Name="CapacityBlock" Text="{DynamicResource Capacity}" Foreground="DarkGray" FontSize="20" FontWeight="Medium" FontFamily="Playfair Display" Margin="0,15,0,10" Visibility="Collapsed"/>
 
             <TextBox x:Name="CapacityBox" FontSize="18" Foreground="White" CaretBrush="LightGray"
-                     BorderBrush="DarkGray" BorderThickness="0,0,0,2" Height="28" Background="Transparent" Visibility="Collapsed"/>
+                 BorderBrush="DarkGray" BorderThickness="0,0,0,2" Height="28" Background="Transparent" Visibility="Collapsed"/>
 
 
 
             <TextBlock x:Name="genreBlock" Text="{DynamicResource Genre}" Foreground="DarkGray" FontSize="20" FontWeight="Medium" FontFamily="Playfair Display" Margin="0,15,0,10" Visibility="Collapsed"/>
 
             <TextBox x:Name="GenreBox" FontSize="18" Foreground="White" CaretBrush="LightGray"
-                     BorderBrush="DarkGray" BorderThickness="0,0,0,2" Height="28" Background="Transparent" Visibility="Collapsed"/>
+                 BorderBrush="DarkGray" BorderThickness="0,0,0,2" Height="28" Background="Transparent" Visibility="Collapsed"/>
 
 
             <StackPanel Orientation="Horizontal" Margin="0,60,0,0">
@@ -206,8 +202,7 @@
                         FontSize="20"
                         FontFamily="Playfair Display"
                         Cursor="Hand"                           
-                        
-                        Click="SaveUser" >          
+                        Click="SaveUser" >
                     <Button.Style>
                         <Style TargetType="Button">
                             <Setter Property="Background" Value="#462AD8"/>
@@ -224,7 +219,7 @@
                                     CornerRadius="20"
                                     Background="{TemplateBinding Background}">
                                 <ContentPresenter VerticalAlignment="Center"
-                                  HorizontalAlignment="Center"/>
+                                                  HorizontalAlignment="Center"/>
                             </Border>
                         </ControlTemplate>
                     </Button.Template>
@@ -252,7 +247,7 @@
                         <ControlTemplate TargetType="Button">
                             <Border Width="150" Height="40"
                                     CornerRadius="20"
-                                    Background="{TemplateBinding Background}">      
+                                    Background="{TemplateBinding Background}">
                                 <ContentPresenter VerticalAlignment="Center"
                                                   HorizontalAlignment="Center"/>
                             </Border>
@@ -283,10 +278,10 @@
                     <Button.Template>
                         <ControlTemplate TargetType="Button">
                             <Border Width="100" Height="40"
-                    CornerRadius="20"
-                    Background="{TemplateBinding Background}">
+                                    CornerRadius="20"
+                                    Background="{TemplateBinding Background}">
                                 <ContentPresenter VerticalAlignment="Center"
-                                  HorizontalAlignment="Center"/>
+                  HorizontalAlignment="Center"/>
                             </Border>
                         </ControlTemplate>
                     </Button.Template>

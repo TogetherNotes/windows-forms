@@ -47,6 +47,9 @@
     <Reference Include="GMap.NET.Core, Version=2.1.7.0, Culture=neutral, PublicKeyToken=b85b9027b614afef, processorArchitecture=MSIL">
       <HintPath>..\packages\GMap.NET.Core.2.1.7\lib\net472\GMap.NET.Core.dll</HintPath>
     </Reference>
+    <Reference Include="GMap.NET.WindowsForms, Version=2.1.7.0, Culture=neutral, PublicKeyToken=b85b9027b614afef, processorArchitecture=MSIL">
+      <HintPath>..\packages\GMap.NET.WinForms.2.1.7\lib\net472\GMap.NET.WindowsForms.dll</HintPath>
+    </Reference>
     <Reference Include="GMap.NET.WindowsPresentation, Version=2.1.7.0, Culture=neutral, PublicKeyToken=b85b9027b614afef, processorArchitecture=MSIL">
       <HintPath>..\packages\GMap.NET.WinPresentation.2.1.7\lib\net472\GMap.NET.WindowsPresentation.dll</HintPath>
     </Reference>
@@ -109,8 +112,8 @@
     <Compile Include="Forms\ManageAdmin.xaml.cs">
       <DependentUpon>ManageAdmin.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Forms\Users.xaml.cs">
-      <DependentUpon>Users.xaml</DependentUpon>
+    <Compile Include="Forms\ManageApp.xaml.cs">
+      <DependentUpon>ManageApp.xaml</DependentUpon>
     </Compile>
     <Compile Include="Forms\ExitConfirmation.xaml.cs">
       <DependentUpon>ExitConfirmation.xaml</DependentUpon>
@@ -142,6 +145,9 @@
     <Compile Include="Models\app.cs">
       <DependentUpon>TogetherNotesModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\artists.cs">
+      <DependentUpon>TogetherNotesModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\chats.cs">
       <DependentUpon>TogetherNotesModel.tt</DependentUpon>
     </Compile>
@@ -163,6 +169,7 @@
     <Compile Include="Models\Management\ActivityOrm.cs" />
     <Compile Include="Models\Management\AdminOrm.cs" />
     <Compile Include="Models\Management\AppOrm.cs" />
+    <Compile Include="Models\Management\ArtistsOrm.cs" />
     <Compile Include="Models\Management\ChatsOrm.cs" />
     <Compile Include="Models\Management\ContractsOrm.cs" />
     <Compile Include="Models\Management\FilesOrm.cs" />
@@ -210,7 +217,7 @@
     <Compile Include="Utils\RelayCommand.cs" />
     <Compile Include="Utils\ViewModelBase.cs" />
     <Compile Include="ViewModel\ManageAdminVM.cs" />
-    <Compile Include="ViewModel\UsersVM.cs" />
+    <Compile Include="ViewModel\ManageAppVM.cs" />
     <Compile Include="ViewModel\HomeVM.cs" />
     <Compile Include="ViewModel\LoginVM.cs" />
     <Compile Include="ViewModel\NavigationVM.cs" />
@@ -222,7 +229,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Forms\Users.xaml">
+    <Page Include="Forms\ManageApp.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -338,6 +345,23 @@
       <DependentUpon>TogetherNotesModel.edmx</DependentUpon>
     </None>
     <None Include="packages.config" />
+    <None Include="Properties\DataSources\TogetherNotes.Models.activity.datasource" />
+    <None Include="Properties\DataSources\TogetherNotes.Models.admin.datasource" />
+    <None Include="Properties\DataSources\TogetherNotes.Models.app.datasource" />
+    <None Include="Properties\DataSources\TogetherNotes.Models.artists.datasource" />
+    <None Include="Properties\DataSources\TogetherNotes.Models.chats.datasource" />
+    <None Include="Properties\DataSources\TogetherNotes.Models.contracts.datasource" />
+    <None Include="Properties\DataSources\TogetherNotes.Models.files.datasource" />
+    <None Include="Properties\DataSources\TogetherNotes.Models.genres.datasource" />
+    <None Include="Properties\DataSources\TogetherNotes.Models.incidences.datasource" />
+    <None Include="Properties\DataSources\TogetherNotes.Models.languages.datasource" />
+    <None Include="Properties\DataSources\TogetherNotes.Models.messages.datasource" />
+    <None Include="Properties\DataSources\TogetherNotes.Models.notifications.datasource" />
+    <None Include="Properties\DataSources\TogetherNotes.Models.Orm.datasource" />
+    <None Include="Properties\DataSources\TogetherNotes.Models.PageModel.datasource" />
+    <None Include="Properties\DataSources\TogetherNotes.Models.rating.datasource" />
+    <None Include="Properties\DataSources\TogetherNotes.Models.roles.datasource" />
+    <None Include="Properties\DataSources\TogetherNotes.Models.spaces.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -345,11 +369,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resources\atras.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Resource>
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\logo_wbg_cut.png">
@@ -393,28 +412,12 @@
     </Resource>
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\apagar_selected.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Resource>
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="Resources\user-icon.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\key-icon.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Resource>
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resources\admin_wbg.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="Resources\musician_wbg.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="Resources\restaurant_wbg.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
   </ItemGroup>
@@ -429,6 +432,7 @@
       <DependentUpon>TogetherNotesModel.edmx</DependentUpon>
       <LastGenOutput>TogetherNotesModel.cs</LastGenOutput>
     </Content>
+    <Resource Include="Resources\marker.png" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
