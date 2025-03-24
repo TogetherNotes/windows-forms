@@ -1,6 +1,8 @@
 ﻿using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using LiveCharts;
+using TogetherNotes.Utils;
 using TogetherNotes.Models.Management;
 
 namespace TogetherNotes.ViewModel
@@ -71,9 +73,12 @@ namespace TogetherNotes.ViewModel
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
+        public ObservableCollection<Event> EventsToday { get; set; }
+
         public HomeVM()
         {
             LoadChartData();
+            LoadEventsForToday();
 
             TotalSuperAdmins = AdminOrm.SelectTotalOfAdmin(1);
             TotalAdmins = AdminOrm.SelectTotalOfAdmin(2);
@@ -87,6 +92,12 @@ namespace TogetherNotes.ViewModel
         {
             Months = new List<string> { "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec" };
             UserRegistrations = new ChartValues<int> { 10, 25, 30, 50, 40, 60, 90, 70, 85, 100, 120, 150 };
+        }
+
+        private void LoadEventsForToday()
+        {
+            var events = ContractOrm.GetEventsForToday();
+            EventsToday = new ObservableCollection<Event>(events);
         }
     }
 }
