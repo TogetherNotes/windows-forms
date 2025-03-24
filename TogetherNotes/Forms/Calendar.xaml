@@ -426,21 +426,22 @@
                       CalendarDayButtonStyle="{DynamicResource CalendarDayButtonStyle}" 
                       CalendarItemStyle="{DynamicResource CalendarItemStyle}" 
                       Style="{DynamicResource CalendarStyle}" FontFamily="Playfair Display"
-                      SelectedDatesChanged="Calendar_SelectedDatesChanged">
+                      SelectedDate="{Binding SelectedDate, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
             </Calendar>
         </Viewbox>
 
         <Border CornerRadius="10" BorderBrush="#FF00FF" BorderThickness="3" Grid.Column="1">
             <ListView Name="EventsList"
-          Background="#1B2A34"
-          IsHitTestVisible="False"
-          Foreground="White"
-          FontSize="14"
-          Padding="10"
-          SelectionMode="Single"
-          HorizontalAlignment="Stretch"
-          VerticalAlignment="Stretch"
-          ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+                      Background="#1B2A34"
+                      IsHitTestVisible="False"
+                      Foreground="White"
+                      FontSize="14"
+                      ItemsSource="{Binding FilteredEvents}"
+                      Padding="10"
+                      SelectionMode="Single"
+                      HorizontalAlignment="Stretch"
+                      VerticalAlignment="Stretch"
+                      ScrollViewer.HorizontalScrollBarVisibility="Disabled">
 
                 <ListView.Resources>
                     <!-- Estilo para los encabezados -->
