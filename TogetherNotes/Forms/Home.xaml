@@ -41,10 +41,19 @@
 
                     <TextBlock Foreground="White" Text="{DynamicResource EventsToday}" FontSize="16" FontWeight="Bold" Margin="0,0,0,10" FontFamily="PlayfairDisplay"/>
 
-                    <ListView Name="EventsList" Background="Transparent" Foreground="White" Grid.Row="1" VerticalAlignment="Stretch" BorderThickness="0" FontFamily="PlayfairDisplay">
-                        <ListViewItem Content="Concert at The Bar - 20:00h"/>
-                        <ListViewItem Content="Jazz Night - 21:30h"/>
-                        <ListViewItem Content="Open Mic - 19:00h"/>
+                    <ListView Name="EventsList"
+                          Background="Transparent"
+                          Foreground="White"
+                          Grid.Row="1"
+                          VerticalAlignment="Stretch"
+                          BorderThickness="0"
+                          FontFamily="PlayfairDisplay"
+                          ItemsSource="{Binding EventsToday}">
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding Title}" FontSize="14"/>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
                     </ListView>
                 </Grid>
             </Border>
