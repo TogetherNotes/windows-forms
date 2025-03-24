@@ -11,22 +11,28 @@ namespace TogetherNotes.Models.Management
             DateTime today = DateTime.Today;
             DateTime tomorrow = today.AddDays(1);
 
-            // Primer: carrega els valors necessaris a memòria
+            // Carrega contractes d'avui
             var contracts = Orm.db.contracts
                 .Where(c => c.init_hour >= today && c.init_hour < tomorrow)
-                .Select(c => new
-                {
-                    InitHour = c.init_hour
-                })
-                .ToList(); // Això fa que les dades es carreguin a memòria
-
-            // Després: transforma a la classe Utils.Event
-            var events = contracts
-                .Select(c => new Utils.Event(
-                    c.InitHour.ToString("o"), // ISO 8601 format
-                    "Event at " + c.InitHour.LocalDateTime.ToShortTimeString()
-                ))
                 .ToList();
+
+            // Carrega tots els usuaris (artistes i espais)
+            var apps = Orm.db.app.ToList();
+
+            var events = contracts.Select(c =>
+            {
+                var artist = apps.FirstOrDefault(a => a.id == c.artist_id);
+                var space = apps.FirstOrDefault(a => a.id == c.space_id);
+
+                string artistName = artist != null ? artist.name : "Unknown Artist";
+                string spaceName = space != null ? space.name : "Unknown Space";
+                string type = c.meet_type;
+
+                string title = $"Event at {c.init_hour.LocalDateTime.ToShortTimeString()} with {artistName} and {spaceName} - {type}";
+
+                return new Utils.Event(c.init_hour, title);
+
+            }).ToList();
 
             return events;
         }

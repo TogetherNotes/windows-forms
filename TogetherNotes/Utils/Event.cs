@@ -7,11 +7,10 @@ namespace TogetherNotes.Utils
         public DateTimeOffset Timestamp { get; set; }
         public string Title { get; set; }
 
-        public Event(string timestamp, string title)
+        public Event(DateTimeOffset timestamp, string title)
         {
-            this.Timestamp = DateTimeOffset.Parse(timestamp);
+            this.Timestamp = timestamp;
             this.Title = title;
         }
     }
-
 }
