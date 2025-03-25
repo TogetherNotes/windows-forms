@@ -216,22 +216,30 @@ namespace TogetherNotes.Forms
                 selectedUser.Mail = Mail.Text;
                 selectedUser.Password = PasswordTextBox.Text;
                 selectedUser.Role = (roleComboBox.SelectedItem as ComboBoxItem)?.Content.ToString();
-            }
-            else
-            {
-                User newUser = new User
+
+                int roleId = 0;
+                switch (selectedUser.Role.ToLower())
                 {
-                    Id = users.Count + 1,
-                    Fullname = nameUser.Text,
-                    Mail = Mail.Text,
-                    Password = PasswordBox.Password,
-                    Role = (roleComboBox.SelectedItem as ComboBoxItem)?.Content.ToString()
-                };
-                users.Add(newUser);
+                    case "root": roleId = 1; break;
+                    case "admin": roleId = 2; break;
+                    case "mant": roleId = 3; break;
+                }
+
+                bool updated = AdminOrm.UpdateAdmin(selectedUser.Id, selectedUser.Fullname, selectedUser.Mail, selectedUser.Password, roleId);
+                if (updated)
+                {
+                    MessageBox.Show("Usuario actualizado correctamente.", "Éxito", MessageBoxButton.OK, MessageBoxImage.Information);
+                }
+                else
+                {
+                    MessageBox.Show("Error al actualizar usuario. Puede que no exista.", "Error", MessageBoxButton.OK, MessageBoxImage.Warning);
+                }
             }
-            usersView.Refresh();
             ClearForm();
+            LoadUserData();
         }
+
+
 
         private void DeleteUser(object sender, RoutedEventArgs e)
         {

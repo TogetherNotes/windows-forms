@@ -66,6 +66,34 @@ namespace TogetherNotes.Models.Management
             return new List<admin>();
         }
 
+        public static bool UpdateAdmin(int id, string name, string mail, string password, int roleId)
+        {
+            try
+            {
+                var adminToUpdate = Orm.db.admin.FirstOrDefault(a => a.id == id);
+                if (adminToUpdate == null)
+                {
+                    Console.WriteLine("El usuario con el ID proporcionado no existe.");
+                    return false;
+                }
 
+                adminToUpdate.name = name;
+                adminToUpdate.mail = mail;
+                adminToUpdate.password = password;
+                adminToUpdate.role_id = roleId;
+
+                Orm.db.SaveChanges();  
+                return true;
+            }
+            catch (SqlException ex)
+            {
+                Console.WriteLine(Orm.ErrorMessage(ex));
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("General error: " + ex.Message);
+            }
+            return false;
+        }
     }
 }
