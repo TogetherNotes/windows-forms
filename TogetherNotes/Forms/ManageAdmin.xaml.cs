@@ -84,25 +84,27 @@ namespace TogetherNotes.Forms
             var artistUsers = artistsFromDb.Select(a => new User
             {
                 Id = a.app_user_id,
-                Fullname = a.app.name,
-                Mail = a.app.mail,
-                Password = a.app.password,
-                Role = a.app.role,
-                Rating = (int?)a.app.rating,
-                Genre = a.genres.name
-            });
+                Fullname = a.app?.name ?? "Desconocido", 
+                Mail = a.app?.mail ?? "Sin correo",
+                Password = a.app?.password ?? "",
+                Role = a.app?.role ?? "Artist",
+                Rating = a.app?.rating ?? 0, 
+                Genre = a.genres?.name ?? "Sin género" 
+            }).ToList();
+
 
             // Convertir los espacios a User (incluye Rating y Capacity)
             var spaceUsers = spacesFromDB.Select(a => new User
             {
                 Id = a.app_user_id,
-                Fullname = a.app.name,
-                Mail = a.app.mail,
-                Password = a.app.password,
-                Role = a.app.role,
-                Rating = (int?)a.app.rating,
-                Capacity = (int?)a.capacity
-            });
+                Fullname = a.app?.name ?? "Desconocido",
+                Mail = a.app?.mail ?? "Sin correo",
+                Password = a.app?.password ?? "",
+                Role = a.app?.role ?? "Space",
+                Rating = a.app?.rating ?? 0,
+                Capacity = a.capacity ?? 0 
+            }).ToList();
+
 
             var allUsers = adminUsers
                 .Concat(artistUsers)
@@ -212,66 +214,121 @@ namespace TogetherNotes.Forms
         {
             if (usersDataGrid.SelectedItem is User selectedUser)
             {
-                // Si hay un usuario seleccionado, actualizamos
-                selectedUser.Fullname = nameUser.Text;
-                selectedUser.Mail = Mail.Text;
-                selectedUser.Password = PasswordTextBox.Text;
-                selectedUser.Role = (roleComboBox.SelectedItem as ComboBoxItem)?.Content.ToString();
-
-                int roleId = 0;
-                switch (selectedUser.Role.ToLower())
-                {
-                    case "root": roleId = 1; break;
-                    case "admin": roleId = 2; break;
-                    case "mant": roleId = 3; break;
-                }
-
-                bool updated = AdminOrm.UpdateAdmin(selectedUser.Id, selectedUser.Fullname, selectedUser.Mail, selectedUser.Password, roleId);
-                if (updated)
-                {
-                    MessageBox.Show("Usuario actualizado correctamente.", "Éxito", MessageBoxButton.OK, MessageBoxImage.Information);
-                    LoadUserData();
-                }
-                else
-                {
-                    MessageBox.Show("Error al actualizar usuario.", "Error", MessageBoxButton.OK, MessageBoxImage.Warning);
-                }
+                UpdateUser(selectedUser);
             }
             else
             {
-                // Si NO hay usuario seleccionado, creamos uno nuevo
-                string name = nameUser.Text;
-                string mail = Mail.Text;
-                string password = PasswordTextBox.Text;
-                string role = (roleComboBox.SelectedItem as ComboBoxItem)?.Content.ToString();
+                InsertUser();
+            }
 
-                if (string.IsNullOrWhiteSpace(name) || string.IsNullOrWhiteSpace(mail) || string.IsNullOrWhiteSpace(password) || string.IsNullOrWhiteSpace(role))
+            usersView.Refresh();
+            ClearForm();
+        }
+
+        private void UpdateUser(User selectedUser)
+        {
+            string role = (roleComboBox.SelectedItem as ComboBoxItem)?.Content.ToString();
+
+            if (role == "Artist")
+            {
+                int rating = int.TryParse(RatingBox.Text, out int r) ? r : 1;
+                rating = Math.Max(1, Math.Min(rating, 5)); // Asegura que esté entre 1 y 5
+                int genreId = GenreBox.SelectedIndex + 1;
+
+                bool updated = ArtistsOrm.UpdateArtist(selectedUser.Id, nameUser.Text, Mail.Text, PasswordTextBox.Text, genreId, rating);
+                ShowMessage(updated, "actualizado");
+            }
+            else if (role == "Space")
+            {
+                int capacity = int.TryParse(CapacityBox.Text, out int c) ? c : 1;
+                if (capacity < 1)
                 {
-                    MessageBox.Show("Todos los campos son obligatorios.", "Advertencia", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    MessageBox.Show("La capacidad debe ser mayor a 0.", "Error", MessageBoxButton.OK, MessageBoxImage.Warning);
                     return;
                 }
 
-                int roleId = 0;
-                switch (role.ToLower())
+                bool updated = SpacesOrm.UpdateSpace(selectedUser.Id, nameUser.Text, Mail.Text, PasswordTextBox.Text, capacity);
+                ShowMessage(updated, "actualizado");
+            }
+            else
+            {
+                int roleId = GetRoleId(role);
+                bool updated = AdminOrm.UpdateAdmin(selectedUser.Id, nameUser.Text, Mail.Text, PasswordTextBox.Text, roleId);
+                ShowMessage(updated, "actualizado");
+            }
+
+            LoadUserData();
+        }
+
+        private void InsertUser()
+        {
+            string name = nameUser.Text;
+            string mail = Mail.Text;
+            string password = PasswordTextBox.Text;
+            string role = (roleComboBox.SelectedItem as ComboBoxItem)?.Content.ToString();
+
+            if (string.IsNullOrWhiteSpace(name) || string.IsNullOrWhiteSpace(mail) || string.IsNullOrWhiteSpace(password) || string.IsNullOrWhiteSpace(role))
+            {
+                MessageBox.Show("Todos los campos son obligatorios.", "Advertencia", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return;
+            }
+
+            if (role == "Artist")
+            {
+                int rating = int.TryParse(RatingBox.Text, out int r) ? r : 1;
+                rating = Math.Max(1, Math.Min(rating, 5)); // Asegura que esté entre 1 y 5
+                int genreId = GenreBox.SelectedIndex + 1;
+
+                bool inserted = ArtistsOrm.InsertArtist(name, mail, password, genreId, rating);
+                ShowMessage(inserted, "creado");
+            }
+            else if (role == "Space")
+            {
+                int capacity = int.TryParse(CapacityBox.Text, out int c) ? c : 1;
+                if (capacity < 1)
                 {
-                    case "root": roleId = 1; break;
-                    case "admin": roleId = 2; break;
-                    case "mant": roleId = 3; break;
+                    MessageBox.Show("La capacidad debe ser mayor a 0.", "Error", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    return;
                 }
 
-                bool inserted = AdminOrm.InsertAdmin(name, mail, password, roleId);
-                if (inserted)
-                {
-                    MessageBox.Show("Usuario creado correctamente.", "Éxito", MessageBoxButton.OK, MessageBoxImage.Information);
-                    LoadUserData(); // Recargar la lista de usuarios
-                }
-                else
-                {
-                    MessageBox.Show("Error al crear usuario.", "Error", MessageBoxButton.OK, MessageBoxImage.Warning);
-                }
+                bool inserted = SpacesOrm.InsertSpace(name, mail, password, capacity);
+                ShowMessage(inserted, "creado");
             }
-            ClearForm();
+            else
+            {
+                int roleId = GetRoleId(role);
+                bool inserted = AdminOrm.InsertAdmin(name, mail, password, roleId);
+                ShowMessage(inserted, "creado");
+            }
+
+            LoadUserData();
         }
+
+
+        private int GetRoleId(string role)
+        {
+            switch (role.ToLower())
+            {
+                case "root": return 1;
+                case "admin": return 2;
+                case "mant": return 3;
+                default: return 0;
+            }
+        }
+
+
+        private void ShowMessage(bool success, string action)
+        {
+            if (success)
+            {
+                MessageBox.Show($"Usuario {action} correctamente.", "Éxito", MessageBoxButton.OK, MessageBoxImage.Information);
+            }
+            else
+            {
+                MessageBox.Show($"Error al {action} usuario.", "Error", MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
+        }
+
 
 
 
@@ -289,7 +346,21 @@ namespace TogetherNotes.Forms
 
                 if (result == MessageBoxResult.Yes)
                 {
-                    bool deleted = AdminOrm.DeleteAdmin(selectedUser.Id);
+                    bool deleted = false;
+
+                    if (selectedUser.Role == "Artist")
+                    {
+                        deleted = ArtistsOrm.DeleteArtist(selectedUser.Id);
+                    }
+                    else if (selectedUser.Role == "Space")
+                    {
+                        deleted = SpacesOrm.DeleteSpace(selectedUser.Id);
+                    }
+                    else
+                    {
+                        deleted = AdminOrm.DeleteAdmin(selectedUser.Id);
+                    }
+
                     if (deleted)
                     {
                         MessageBox.Show("Usuario eliminado correctamente.", "Éxito", MessageBoxButton.OK, MessageBoxImage.Information);
@@ -309,6 +380,8 @@ namespace TogetherNotes.Forms
                 MessageBox.Show("Seleccione un usuario para eliminar.", "Advertencia", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
         }
+    
+
 
 
         private void ClearForm()
@@ -346,7 +419,7 @@ namespace TogetherNotes.Forms
                 GenreBox.Visibility = Visibility.Collapsed;
 
                 // Mostrar según el rol seleccionado
-                if (selectedRole == "Art")
+                if (selectedRole == "Artist")
                 {
                     RatingBlock.Visibility = Visibility.Visible;
                     RatingBox.Visibility = Visibility.Visible;
