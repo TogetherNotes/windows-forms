@@ -95,5 +95,56 @@ namespace TogetherNotes.Models.Management
             }
             return false;
         }
+
+        public static bool InsertAdmin(string name, string mail, string password, int roleId)
+        {
+            try
+            {
+                admin newAdmin = new admin
+                {
+                    name = name,
+                    mail = mail,
+                    password = password,
+                    role_id = roleId
+                };
+
+                Orm.db.admin.Add(newAdmin);
+                Orm.db.SaveChanges(); 
+                return true;
+            }
+            catch (SqlException ex)
+            {
+                Console.WriteLine(Orm.ErrorMessage(ex));
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("General error: " + ex.Message);
+            }
+            return false;
+        }
+
+        public static bool DeleteAdmin(int adminId)
+        {
+            try
+            {
+                var adminToDelete = Orm.db.admin.FirstOrDefault(a => a.id == adminId);
+                if (adminToDelete != null)
+                {
+                    Orm.db.admin.Remove(adminToDelete);
+                    Orm.db.SaveChanges();
+                    return true;
+                }
+            }
+            catch (SqlException ex)
+            {
+                Console.WriteLine(Orm.ErrorMessage(ex));
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("General error: " + ex.Message);
+            }
+            return false;
+        }
+
     }
 }

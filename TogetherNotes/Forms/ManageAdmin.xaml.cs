@@ -212,6 +212,7 @@ namespace TogetherNotes.Forms
         {
             if (usersDataGrid.SelectedItem is User selectedUser)
             {
+                // Si hay un usuario seleccionado, actualizamos
                 selectedUser.Fullname = nameUser.Text;
                 selectedUser.Mail = Mail.Text;
                 selectedUser.Password = PasswordTextBox.Text;
@@ -229,15 +230,49 @@ namespace TogetherNotes.Forms
                 if (updated)
                 {
                     MessageBox.Show("Usuario actualizado correctamente.", "Éxito", MessageBoxButton.OK, MessageBoxImage.Information);
+                    LoadUserData();
                 }
                 else
                 {
-                    MessageBox.Show("Error al actualizar usuario. Puede que no exista.", "Error", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    MessageBox.Show("Error al actualizar usuario.", "Error", MessageBoxButton.OK, MessageBoxImage.Warning);
+                }
+            }
+            else
+            {
+                // Si NO hay usuario seleccionado, creamos uno nuevo
+                string name = nameUser.Text;
+                string mail = Mail.Text;
+                string password = PasswordTextBox.Text;
+                string role = (roleComboBox.SelectedItem as ComboBoxItem)?.Content.ToString();
+
+                if (string.IsNullOrWhiteSpace(name) || string.IsNullOrWhiteSpace(mail) || string.IsNullOrWhiteSpace(password) || string.IsNullOrWhiteSpace(role))
+                {
+                    MessageBox.Show("Todos los campos son obligatorios.", "Advertencia", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    return;
+                }
+
+                int roleId = 0;
+                switch (role.ToLower())
+                {
+                    case "root": roleId = 1; break;
+                    case "admin": roleId = 2; break;
+                    case "mant": roleId = 3; break;
+                }
+
+                bool inserted = AdminOrm.InsertAdmin(name, mail, password, roleId);
+                if (inserted)
+                {
+                    MessageBox.Show("Usuario creado correctamente.", "Éxito", MessageBoxButton.OK, MessageBoxImage.Information);
+                    LoadUserData(); // Recargar la lista de usuarios
+                }
+                else
+                {
+                    MessageBox.Show("Error al crear usuario.", "Error", MessageBoxButton.OK, MessageBoxImage.Warning);
                 }
             }
             ClearForm();
-            LoadUserData();
         }
+
 
 
 
@@ -245,11 +280,36 @@ namespace TogetherNotes.Forms
         {
             if (usersDataGrid.SelectedItem is User selectedUser)
             {
-                users.Remove(selectedUser);
-                usersView.Refresh();
-                ClearForm();
+                MessageBoxResult result = MessageBox.Show(
+                    "¿Estás seguro de que deseas eliminar este usuario?",
+                    "Confirmación",
+                    MessageBoxButton.YesNo,
+                    MessageBoxImage.Warning
+                );
+
+                if (result == MessageBoxResult.Yes)
+                {
+                    bool deleted = AdminOrm.DeleteAdmin(selectedUser.Id);
+                    if (deleted)
+                    {
+                        MessageBox.Show("Usuario eliminado correctamente.", "Éxito", MessageBoxButton.OK, MessageBoxImage.Information);
+                        users.Remove(selectedUser);
+                        usersView.Refresh();
+                        ClearForm();
+                        LoadUserData();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Error al eliminar usuario.", "Error", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    }
+                }
+            }
+            else
+            {
+                MessageBox.Show("Seleccione un usuario para eliminar.", "Advertencia", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
         }
+
 
         private void ClearForm()
         {
