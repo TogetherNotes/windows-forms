@@ -70,27 +70,11 @@ namespace TogetherNotes.Models.Management
             }
             catch (Exception ex)
             {
-                Console.WriteLine("soy GAY" + ex.Message);
+                Console.WriteLine("General error:" + ex.Message);
             }
 
             return new List<Location>();
         }
 
-        public static List<app> SelectAllUsers()
-        {
-            try
-            {
-                return Orm.db.app.ToList();
-            }
-            catch (SqlException ex)
-            {
-                Console.WriteLine(Orm.ErrorMessage(ex));
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine("General error: " + ex.Message);
-            }
-            return new List<app>();
-        }
     }
 }

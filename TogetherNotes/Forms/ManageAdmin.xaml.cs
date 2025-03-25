@@ -25,13 +25,27 @@ namespace TogetherNotes.Forms
             public string Mail { get; set; }
             public string Password { get; set; }
             public string Role { get; set; }
+            // Propiedades opcionales para artistas y espacios
+            public int? Rating { get; set; }
+            public string Genre { get; set; }
+            public int? Capacity { get; set; }
         }
 
         public ManageAdmin()
         {
             InitializeComponent();
-            LoadUserData();  
+            LoadUserData();
+            LoadGenres();
             SetupUserFilter();
+        }
+
+        private void LoadGenres()
+        {
+            List<string> genresFromDb = GenresOrm.SelectAllGenres();
+            if (genresFromDb != null)
+            {
+                GenreBox.ItemsSource = genresFromDb;
+            }
         }
 
         private void SetupUserFilter()
@@ -52,37 +66,50 @@ namespace TogetherNotes.Forms
 
         private void LoadUserData()
         {
-            // Obtener los administradores y usuarios comunes
             List<admin> adminsFromDb = AdminOrm.SelectAllAdmins();
-            List<app> usersFromDb = AppOrm.SelectAllUsers();
+            List<artists> artistsFromDb = ArtistsOrm.SelectAllArtist();
+            List<spaces> spacesFromDB = SpacesOrm.SelectAllSpaces();
 
-            // Convertir los administradores a la clase User
+            // Convertir los administradores a User
             var adminUsers = adminsFromDb.Select(a => new User
             {
                 Id = a.id,
                 Fullname = a.name,
                 Mail = a.mail,
                 Password = a.password,
-                Role = a.roles.name,
+                Role = a.roles.name
             });
 
-            // Convertir los usuarios comunes a la clase User
-            var appUsers = usersFromDb.Select(u => new User
+            // Convertir los artistas a User (incluye Rating y Genre)
+            var artistUsers = artistsFromDb.Select(a => new User
             {
-                Id = u.id,
-                Fullname = u.name,
-                Mail = u.mail,
-                Password = u.password,
-                Role = u.role,
+                Id = a.app_user_id,
+                Fullname = a.app.name,
+                Mail = a.app.mail,
+                Password = a.app.password,
+                Role = a.app.role,
+                Rating = (int?)a.app.rating,
+                Genre = a.genres.name
             });
 
-            // Combinar las dos listas
-            var allUsers = adminUsers.Concat(appUsers).ToList();
+            // Convertir los espacios a User (incluye Rating y Capacity)
+            var spaceUsers = spacesFromDB.Select(a => new User
+            {
+                Id = a.app_user_id,
+                Fullname = a.app.name,
+                Mail = a.app.mail,
+                Password = a.app.password,
+                Role = a.app.role,
+                Rating = (int?)a.app.rating,
+                Capacity = (int?)a.capacity
+            });
 
-            // Cargar la lista combinada en la vista
+            var allUsers = adminUsers
+                .Concat(artistUsers)
+                .Concat(spaceUsers)
+                .ToList();
+
             users = new ObservableCollection<User>(allUsers);
-
-            // Configurar la vista para filtrar usuarios
             usersView = CollectionViewSource.GetDefaultView(users);
             usersDataGrid.ItemsSource = usersView;
         }
@@ -107,28 +134,55 @@ namespace TogetherNotes.Forms
                 Mail.Text = selectedUser.Mail;
                 PasswordBox.Password = selectedUser.Password;
                 PasswordTextBox.Text = selectedUser.Password;
-                if (selectedUser.Role.Equals("root"))
-                {
+
+                if (selectedUser.Role.Equals("root", StringComparison.OrdinalIgnoreCase))
                     roleComboBox.SelectedIndex = 0;
-                }
-                else if (selectedUser.Role.Equals("admin"))
-                {
+                else if (selectedUser.Role.Equals("admin", StringComparison.OrdinalIgnoreCase))
                     roleComboBox.SelectedIndex = 1;
-                }
-                else if (selectedUser.Role.Equals("mant"))
-                {
+                else if (selectedUser.Role.Equals("mant", StringComparison.OrdinalIgnoreCase))
                     roleComboBox.SelectedIndex = 2;
-                }
-                else if (selectedUser.Role.Equals("Artist"))
-                {
+                else if (selectedUser.Role.Equals("Artist", StringComparison.OrdinalIgnoreCase))
                     roleComboBox.SelectedIndex = 3;
-                }
-                else
-                {
+                else if (selectedUser.Role.Equals("Space", StringComparison.OrdinalIgnoreCase))
                     roleComboBox.SelectedIndex = 4;
+                else
+                    roleComboBox.SelectedIndex = -1;
+
+                RatingBlock.Visibility = Visibility.Collapsed;
+                RatingBox.Visibility = Visibility.Collapsed;
+                CapacityBlock.Visibility = Visibility.Collapsed;
+                CapacityBox.Visibility = Visibility.Collapsed;
+                genreBlock.Visibility = Visibility.Collapsed;
+                GenreBox.Visibility = Visibility.Collapsed;
+
+ 
+                if (selectedUser.Role.Equals("Artist", StringComparison.OrdinalIgnoreCase))
+                {
+                    RatingBlock.Visibility = Visibility.Visible;
+                    RatingBox.Visibility = Visibility.Visible;
+                    genreBlock.Visibility = Visibility.Visible;
+                    GenreBox.Visibility = Visibility.Visible;
+
+                    RatingBox.Text = selectedUser.Rating?.ToString() ?? string.Empty;
+
+                    if (!string.IsNullOrEmpty(selectedUser.Genre) && GenreBox.Items.Contains(selectedUser.Genre))
+                    {
+                        GenreBox.SelectedItem = selectedUser.Genre;
+                    }
+                }
+                else if (selectedUser.Role.Equals("Space", StringComparison.OrdinalIgnoreCase))
+                {
+                    RatingBlock.Visibility = Visibility.Visible;
+                    RatingBox.Visibility = Visibility.Visible;
+                    CapacityBlock.Visibility = Visibility.Visible;
+                    CapacityBox.Visibility = Visibility.Visible;
+
+                    RatingBox.Text = selectedUser.Rating?.ToString() ?? string.Empty;
+                    CapacityBox.Text = selectedUser.Capacity?.ToString() ?? string.Empty;
                 }
             }
         }
+
 
         private void TogglePasswordVisibility(object sender, RoutedEventArgs e)
         {
@@ -179,7 +233,6 @@ namespace TogetherNotes.Forms
             ClearForm();
         }
 
-
         private void DeleteUser(object sender, RoutedEventArgs e)
         {
             if (usersDataGrid.SelectedItem is User selectedUser)
@@ -209,7 +262,6 @@ namespace TogetherNotes.Forms
             genreBlock.Visibility = Visibility.Collapsed;
             GenreBox.Visibility = Visibility.Collapsed;
         }
-
 
         private void roleComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
