@@ -226,7 +226,7 @@
     <Compile Include="Utils\GenreModel.cs" />
     <Compile Include="Utils\NullToVisibilityConverter.cs" />
     <Compile Include="Utils\RelayCommand.cs" />
-    <Compile Include="Utils\Users.cs" />
+    <Compile Include="Utils\User.cs" />
     <Compile Include="Utils\ViewModelBase.cs" />
     <Compile Include="ViewModel\ManageAdminVM.cs" />
     <Compile Include="ViewModel\ManageAppVM.cs" />

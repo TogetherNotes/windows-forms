@@ -2,16 +2,33 @@
 using System.Data.SqlClient;
 using System.Linq;
 using System;
+using TogetherNotes.Utils;
 
 namespace TogetherNotes.Models.Management
 {
     public static class ArtistsOrm
     {
-        public static List<artists> SelectAllArtist()
+        public static List<User> SelectAllArtists()
         {
             try
             {
-                return Orm.db.artists.ToList();
+                var artists = Orm.db.artists
+                    .Select(a => new User
+                    {
+                        Id = a.app_user_id,
+                        Fullname = a.app.name,
+                        Mail = a.app.mail,
+                        Password = a.app.password,
+                        Role = a.app.role,
+                        Rating = a.app.rating,
+                        Genre = Orm.db.artist_genres
+                            .Where(ag => ag.artist_id == a.app_user_id)
+                            .Select(ag => ag.genres.name)
+                            .ToList()
+                    })
+                    .ToList();
+
+                return artists;
             }
             catch (SqlException ex)
             {
@@ -19,10 +36,13 @@ namespace TogetherNotes.Models.Management
             }
             catch (Exception ex)
             {
-                Console.WriteLine("General error: " + ex.Message);
+                Console.WriteLine("Error general: " + ex.Message);
             }
-            return new List<artists>();
+
+            return new List<User>();
         }
+
+
 
 
         public static bool InsertArtist(string name, string mail, string password, int genreId, int rating)
@@ -88,7 +108,7 @@ namespace TogetherNotes.Models.Management
                 userToUpdate.password = password;
                 userToUpdate.rating = rating;
 
-               // artistToUpdate.genre_id = genreId;
+                // artistToUpdate.genre_id = genreId;
 
                 Orm.db.SaveChanges();
                 return true;

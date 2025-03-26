@@ -6,7 +6,6 @@ using System.Windows.Controls;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Windows.Data;
-using System.Data.SqlClient;
 using TogetherNotes.Models;
 using TogetherNotes.Models.Management;
 using TogetherNotes.Utils;
@@ -19,19 +18,6 @@ namespace TogetherNotes.Forms
         private ObservableCollection<User> users;
         private ICollectionView usersView;
         public ObservableCollection<GenreModel> Genres { get; set; }
-
-        public class User
-        {
-            public int Id { get; set; }
-            public string Fullname { get; set; }
-            public string Mail { get; set; }
-            public string Password { get; set; }
-            public string Role { get; set; }
-            // Propiedades opcionales para artistas y espacios
-            public int? Rating { get; set; }
-            public string Genre { get; set; }
-            public int? Capacity { get; set; }
-        }
 
         public ManageAdmin()
         {
@@ -80,7 +66,7 @@ namespace TogetherNotes.Forms
         private void LoadUserData()
         {
             List<admin> adminsFromDb = AdminOrm.SelectAllAdmins();
-            List<artists> artistsFromDb = ArtistsOrm.SelectAllArtist();
+            List<User> artistsFromDb = ArtistsOrm.SelectAllArtists();
             List<spaces> spacesFromDB = SpacesOrm.SelectAllSpaces();
 
             // Convertir los administradores a User
@@ -96,12 +82,12 @@ namespace TogetherNotes.Forms
             // Convertir los artistas a User (incluye Rating y Genre)
             var artistUsers = artistsFromDb.Select(a => new User
             {
-                Id = a.app_user_id,
-                Fullname = a.app?.name ?? "Desconocido", 
-                Mail = a.app?.mail ?? "Sin correo",
-                Password = a.app?.password ?? "",
-                Role = a.app?.role ?? "Artist",
-                Rating = a.app?.rating ?? 0, 
+               // Id = a.app_user_id,
+               // Fullname = a.app?.name ?? "Desconocido", 
+               // Mail = a.app?.mail ?? "Sin correo",
+               // Password = a.app?.password ?? "",
+               // Role = a.app?.role ?? "Artist",
+               // Rating = a.app?.rating ?? 0, 
                // Genre = a.artist_genres?. ?? "Sin género" 
             }).ToList();
 
