@@ -194,9 +194,29 @@
 
             <TextBlock x:Name="genreBlock" Text="{DynamicResource Genre}" Foreground="DarkGray" FontSize="20" FontWeight="Medium" FontFamily="Playfair Display" Margin="0,15,0,10" Visibility="Collapsed"/>
 
-            <ComboBox x:Name="GenreBox" FontSize="18" FontFamily="Playfair Display"
-                      BorderBrush="DarkGray" BorderThickness="0,0,0,2" Height="28"
-                      Background="Transparent" Visibility="Collapsed" MaxDropDownHeight="150"/>
+            <ComboBox x:Name="GenreBox"
+                      FontSize="18"
+                      FontFamily="Playfair Display"
+                      BorderBrush="DarkGray"
+                      BorderThickness="0,0,0,2"
+                      Height="28"
+                      Background="Transparent"
+                      MaxDropDownHeight="150"
+                      IsEditable="True"
+                      DropDownClosed="GenreBox_DropDownClosed"
+                      StaysOpenOnEdit="True"
+                      IsReadOnly="True"
+                      Visibility="Collapsed"
+                      ItemsSource="{Binding Genres}">
+                <ComboBox.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Orientation="Horizontal">
+                            <CheckBox IsChecked="{Binding IsSelected, Mode=TwoWay}" />
+                            <TextBlock Text="{Binding Name}" Margin="5,0,0,0" />
+                        </StackPanel>
+                    </DataTemplate>
+                </ComboBox.ItemTemplate>
+            </ComboBox>
 
 
 

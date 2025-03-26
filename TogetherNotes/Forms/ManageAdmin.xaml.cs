@@ -9,6 +9,7 @@ using System.Windows.Data;
 using System.Data.SqlClient;
 using TogetherNotes.Models;
 using TogetherNotes.Models.Management;
+using TogetherNotes.Utils;
 
 namespace TogetherNotes.Forms
 {
@@ -17,6 +18,7 @@ namespace TogetherNotes.Forms
         private bool _isPasswordVisible = false;
         private ObservableCollection<User> users;
         private ICollectionView usersView;
+        public ObservableCollection<GenreModel> Genres { get; set; }
 
         public class User
         {
@@ -35,6 +37,8 @@ namespace TogetherNotes.Forms
         {
             InitializeComponent();
             LoadUserData();
+            Genres = new ObservableCollection<GenreModel>();
+            DataContext = this;
             LoadGenres();
             SetupUserFilter();
         }
@@ -44,9 +48,18 @@ namespace TogetherNotes.Forms
             List<string> genresFromDb = GenresOrm.SelectAllGenres();
             if (genresFromDb != null)
             {
-                GenreBox.ItemsSource = genresFromDb;
+                foreach (var genre in genresFromDb)
+                {
+                    Genres.Add(new GenreModel { Name = genre });
+                }
             }
         }
+        private void GenreBox_DropDownClosed(object sender, EventArgs e)
+        {
+            var selectedGenres = Genres.Where(g => g.IsSelected).Select(g => g.Name);
+            GenreBox.Text = string.Join(", ", selectedGenres);
+        }
+
 
         private void SetupUserFilter()
         {
@@ -89,7 +102,7 @@ namespace TogetherNotes.Forms
                 Password = a.app?.password ?? "",
                 Role = a.app?.role ?? "Artist",
                 Rating = a.app?.rating ?? 0, 
-                //Genre = a.genres?.name ?? "Sin género" 
+               // Genre = a.artist_genres?. ?? "Sin género" 
             }).ToList();
 
 

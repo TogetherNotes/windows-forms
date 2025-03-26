@@ -45,7 +45,7 @@ namespace TogetherNotes.Models.Management
                 var newArtist = new artists
                 {
                     app_user_id = newUser.id,
-                    genre_id = genreId
+                    //genre_id = genreId
                 };
 
                 Orm.db.artists.Add(newArtist);
@@ -88,7 +88,7 @@ namespace TogetherNotes.Models.Management
                 userToUpdate.password = password;
                 userToUpdate.rating = rating;
 
-                artistToUpdate.genre_id = genreId;
+               // artistToUpdate.genre_id = genreId;
 
                 Orm.db.SaveChanges();
                 return true;
