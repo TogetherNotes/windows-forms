@@ -110,28 +110,61 @@ namespace TogetherNotes.Models.Management
         {
             try
             {
-                var artistToDelete = Orm.db.artists.FirstOrDefault(a => a.app_user_id == userId);
-                var userToDelete = Orm.db.app.FirstOrDefault(a => a.id == userId);
+                var artist = Orm.db.artists.SingleOrDefault(a => a.app_user_id == userId);
 
-                if (artistToDelete != null && userToDelete != null)
+                if (artist != null)
                 {
-                    Orm.db.artists.Remove(artistToDelete);
-                    Orm.db.app.Remove(userToDelete);
+                    // Rating
+                    var ratings = Orm.db.rating.Where(r => r.artist_id == userId).ToList();
+                    Orm.db.rating.RemoveRange(ratings);
+
+                    // Matches
+                    //var matches = db.matches.Where(m => m.artist_id == userId).ToList();
+                    //db.matches.RemoveRange(matches);
+
+                    //// Temp Match
+                    //var tempMatches = db.temp_match.Where(t => t.artist_id == userId).ToList();
+                    //db.temp_match.RemoveRange(tempMatches);
+
+                    // Contracts
+                    var contracts = Orm.db.contracts.Where(c => c.artist_id == userId).ToList();
+                    Orm.db.contracts.RemoveRange(contracts);
+
+                    // Messages (si el artista envió mensajes)
+                    var messages = Orm.db.messages.Where(m => m.sender_id == userId).ToList();
+                    Orm.db.messages.RemoveRange(messages);
+
+                    // Chats (si el artista participó en chats)
+                    var chats = Orm.db.chats.Where(c => c.user1_id == userId || c.user2_id == userId).ToList();
+                    Orm.db.chats.RemoveRange(chats);
+
+                    // Incidences (si el artista tuvo incidencias)
+                    var incidences = Orm.db.incidences.Where(i => i.app_user_id == userId).ToList();
+                    Orm.db.incidences.RemoveRange(incidences);
+
+
+                    // Eliminar el artista de la tabla artists
+                    Orm.db.artists.Remove(artist);
+
+                    // Eliminar el usuario de la tabla app
+                    var user = Orm.db.app.SingleOrDefault(u => u.id == userId);
+                    if (user != null)
+                    {
+                        Orm.db.app.Remove(user);
+                    }
+
+                    // Guardar cambios
                     Orm.db.SaveChanges();
                     return true;
                 }
-            }
-            catch (SqlException ex)
-            {
-                Console.WriteLine(Orm.ErrorMessage(ex));
+                return false;
             }
             catch (Exception ex)
             {
-                Console.WriteLine("General error: " + ex.Message);
+                Console.WriteLine("Error al eliminar artista: " + ex.Message);
+                return false;
             }
-            return false;
         }
-
 
     }
 }

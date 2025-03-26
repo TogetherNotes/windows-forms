@@ -12,22 +12,16 @@ namespace TogetherNotes.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class chats
+    public partial class temp_match
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public chats()
-        {
-            this.messages = new HashSet<messages>();
-        }
-    
-        public int id { get; set; }
-        public Nullable<System.DateTime> date { get; set; }
-        public Nullable<int> user1_id { get; set; }
-        public Nullable<int> user2_id { get; set; }
+        public int artist_id { get; set; }
+        public int space_id { get; set; }
+        public Nullable<bool> artist_like { get; set; }
+        public Nullable<bool> space_like { get; set; }
+        public string status { get; set; }
+        public Nullable<System.DateTime> request_date { get; set; }
     
         public virtual app app { get; set; }
         public virtual app app1 { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<messages> messages { get; set; }
     }
 }

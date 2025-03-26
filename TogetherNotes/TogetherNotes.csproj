@@ -148,6 +148,9 @@
     <Compile Include="Models\artists.cs">
       <DependentUpon>TogetherNotesModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\artist_genres.cs">
+      <DependentUpon>TogetherNotesModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\chats.cs">
       <DependentUpon>TogetherNotesModel.tt</DependentUpon>
     </Compile>
@@ -181,6 +184,9 @@
     <Compile Include="Models\Management\RatingOrm.cs" />
     <Compile Include="Models\Management\RolesOrm.cs" />
     <Compile Include="Models\Management\SpacesOrm.cs" />
+    <Compile Include="Models\matches.cs">
+      <DependentUpon>TogetherNotesModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\messages.cs">
       <DependentUpon>TogetherNotesModel.tt</DependentUpon>
     </Compile>
@@ -195,6 +201,9 @@
       <DependentUpon>TogetherNotesModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\spaces.cs">
+      <DependentUpon>TogetherNotesModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\temp_match.cs">
       <DependentUpon>TogetherNotesModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\TogetherNotesModel.Context.cs">

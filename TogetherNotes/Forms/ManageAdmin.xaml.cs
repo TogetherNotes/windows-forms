@@ -89,7 +89,7 @@ namespace TogetherNotes.Forms
                 Password = a.app?.password ?? "",
                 Role = a.app?.role ?? "Artist",
                 Rating = a.app?.rating ?? 0, 
-                Genre = a.genres?.name ?? "Sin género" 
+                //Genre = a.genres?.name ?? "Sin género" 
             }).ToList();
 
 

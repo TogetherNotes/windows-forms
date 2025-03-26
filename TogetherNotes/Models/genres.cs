@@ -17,13 +17,13 @@ namespace TogetherNotes.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public genres()
         {
-            this.artists = new HashSet<artists>();
+            this.artist_genres = new HashSet<artist_genres>();
         }
     
         public int id { get; set; }
         public string name { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<artists> artists { get; set; }
+        public virtual ICollection<artist_genres> artist_genres { get; set; }
     }
 }
