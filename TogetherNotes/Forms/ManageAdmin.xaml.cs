@@ -186,7 +186,7 @@ namespace TogetherNotes.Forms
             if (!_isPasswordVisible)
                 PasswordTextBox.Text = PasswordBox.Password;
         }
-        /*
+        
         private void SaveUser(object sender, RoutedEventArgs e)
         {
             if (usersDataGrid.SelectedItem is User selectedUser)
@@ -201,7 +201,7 @@ namespace TogetherNotes.Forms
             usersView.Refresh();
             ClearForm();
         }
-        
+
         private void UpdateUser(User selectedUser)
         {
             string role = (roleComboBox.SelectedItem as ComboBoxItem)?.Content.ToString();
@@ -209,10 +209,11 @@ namespace TogetherNotes.Forms
             if (role == "Artist")
             {
                 int rating = int.TryParse(RatingBox.Text, out int r) ? r : 1;
-                rating = Math.Max(1, Math.Min(rating, 5)); // Asegura que esté entre 1 y 5
-                int genreId = GenreBox.SelectedIndex + 1;
+                rating = Math.Max(1, Math.Min(rating, 5));
 
-                bool updated = ArtistsOrm.UpdateArtist(selectedUser.Id, nameUser.Text, Mail.Text, PasswordTextBox.Text, genreId, rating);
+                List<string> selectedGenres = Genres.Where(g => g.IsSelected).Select(g => g.Name).ToList();
+
+                bool updated = ArtistsOrm.UpdateArtist(selectedUser.Id, nameUser.Text, Mail.Text, PasswordTextBox.Text, selectedGenres, rating);
                 ShowMessage(updated, "actualizado");
             }
             else if (role == "Space")
@@ -236,7 +237,8 @@ namespace TogetherNotes.Forms
 
             LoadUserData();
         }
-        
+
+
 
         private void InsertUser()
         {
@@ -281,7 +283,7 @@ namespace TogetherNotes.Forms
 
             LoadUserData();
         }
-        */
+        
 
         private int GetRoleId(string role)
         {

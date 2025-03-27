@@ -116,7 +116,6 @@
                 </TextBox.Background>
             </TextBox>
 
-            <!---->
 
             <DataGrid x:Name="usersDataGrid" AutoGenerateColumns="False" Height="450" 
                   IsReadOnly="True" BorderThickness="0" GridLinesVisibility="None"
@@ -218,7 +217,7 @@
                 </ComboBox.ItemTemplate>
             </ComboBox>
 
-            <!--Click="SaveUser"-->
+
 
             <StackPanel Orientation="Horizontal" Margin="0,60,0,0">
                 <Button x:Name="btnSave"
@@ -228,8 +227,7 @@
                         FontSize="20"
                         FontFamily="Playfair Display"
                         Cursor="Hand"                           
-                        
-                        >          
+                        Click="SaveUser">          
                     <Button.Style>
                         <Style TargetType="Button">
                             <Setter Property="Background" Value="#462AD8"/>

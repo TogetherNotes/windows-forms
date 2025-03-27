@@ -84,16 +84,15 @@ namespace TogetherNotes.Models.Management
             return false;
         }
 
-        public static bool UpdateArtist(int userId, string name, string mail, string password, int genreId, int rating)
+        public static bool UpdateArtist(int userId, string name, string mail, string password, List<string> genres, int rating)
         {
             try
             {
                 var userToUpdate = Orm.db.app.FirstOrDefault(a => a.id == userId);
-                var artistToUpdate = Orm.db.artists.FirstOrDefault(a => a.app_user_id == userId);
 
-                if (userToUpdate == null || artistToUpdate == null)
+                if (userToUpdate == null)
                 {
-                    Console.WriteLine("Error: Artista o usuario de la aplicación no encontrado.");
+                    Console.WriteLine("Error: Artista o usuario no encontrado.");
                     return false;
                 }
 
@@ -108,7 +107,22 @@ namespace TogetherNotes.Models.Management
                 userToUpdate.password = password;
                 userToUpdate.rating = rating;
 
-                // artistToUpdate.genre_id = genreId;
+                var existingGenres = Orm.db.artist_genres.Where(ag => ag.artist_id == userId).ToList();
+                Orm.db.artist_genres.RemoveRange(existingGenres);
+
+
+                foreach (var genreName in genres)
+                {
+                    var genre = Orm.db.genres.FirstOrDefault(g => g.name == genreName);
+                    if (genre != null)
+                    {
+                        Orm.db.artist_genres.Add(new artist_genres
+                        {
+                            artist_id = userId,
+                            genre_id = genre.id
+                        });
+                    }
+                }
 
                 Orm.db.SaveChanges();
                 return true;
@@ -119,10 +133,11 @@ namespace TogetherNotes.Models.Management
             }
             catch (Exception ex)
             {
-                Console.WriteLine("General error: " + ex.Message);
+                Console.WriteLine("Error general: " + ex.Message);
             }
             return false;
         }
+
 
 
 
