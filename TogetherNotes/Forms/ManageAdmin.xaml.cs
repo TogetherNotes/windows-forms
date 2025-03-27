@@ -65,49 +65,14 @@ namespace TogetherNotes.Forms
 
         private void LoadUserData()
         {
-            List<admin> adminsFromDb = AdminOrm.SelectAllAdmins();
+            List<User> adminsFromDb = AdminOrm.SelectAllAdmins();
             List<User> artistsFromDb = ArtistsOrm.SelectAllArtists();
-            List<spaces> spacesFromDB = SpacesOrm.SelectAllSpaces();
-
-            // Convertir los administradores a User
-            var adminUsers = adminsFromDb.Select(a => new User
-            {
-                Id = a.id,
-                Fullname = a.name,
-                Mail = a.mail,
-                Password = a.password,
-                Role = a.roles.name
-            });
-
-            // Convertir los artistas a User (incluye Rating y Genre)
-            var artistUsers = artistsFromDb.Select(a => new User
-            {
-               // Id = a.app_user_id,
-               // Fullname = a.app?.name ?? "Desconocido", 
-               // Mail = a.app?.mail ?? "Sin correo",
-               // Password = a.app?.password ?? "",
-               // Role = a.app?.role ?? "Artist",
-               // Rating = a.app?.rating ?? 0, 
-               // Genre = a.artist_genres?. ?? "Sin género" 
-            }).ToList();
+            List<User> spacesFromDB = SpacesOrm.SelectAllSpaces();
 
 
-            // Convertir los espacios a User (incluye Rating y Capacity)
-            var spaceUsers = spacesFromDB.Select(a => new User
-            {
-                Id = a.app_user_id,
-                Fullname = a.app?.name ?? "Desconocido",
-                Mail = a.app?.mail ?? "Sin correo",
-                Password = a.app?.password ?? "",
-                Role = a.app?.role ?? "Space",
-                Rating = a.app?.rating ?? 0,
-                Capacity = a.capacity ?? 0 
-            }).ToList();
-
-
-            var allUsers = adminUsers
-                .Concat(artistUsers)
-                .Concat(spaceUsers)
+            var allUsers = adminsFromDb
+                .Concat(artistsFromDb)
+                .Concat(spacesFromDB)
                 .ToList();
 
             users = new ObservableCollection<User>(allUsers);
@@ -156,7 +121,6 @@ namespace TogetherNotes.Forms
                 genreBlock.Visibility = Visibility.Collapsed;
                 GenreBox.Visibility = Visibility.Collapsed;
 
- 
                 if (selectedUser.Role.Equals("Artist", StringComparison.OrdinalIgnoreCase))
                 {
                     RatingBlock.Visibility = Visibility.Visible;
@@ -166,9 +130,22 @@ namespace TogetherNotes.Forms
 
                     RatingBox.Text = selectedUser.Rating?.ToString() ?? string.Empty;
 
-                    if (!string.IsNullOrEmpty(selectedUser.Genre) && GenreBox.Items.Contains(selectedUser.Genre))
+
+                    foreach (var genre in Genres)
                     {
-                        GenreBox.SelectedItem = selectedUser.Genre;
+                        genre.IsSelected = false;
+                    }
+
+
+                    foreach (var genre in selectedUser.Genre)
+                    {
+                        var genreToMark = Genres.FirstOrDefault(g => g.Name == genre);
+                        if (genreToMark != null)
+                        {
+                            genreToMark.IsSelected = true;
+                        }
+                        var selectedGenres = Genres.Where(g => g.IsSelected).Select(g => g.Name);
+                        GenreBox.Text = string.Join(", ", selectedGenres);
                     }
                 }
                 else if (selectedUser.Role.Equals("Space", StringComparison.OrdinalIgnoreCase))
@@ -183,6 +160,7 @@ namespace TogetherNotes.Forms
                 }
             }
         }
+
 
 
         private void TogglePasswordVisibility(object sender, RoutedEventArgs e)
@@ -208,7 +186,7 @@ namespace TogetherNotes.Forms
             if (!_isPasswordVisible)
                 PasswordTextBox.Text = PasswordBox.Password;
         }
-
+        /*
         private void SaveUser(object sender, RoutedEventArgs e)
         {
             if (usersDataGrid.SelectedItem is User selectedUser)
@@ -223,7 +201,7 @@ namespace TogetherNotes.Forms
             usersView.Refresh();
             ClearForm();
         }
-
+        
         private void UpdateUser(User selectedUser)
         {
             string role = (roleComboBox.SelectedItem as ComboBoxItem)?.Content.ToString();
@@ -258,6 +236,7 @@ namespace TogetherNotes.Forms
 
             LoadUserData();
         }
+        
 
         private void InsertUser()
         {
@@ -302,7 +281,7 @@ namespace TogetherNotes.Forms
 
             LoadUserData();
         }
-
+        */
 
         private int GetRoleId(string role)
         {
@@ -331,7 +310,7 @@ namespace TogetherNotes.Forms
 
 
 
-
+        /*
         private void DeleteUser(object sender, RoutedEventArgs e)
         {
             if (usersDataGrid.SelectedItem is User selectedUser)
@@ -379,6 +358,7 @@ namespace TogetherNotes.Forms
                 MessageBox.Show("Seleccione un usuario para eliminar.", "Advertencia", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
         }
+        */
     
 
 
@@ -409,7 +389,6 @@ namespace TogetherNotes.Forms
             {
                 string selectedRole = selectedItem.Content.ToString();
 
-                // Ocultar todos por defecto
                 RatingBlock.Visibility = Visibility.Collapsed;
                 RatingBox.Visibility = Visibility.Collapsed;
                 CapacityBlock.Visibility = Visibility.Collapsed;
@@ -417,7 +396,6 @@ namespace TogetherNotes.Forms
                 genreBlock.Visibility = Visibility.Collapsed;
                 GenreBox.Visibility = Visibility.Collapsed;
 
-                // Mostrar según el rol seleccionado
                 if (selectedRole == "Artist")
                 {
                     RatingBlock.Visibility = Visibility.Visible;

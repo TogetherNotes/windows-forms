@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
+using TogetherNotes.Utils;
 
 namespace TogetherNotes.Models.Management
 {
@@ -49,11 +50,22 @@ namespace TogetherNotes.Models.Management
             return false;
         }
 
-        public static List<admin> SelectAllAdmins()
+        public static List<User> SelectAllAdmins()
         {
             try
             {
-                return Orm.db.admin.ToList();
+                var admins = Orm.db.admin
+                     .Select(a => new User
+                     {
+                         Id = a.id,
+                         Fullname = a.name,
+                         Mail = a.mail,
+                         Password = a.password,
+                         Role = a.roles.name
+                     })
+                     .ToList();
+
+                return admins;
             }
             catch (SqlException ex)
             {
@@ -63,7 +75,7 @@ namespace TogetherNotes.Models.Management
             {
                 Console.WriteLine("General error: " + ex.Message);
             }
-            return new List<admin>();
+            return new List<User>();
         }
 
         public static bool UpdateAdmin(int id, string name, string mail, string password, int roleId)

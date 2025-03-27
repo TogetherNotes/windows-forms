@@ -2,16 +2,30 @@
 using System.Data.SqlClient;
 using System.Linq;
 using System;
+using TogetherNotes.Utils;
 
 namespace TogetherNotes.Models.Management
 {
     public static class SpacesOrm
     {
-        public static List<spaces> SelectAllSpaces()
+        public static List<User> SelectAllSpaces()
         {
             try
             {
-                return Orm.db.spaces.ToList();
+                var spaces = Orm.db.spaces
+                    .Select(a => new User
+                    {
+                        Id = a.app_user_id,
+                        Fullname = a.app.name,
+                        Mail = a.app.mail,
+                        Password = a.app.password,
+                        Role = a.app.role,
+                        Rating = a.app.rating,
+                        Capacity = a.capacity
+                    })
+                    .ToList();
+
+                return spaces;
             }
             catch (SqlException ex)
             {
@@ -21,7 +35,7 @@ namespace TogetherNotes.Models.Management
             {
                 Console.WriteLine("General error: " + ex.Message);
             }
-            return new List<spaces>();
+            return new List<User>();
         }
 
         public static bool InsertSpace(string name, string mail, string password, int capacity)
