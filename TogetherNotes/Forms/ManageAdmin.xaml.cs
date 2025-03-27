@@ -316,7 +316,7 @@ namespace TogetherNotes.Forms
 
 
 
-        /*
+        
         private void DeleteUser(object sender, RoutedEventArgs e)
         {
             if (usersDataGrid.SelectedItem is User selectedUser)
@@ -332,11 +332,11 @@ namespace TogetherNotes.Forms
                 {
                     bool deleted = false;
 
-                    if (selectedUser.Role == "Artist")
+                    if (selectedUser.Role.Equals("Artist", StringComparison.OrdinalIgnoreCase))
                     {
                         deleted = ArtistsOrm.DeleteArtist(selectedUser.Id);
                     }
-                    else if (selectedUser.Role == "Space")
+                    else if (selectedUser.Role.Equals("Space", StringComparison.OrdinalIgnoreCase))
                     {
                         deleted = SpacesOrm.DeleteSpace(selectedUser.Id);
                     }
@@ -364,7 +364,7 @@ namespace TogetherNotes.Forms
                 MessageBox.Show("Seleccione un usuario para eliminar.", "Advertencia", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
         }
-        */
+        
     
 
 

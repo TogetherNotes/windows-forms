@@ -250,7 +250,6 @@
                     </Button.Template>
                 </Button>
 
-                <!--Click="DeleteUser"-->
 
                 <Button x:Name="btnDelete"
                         BorderThickness="0"
@@ -260,7 +259,7 @@
                         FontFamily="Playfair Display"
                         Cursor="Hand"                           
                         Margin="10,0,0,0"
-                        >
+                        Click="DeleteUser">
                     <Button.Style>
                         <Style TargetType="Button">
                             <Setter Property="Background" Value="#462AD8"/>

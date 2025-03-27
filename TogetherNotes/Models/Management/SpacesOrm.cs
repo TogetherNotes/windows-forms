@@ -120,31 +120,74 @@ namespace TogetherNotes.Models.Management
         {
             try
             {
-                var userToDelete = Orm.db.app.FirstOrDefault(a => a.id == userId);
-                var spaceToDelete = Orm.db.spaces.FirstOrDefault(s => s.app_user_id == userId);
+                var space = Orm.db.spaces.SingleOrDefault(s => s.app_user_id == userId);
+                var user = Orm.db.app.SingleOrDefault(a => a.id == userId);
 
-                if (userToDelete == null || spaceToDelete == null)
+                if (space != null && user != null)
                 {
-                    Console.WriteLine("Error: Espacio o usuario de la aplicación no encontrado.");
-                    return false;
+                    // Eliminar ratings del espacio
+                    var ratings = Orm.db.rating.Where(r => r.space_id == userId).ToList();
+                    Orm.db.rating.RemoveRange(ratings);
+
+                    // Eliminar matches
+                    var matches = Orm.db.matches.Where(m => m.space_id == userId).ToList();
+                    Orm.db.matches.RemoveRange(matches);
+
+                    // Eliminar temp_matches
+                    var tempMatches = Orm.db.temp_match.Where(t => t.space_id == userId).ToList();
+                    Orm.db.temp_match.RemoveRange(tempMatches);
+
+                    // Eliminar contratos
+                    var contracts = Orm.db.contracts.Where(c => c.space_id == userId).ToList();
+                    Orm.db.contracts.RemoveRange(contracts);
+
+                    // **ELIMINAR MENSAJES PRIMERO**
+                    var messages = Orm.db.messages.Where(m => m.chat_id != null &&
+                                                              (Orm.db.chats.Any(c => c.id == m.chat_id &&
+                                                                                      (c.user1_id == userId || c.user2_id == userId)))).ToList();
+                    Orm.db.messages.RemoveRange(messages);
+
+                    // **AHORA ELIMINAR CHATS**
+                    var chats = Orm.db.chats.Where(c => c.user1_id == userId || c.user2_id == userId).ToList();
+                    Orm.db.chats.RemoveRange(chats);
+
+                    // Eliminar incidencias
+                    var incidences = Orm.db.incidences.Where(i => i.app_user_id == userId).ToList();
+                    Orm.db.incidences.RemoveRange(incidences);
+
+                    // Eliminar el espacio de la tabla spaces
+                    Orm.db.spaces.Remove(space);
+
+                    // Eliminar archivos asociados si existen
+                    if (user.file_id != null)
+                    {
+                        var file = Orm.db.files.SingleOrDefault(f => f.id == user.file_id);
+                        if (file != null) Orm.db.files.Remove(file);
+                    }
+
+                    // Eliminar notificaciones asociadas si existen
+                    if (user.notification_id != null)
+                    {
+                        var notification = Orm.db.notifications.SingleOrDefault(n => n.id == user.notification_id);
+                        if (notification != null) Orm.db.notifications.Remove(notification);
+                    }
+
+                    // Finalmente, eliminar el usuario de la tabla app
+                    Orm.db.app.Remove(user);
+
+                    // Guardar cambios
+                    Orm.db.SaveChanges();
+                    return true;
                 }
-
-                Orm.db.spaces.Remove(spaceToDelete);
-                Orm.db.app.Remove(userToDelete);
-                Orm.db.SaveChanges();
-
-                return true;
-            }
-            catch (SqlException ex)
-            {
-                Console.WriteLine(Orm.ErrorMessage(ex));
+                return false;
             }
             catch (Exception ex)
             {
-                Console.WriteLine("General error: " + ex.Message);
+                Console.WriteLine("Error al eliminar espacio: " + ex.Message);
+                return false;
             }
-            return false;
         }
+
 
     }
 }

@@ -70,7 +70,6 @@ namespace TogetherNotes.Models.Management
                 Orm.db.artists.Add(newArtist);
                 Orm.db.SaveChanges();
 
-                // Asociar géneros al artista en la tabla `artist_genre`
                 foreach (var genreName in genres)
                 {
                     var genre = Orm.db.genres.FirstOrDefault(g => g.name == genreName);
@@ -153,55 +152,68 @@ namespace TogetherNotes.Models.Management
             return false;
         }
 
-
-
-
         public static bool DeleteArtist(int userId)
         {
             try
             {
                 var artist = Orm.db.artists.SingleOrDefault(a => a.app_user_id == userId);
+                var user = Orm.db.app.SingleOrDefault(a => a.id == userId);
 
-                if (artist != null)
+                if (artist != null && user != null)
                 {
-                    // Rating
+                    // Eliminar artist_genres (Relaciones con géneros)
+                    var artistGenres = Orm.db.artist_genres.Where(a => a.artist_id == userId).ToList();
+                    Orm.db.artist_genres.RemoveRange(artistGenres);
+
+                    // Eliminar ratings
                     var ratings = Orm.db.rating.Where(r => r.artist_id == userId).ToList();
                     Orm.db.rating.RemoveRange(ratings);
 
-                    // Matches
-                    //var matches = db.matches.Where(m => m.artist_id == userId).ToList();
-                    //db.matches.RemoveRange(matches);
+                    // Eliminar matches
+                    var matches = Orm.db.matches.Where(m => m.artist_id == userId).ToList();
+                    Orm.db.matches.RemoveRange(matches);
 
-                    //// Temp Match
-                    //var tempMatches = db.temp_match.Where(t => t.artist_id == userId).ToList();
-                    //db.temp_match.RemoveRange(tempMatches);
+                    // Eliminar temp_matches
+                    var tempMatches = Orm.db.temp_match.Where(t => t.artist_id == userId).ToList();
+                    Orm.db.temp_match.RemoveRange(tempMatches);
 
-                    // Contracts
+                    // Eliminar contratos
                     var contracts = Orm.db.contracts.Where(c => c.artist_id == userId).ToList();
                     Orm.db.contracts.RemoveRange(contracts);
 
-                    // Messages (si el artista envió mensajes)
-                    var messages = Orm.db.messages.Where(m => m.sender_id == userId).ToList();
+                    // **ELIMINAR MENSAJES PRIMERO**
+                    var messages = Orm.db.messages.Where(m => m.chat_id != null &&
+                                                              (Orm.db.chats.Any(c => c.id == m.chat_id &&
+                                                                                      (c.user1_id == userId || c.user2_id == userId)))).ToList();
                     Orm.db.messages.RemoveRange(messages);
 
-                    // Chats (si el artista participó en chats)
+                    // **AHORA ELIMINAR CHATS**
                     var chats = Orm.db.chats.Where(c => c.user1_id == userId || c.user2_id == userId).ToList();
                     Orm.db.chats.RemoveRange(chats);
 
-                    // Incidences (si el artista tuvo incidencias)
+                    // Eliminar incidencias
                     var incidences = Orm.db.incidences.Where(i => i.app_user_id == userId).ToList();
                     Orm.db.incidences.RemoveRange(incidences);
 
-
-                    // Eliminar el artista de la tabla artists
+                    // Eliminar artista de artists
                     Orm.db.artists.Remove(artist);
 
-                    // Eliminar el usuario de la tabla app
-                    var user = Orm.db.app.SingleOrDefault(u => u.id == userId);
-                    if (user != null)
+                    // Eliminar archivos asociados si existen
+                    if (user.file_id != null)
                     {
-                        Orm.db.app.Remove(user);
+                        var file = Orm.db.files.SingleOrDefault(f => f.id == user.file_id);
+                        if (file != null) Orm.db.files.Remove(file);
                     }
+
+                    // Eliminar notificaciones asociadas si existen
+                    if (user.notification_id != null)
+                    {
+                        var notification = Orm.db.notifications.SingleOrDefault(n => n.id == user.notification_id);
+                        if (notification != null) Orm.db.notifications.Remove(notification);
+                    }
+
+                    // Finalmente, eliminar el usuario de la tabla app
+                    Orm.db.app.Remove(user);
 
                     // Guardar cambios
                     Orm.db.SaveChanges();
@@ -215,6 +227,5 @@ namespace TogetherNotes.Models.Management
                 return false;
             }
         }
-
     }
 }
