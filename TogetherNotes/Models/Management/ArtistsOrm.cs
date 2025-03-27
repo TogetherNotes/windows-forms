@@ -45,7 +45,7 @@ namespace TogetherNotes.Models.Management
 
 
 
-        public static bool InsertArtist(string name, string mail, string password, int genreId, int rating)
+        public static bool InsertArtist(string name, string mail, string password, List<string> genres, int rating)
         {
             try
             {
@@ -64,13 +64,27 @@ namespace TogetherNotes.Models.Management
 
                 var newArtist = new artists
                 {
-                    app_user_id = newUser.id,
-                    //genre_id = genreId
+                    app_user_id = newUser.id
                 };
 
                 Orm.db.artists.Add(newArtist);
                 Orm.db.SaveChanges();
 
+                // Asociar géneros al artista en la tabla `artist_genre`
+                foreach (var genreName in genres)
+                {
+                    var genre = Orm.db.genres.FirstOrDefault(g => g.name == genreName);
+                    if (genre != null)
+                    {
+                        Orm.db.artist_genres.Add(new artist_genres
+                        {
+                            artist_id = newArtist.app_user_id,
+                            genre_id = genre.id
+                        });
+                    }
+                }
+
+                Orm.db.SaveChanges();
                 return true;
             }
             catch (SqlException ex)
@@ -83,6 +97,7 @@ namespace TogetherNotes.Models.Management
             }
             return false;
         }
+
 
         public static bool UpdateArtist(int userId, string name, string mail, string password, List<string> genres, int rating)
         {

@@ -38,7 +38,7 @@ namespace TogetherNotes.Models.Management
             return new List<User>();
         }
 
-        public static bool InsertSpace(string name, string mail, string password, int capacity)
+        public static bool InsertSpace(string name, string mail, string password, int capacity, int rating)
         {
             try
             {
@@ -48,7 +48,7 @@ namespace TogetherNotes.Models.Management
                     mail = mail,
                     password = password,
                     role = "Space",
-                    rating = null, // Puede ser nulo
+                    rating = rating, 
                     active = true
                 };
 

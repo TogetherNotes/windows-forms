@@ -256,14 +256,17 @@ namespace TogetherNotes.Forms
             if (role == "Artist")
             {
                 int rating = int.TryParse(RatingBox.Text, out int r) ? r : 1;
-                rating = Math.Max(1, Math.Min(rating, 5)); // Asegura que esté entre 1 y 5
-                int genreId = GenreBox.SelectedIndex + 1;
+                rating = Math.Max(1, Math.Min(rating, 5));
 
-                bool inserted = ArtistsOrm.InsertArtist(name, mail, password, genreId, rating);
+                List<string> selectedGenres = Genres.Where(g => g.IsSelected).Select(g => g.Name).ToList();
+
+                bool inserted = ArtistsOrm.InsertArtist(name, mail, password, selectedGenres, rating);
                 ShowMessage(inserted, "creado");
             }
             else if (role == "Space")
             {
+                int rating = int.TryParse(RatingBox.Text, out int r) ? r : 1;
+                rating = Math.Max(1, Math.Min(rating, 5));
                 int capacity = int.TryParse(CapacityBox.Text, out int c) ? c : 1;
                 if (capacity < 1)
                 {
@@ -271,7 +274,7 @@ namespace TogetherNotes.Forms
                     return;
                 }
 
-                bool inserted = SpacesOrm.InsertSpace(name, mail, password, capacity);
+                bool inserted = SpacesOrm.InsertSpace(name, mail, password, capacity, rating);
                 ShowMessage(inserted, "creado");
             }
             else
@@ -283,7 +286,8 @@ namespace TogetherNotes.Forms
 
             LoadUserData();
         }
-        
+
+
 
         private int GetRoleId(string role)
         {
