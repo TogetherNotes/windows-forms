@@ -28,15 +28,16 @@ namespace TogetherNotes.Models.Management
             return 0; 
         }
 
-        public static bool ValidateUser(string email, string password)
+        public static int? ValidateUser(string email, string password)
         {
             try
             {
-                var user = Orm.db.admin
+                var roleAdmin = Orm.db.admin
                     .Where(a => a.name == email && a.password == password)
+                    .Select(a => a.role_id)
                     .FirstOrDefault();
 
-                return user != null;
+                return roleAdmin;
             }
             catch (SqlException ex)
             {
@@ -47,7 +48,7 @@ namespace TogetherNotes.Models.Management
                 Console.WriteLine("General error: " + ex.Message);
             }
 
-            return false;
+            return null;
         }
 
         public static List<User> SelectAllAdmins()

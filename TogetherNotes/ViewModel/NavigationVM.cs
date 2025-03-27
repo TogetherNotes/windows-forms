@@ -1,4 +1,5 @@
-﻿using System.Windows.Input;
+﻿using System.Windows;
+using System.Windows.Input;
 using TogetherNotes.Utils;
 
 namespace TogetherNotes.ViewModel
@@ -28,14 +29,23 @@ namespace TogetherNotes.ViewModel
         public ICommand LogoutCommand { get; set; }
 
         private void Home(object obj) { if (IsAuthenticated) CurrentView = new HomeVM(); }
-        private void Users(object obj) 
+        private void Users(object obj)
         {
-            if (IsAuthenticated)
+            if (!IsAuthenticated || string.IsNullOrEmpty(App.role))
+            {
+                return;
+            }
+
+            if (App.role.Equals("root"))
             {
                 CurrentView = new ManageAdminVM();
             }
-
+            else if (App.role.Equals("admin") || App.role.Equals("mant"))
+            {
+                CurrentView = new ManageAppVM();
+            }
         }
+
         private void Calendar(object obj) { if (IsAuthenticated) CurrentView = new CalendarVM(); }
         private void Map(object obj) { if (IsAuthenticated) CurrentView = new MapVM(); }
         private void Faq(object obj) { if (IsAuthenticated) CurrentView = new FaqsVM(); }
