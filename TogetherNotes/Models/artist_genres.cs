@@ -12,16 +12,13 @@ namespace TogetherNotes.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class contracts
+    public partial class artist_genres
     {
         public int artist_id { get; set; }
-        public int space_id { get; set; }
-        public string meet_type { get; set; }
-        public string status { get; set; }
-        public System.DateTimeOffset init_hour { get; set; }
-        public System.DateTimeOffset end_hour { get; set; }
+        public int genre_id { get; set; }
+        public Nullable<System.DateTime> creation_date { get; set; }
     
-        public virtual app app { get; set; }
-        public virtual app app1 { get; set; }
+        public virtual artists artists { get; set; }
+        public virtual genres genres { get; set; }
     }
 }

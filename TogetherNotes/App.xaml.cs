@@ -6,6 +6,7 @@ namespace TogetherNotes
 {
     public partial class App : Application
     {
+        public static string role { get; set; }
         public void ChangeLanguage(string languageCode)
         {
             string dictionaryPath = $"Languages/strings.{languageCode}.xaml";

@@ -33,10 +33,27 @@ namespace TogetherNotes.ViewModel
         private void Login(object obj)
         {
             // Validem amb la DB
-            bool isValid = AdminOrm.ValidateUser(Username, Password);
+            int? adminRole = AdminOrm.ValidateUser(Username, Password);
+            bool isValid = false;
+            if (adminRole == 1)
+            {
+                App.role = "root";
+                isValid = true;
+            }
+            else if (adminRole == 2)
+            {
+                App.role = "admin";
+                isValid = true;
+            }
+            else if (adminRole == 3)
+            {
+                App.role = "mant";
+                isValid = true;
+            }
 
             if (isValid)
             {
+
                 OnLoginSuccess?.Invoke(); // Notificar que el login ha estat correcte
             }
             else

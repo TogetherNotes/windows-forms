@@ -9,33 +9,45 @@ namespace TogetherNotes.Models.Management
     {
         public static List<Utils.Event> GetEventsForToday()
         {
-            DateTime today = DateTime.Today;
-            DateTime tomorrow = today.AddDays(1);
-
-            // Carrega contractes d'avui
-            var contracts = Orm.db.contracts
-                .Where(c => c.init_hour >= today && c.init_hour < tomorrow)
-                .ToList();
-
-            // Carrega tots els usuaris (artistes i espais)
-            var apps = Orm.db.app.ToList();
-
-            var events = contracts.Select(c =>
+            try
             {
-                var artist = apps.FirstOrDefault(a => a.id == c.artist_id);
-                var space = apps.FirstOrDefault(a => a.id == c.space_id);
+                DateTime today = DateTime.Today;
+                DateTime tomorrow = today.AddDays(1);
 
-                string artistName = artist != null ? artist.name : "Unknown Artist";
-                string spaceName = space != null ? space.name : "Unknown Space";
-                string type = c.meet_type;
+                // Carrega contractes d'avui
+                var contracts = Orm.db.contracts
+                    .Where(c => c.init_hour >= today && c.init_hour < tomorrow)
+                    .ToList();
 
-                string title = $"Event at {c.init_hour.LocalDateTime.ToShortTimeString()} with {artistName} and {spaceName} - {type}";
+                // Carrega tots els usuaris (artistes i espais)
+                var apps = Orm.db.app.ToList();
 
-                return new Utils.Event(c.init_hour, title);
+                var events = contracts.Select(c =>
+                {
+                    var artist = apps.FirstOrDefault(a => a.id == c.artist_id);
+                    var space = apps.FirstOrDefault(a => a.id == c.space_id);
 
-            }).ToList();
+                    string artistName = artist != null ? artist.name : "Unknown Artist";
+                    string spaceName = space != null ? space.name : "Unknown Space";
+                    string type = c.meet_type;
 
-            return events;
+                    string title = $"Event at {c.init_hour.LocalDateTime.ToShortTimeString()} with {artistName} and {spaceName} - {type}";
+
+                    return new Utils.Event(c.init_hour, title);
+                }).ToList();
+
+                return events;
+            }
+            catch (SqlException ex)
+            {
+                Console.WriteLine(Orm.ErrorMessage(ex));
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error general en GetEventsForToday: " + ex.Message);
+            }
+
+            return new List<Utils.Event>();
         }
 
         public static List<object> GetEventsByDate(DateTime selectedDate)
@@ -48,9 +60,8 @@ namespace TogetherNotes.Models.Management
                         e.init_hour,
                         e.meet_type
                     })
-                    .ToList(); 
+                    .ToList();
 
-               
                 return events
                     .Where(e => e.init_hour.Date == selectedDate.Date)
                     .Select(e => new
@@ -60,11 +71,16 @@ namespace TogetherNotes.Models.Management
                     })
                     .ToList<object>();
             }
+            catch (SqlException ex)
+            {
+                Console.WriteLine(Orm.ErrorMessage(ex));
+            }
             catch (Exception ex)
             {
-                Console.WriteLine("Error en GetEventsByDate: " + ex.Message);
-                return new List<object>();
+                Console.WriteLine("Error general en GetEventsByDate: " + ex.Message);
             }
+
+            return new List<object>();
         }
     }
 }

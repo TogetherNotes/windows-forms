@@ -70,7 +70,7 @@ namespace TogetherNotes.Models.Management
             }
             catch (Exception ex)
             {
-                Console.WriteLine("soy GAY" + ex.Message);
+                Console.WriteLine("General error:" + ex.Message);
             }
 
             return new List<Location>();
