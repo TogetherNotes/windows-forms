@@ -6,7 +6,6 @@ using System.Windows.Controls;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Windows.Data;
-using TogetherNotes.Models;
 using TogetherNotes.Models.Management;
 using TogetherNotes.Utils;
 
@@ -214,25 +213,25 @@ namespace TogetherNotes.Forms
                 List<string> selectedGenres = Genres.Where(g => g.IsSelected).Select(g => g.Name).ToList();
 
                 bool updated = ArtistsOrm.UpdateArtist(selectedUser.Id, nameUser.Text, Mail.Text, PasswordTextBox.Text, selectedGenres, rating);
-                ShowMessage(updated, "actualizado");
+                ShowMessage(updated, "updated");
             }
             else if (role == "Space")
             {
                 int capacity = int.TryParse(CapacityBox.Text, out int c) ? c : 1;
                 if (capacity < 1)
                 {
-                    MessageBox.Show("La capacidad debe ser mayor a 0.", "Error", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    MessageBox.Show("The capacity must be greater than 0.", "Error", MessageBoxButton.OK, MessageBoxImage.Warning);
                     return;
                 }
 
                 bool updated = SpacesOrm.UpdateSpace(selectedUser.Id, nameUser.Text, Mail.Text, PasswordTextBox.Text, capacity);
-                ShowMessage(updated, "actualizado");
+                ShowMessage(updated, "updated");
             }
             else
             {
                 int roleId = GetRoleId(role);
                 bool updated = AdminOrm.UpdateAdmin(selectedUser.Id, nameUser.Text, Mail.Text, PasswordTextBox.Text, roleId);
-                ShowMessage(updated, "actualizado");
+                ShowMessage(updated, "updated");
             }
 
             LoadUserData();
@@ -249,7 +248,7 @@ namespace TogetherNotes.Forms
 
             if (string.IsNullOrWhiteSpace(name) || string.IsNullOrWhiteSpace(mail) || string.IsNullOrWhiteSpace(password) || string.IsNullOrWhiteSpace(role))
             {
-                MessageBox.Show("Todos los campos son obligatorios.", "Advertencia", MessageBoxButton.OK, MessageBoxImage.Warning);
+                MessageBox.Show("All fields are required.", "Warning", MessageBoxButton.OK, MessageBoxImage.Warning);
                 return;
             }
 
@@ -261,7 +260,7 @@ namespace TogetherNotes.Forms
                 List<string> selectedGenres = Genres.Where(g => g.IsSelected).Select(g => g.Name).ToList();
 
                 bool inserted = ArtistsOrm.InsertArtist(name, mail, password, selectedGenres, rating);
-                ShowMessage(inserted, "creado");
+                ShowMessage(inserted, "created");
             }
             else if (role == "Space")
             {
@@ -270,18 +269,18 @@ namespace TogetherNotes.Forms
                 int capacity = int.TryParse(CapacityBox.Text, out int c) ? c : 1;
                 if (capacity < 1)
                 {
-                    MessageBox.Show("La capacidad debe ser mayor a 0.", "Error", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    MessageBox.Show("The capacity must be greater than 0.", "Error", MessageBoxButton.OK, MessageBoxImage.Warning);
                     return;
                 }
 
                 bool inserted = SpacesOrm.InsertSpace(name, mail, password, capacity, rating);
-                ShowMessage(inserted, "creado");
+                ShowMessage(inserted, "created");
             }
             else
             {
                 int roleId = GetRoleId(role);
                 bool inserted = AdminOrm.InsertAdmin(name, mail, password, roleId);
-                ShowMessage(inserted, "creado");
+                ShowMessage(inserted, "created");
             }
 
             LoadUserData();
@@ -305,11 +304,11 @@ namespace TogetherNotes.Forms
         {
             if (success)
             {
-                MessageBox.Show($"Usuario {action} correctamente.", "Éxito", MessageBoxButton.OK, MessageBoxImage.Information);
+                MessageBox.Show($"User {action} successfully.", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
             }
             else
             {
-                MessageBox.Show($"Error al {action} usuario.", "Error", MessageBoxButton.OK, MessageBoxImage.Warning);
+                MessageBox.Show($"Error ro {action} user.", "Error", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
         }
 
@@ -322,11 +321,10 @@ namespace TogetherNotes.Forms
             if (usersDataGrid.SelectedItem is User selectedUser)
             {
                 MessageBoxResult result = MessageBox.Show(
-                    "¿Estás seguro de que deseas eliminar este usuario?",
-                    "Confirmación",
+                    "Are you sure you want to delete this user?",
+                    "Confirmation",
                     MessageBoxButton.YesNo,
-                    MessageBoxImage.Warning
-                );
+                    MessageBoxImage.Warning);
 
                 if (result == MessageBoxResult.Yes)
                 {
@@ -347,7 +345,7 @@ namespace TogetherNotes.Forms
 
                     if (deleted)
                     {
-                        MessageBox.Show("Usuario eliminado correctamente.", "Éxito", MessageBoxButton.OK, MessageBoxImage.Information);
+                        ShowMessage(deleted, "deleted");
                         users.Remove(selectedUser);
                         usersView.Refresh();
                         ClearForm();
@@ -355,13 +353,13 @@ namespace TogetherNotes.Forms
                     }
                     else
                     {
-                        MessageBox.Show("Error al eliminar usuario.", "Error", MessageBoxButton.OK, MessageBoxImage.Warning);
+                        ShowMessage(deleted, "deleteing");
                     }
                 }
             }
             else
             {
-                MessageBox.Show("Seleccione un usuario para eliminar.", "Advertencia", MessageBoxButton.OK, MessageBoxImage.Warning);
+                MessageBox.Show("Select a user to delete.", "Warning", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
         }
         
@@ -371,12 +369,12 @@ namespace TogetherNotes.Forms
 
         private void ClearForm()
         {
-            nameUser.Text = string.Empty;
-            Mail.Text = string.Empty;
-            PasswordBox.Password = string.Empty;
-            PasswordTextBox.Text = string.Empty;
-            CapacityBox.Text = string.Empty;
-            RatingBox.Text = string.Empty;
+            nameUser.Clear();
+            Mail.Clear();
+            PasswordBox.Clear();
+            PasswordTextBox.Clear();
+            CapacityBox.Clear();
+            RatingBox.Clear();
             GenreBox.Text = string.Empty;
             roleComboBox.SelectedIndex = -1;
             usersDataGrid.SelectedItem = null;

@@ -1,4 +1,4 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
@@ -14,33 +14,34 @@ namespace TogetherNotes.Forms
 
         private void Expander_Expanded(object sender, RoutedEventArgs e)
         {
-            if (sender is Expander selectedExpander)
+            if (sender is Expander expandedExpander)
             {
-                // Trobar tots els Expanders dins de l'ItemsControl
-                var expanders = FindVisualChildren<Expander>(this).Where(exp => exp != selectedExpander);
-
-                // Tancar tots els altres Expanders
-                foreach (var expander in expanders)
+                // Cerrar todos los Expanders excepto el seleccionado
+                foreach (var expander in FindVisualChildren<Expander>(this))
                 {
-                    expander.IsExpanded = false;
+                    if (expander != expandedExpander)
+                    {
+                        expander.IsExpanded = false;
+                    }
                 }
             }
         }
 
-        // Funció genèrica per trobar tots els elements visuals d'un tipus dins d'un contenidor
-        private static System.Collections.Generic.IEnumerable<T> FindVisualChildren<T>(DependencyObject depObj) where T : DependencyObject
+        // Función genérica para encontrar todos los elementos visuales de un tipo dentro de un contenedor
+        private static IEnumerable<T> FindVisualChildren<T>(DependencyObject parent) where T : DependencyObject
         {
-            if (depObj == null) yield break;
+            if (parent == null) yield break;
 
-            for (int i = 0; i < VisualTreeHelper.GetChildrenCount(depObj); i++)
+            for (int i = 0; i < VisualTreeHelper.GetChildrenCount(parent); i++)
             {
-                DependencyObject child = VisualTreeHelper.GetChild(depObj, i);
-                if (child is T)
+                DependencyObject child = VisualTreeHelper.GetChild(parent, i);
+                if (child is T typedChild)
                 {
-                    yield return (T)child;
+                    yield return typedChild;
                 }
 
-                foreach (T childOfChild in FindVisualChildren<T>(child))
+                // Recursión para encontrar los elementos visuales hijos
+                foreach (var childOfChild in FindVisualChildren<T>(child))
                 {
                     yield return childOfChild;
                 }

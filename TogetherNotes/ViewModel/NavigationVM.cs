@@ -1,5 +1,4 @@
-﻿using System.Windows;
-using System.Windows.Input;
+﻿using System.Windows.Input;
 using TogetherNotes.Utils;
 
 namespace TogetherNotes.ViewModel
@@ -26,7 +25,6 @@ namespace TogetherNotes.ViewModel
         public ICommand MapCommand { get; set; }
         public ICommand FaqCommand { get; set; }
         public ICommand SettingsCommand { get; set; }
-        public ICommand LogoutCommand { get; set; }
 
         private void Home(object obj) { if (IsAuthenticated) CurrentView = new HomeVM(); }
         private void Users(object obj)

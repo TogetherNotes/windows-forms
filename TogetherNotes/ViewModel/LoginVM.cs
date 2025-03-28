@@ -32,7 +32,6 @@ namespace TogetherNotes.ViewModel
 
         private void Login(object obj)
         {
-            // Validem amb la DB
             int? adminRole = AdminOrm.ValidateUser(Username, Password);
             bool isValid = false;
             if (adminRole == 1)
