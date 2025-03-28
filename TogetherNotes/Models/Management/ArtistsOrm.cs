@@ -214,11 +214,15 @@ namespace TogetherNotes.Models.Management
                 }
                 return false;
             }
+            catch (SqlException ex)
+            {
+                Console.WriteLine(Orm.ErrorMessage(ex));
+            }
             catch (Exception ex)
             {
-                Console.WriteLine("Error al eliminar artista: " + ex.Message);
-                return false;
+                Console.WriteLine("Error general: " + ex.Message);
             }
+            return false;
         }
     }
 }
