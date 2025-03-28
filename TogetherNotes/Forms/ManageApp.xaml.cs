@@ -322,7 +322,7 @@ namespace TogetherNotes.Forms
                 }
                 else
                 {
-                    MessageBox.Show("No tienes los permisos para crear usuarios.", "Advertencia", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    MessageBox.Show("No tienes los permisos para eliminar usuarios.", "Advertencia", MessageBoxButton.OK, MessageBoxImage.Warning);
                 }
             }
             else
@@ -375,7 +375,7 @@ namespace TogetherNotes.Forms
                 GenreBox.Visibility = Visibility.Collapsed;
 
                 // Mostrar según el rol seleccionado
-                if (selectedRole == "Art")
+                if (selectedRole == "Artist")
                 {
                     genreBlock.Visibility = Visibility.Visible;
                     GenreBox.Visibility = Visibility.Visible;
