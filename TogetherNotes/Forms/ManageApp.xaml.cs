@@ -20,9 +20,15 @@ namespace TogetherNotes.Forms
         private ObservableCollection<User> users;
         private ICollectionView usersView;
 
+        /// <summary>
+        /// Colección de géneros disponibles.
+        /// </summary>
         public ObservableCollection<GenreModel> Genres { get; set; }
 
-
+        /// <summary>
+        /// Constructor de la clase ManageApp.
+        /// Inicializa la interfaz y carga los datos de usuarios y géneros.
+        /// </summary>
         public ManageApp()
         {
             InitializeComponent();
@@ -33,7 +39,9 @@ namespace TogetherNotes.Forms
             SetupUserFilter();
         }
 
-
+        /// <summary>
+        /// Carga la lista de géneros desde la base de datos.
+        /// </summary>
         private void LoadGenres()
         {
             List<string> genresFromDb = GenresOrm.SelectAllGenres();
@@ -46,12 +54,18 @@ namespace TogetherNotes.Forms
             }
         }
 
+        /// <summary>
+        /// Evento que actualiza el cuadro de texto de género cuando se cierra el desplegable.
+        /// </summary>
         private void GenreBox_DropDownClosed(object sender, EventArgs e)
         {
             var selectedGenres = Genres.Where(g => g.IsSelected).Select(g => g.Name);
             GenreBox.Text = string.Join(", ", selectedGenres);
         }
 
+        /// <summary>
+        /// Carga los datos de los usuarios desde la base de datos.
+        /// </summary>
         private void LoadUserData()
         {
             List<User> artistsFromDb = ArtistsOrm.SelectAllArtists();
@@ -67,6 +81,9 @@ namespace TogetherNotes.Forms
             usersDataGrid.ItemsSource = usersView;
         }
 
+        /// <summary>
+        /// Configura el filtro de búsqueda de usuarios.
+        /// </summary>
         private void SetupUserFilter()
         {
             if (usersView != null)
@@ -83,8 +100,9 @@ namespace TogetherNotes.Forms
             }
         }
 
-
-
+        /// <summary>
+        /// Filtra los usuarios en función del texto ingresado en el cuadro de búsqueda.
+        /// </summary>
         private void searchedUser_TextChanged(object sender, TextChangedEventArgs e)
         {
             using (usersView.DeferRefresh())
@@ -97,7 +115,9 @@ namespace TogetherNotes.Forms
             }
         }
 
-
+        /// <summary>
+        /// Maneja el evento de cambio de selección en la tabla de usuarios.
+        /// </summary>
         private void usersDataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (usersDataGrid.SelectedItem is User selectedUser)
@@ -155,6 +175,9 @@ namespace TogetherNotes.Forms
             }
         }
 
+        /// <summary>
+        /// Alterna la visibilidad de la contraseña entre texto plano y oculto.
+        /// </summary>
         private void TogglePasswordVisibility(object sender, RoutedEventArgs e)
         {
             _isPasswordVisible = !_isPasswordVisible;
@@ -173,12 +196,18 @@ namespace TogetherNotes.Forms
             }
         }
 
+        /// <summary>
+        /// Actualiza el cuadro de texto de contraseña cuando se modifica la contraseña.
+        /// </summary>
         private void PasswordBox_PasswordChanged(object sender, RoutedEventArgs e)
         {
             if (!_isPasswordVisible)
                 PasswordTextBox.Text = PasswordBox.Password;
         }
 
+        /// <summary>
+        /// Guarda o actualiza la información del usuario seleccionado.
+        /// </summary>
         private void SaveUser(object sender, RoutedEventArgs e)
         {
             if (usersDataGrid.SelectedItem is User selectedUser)
@@ -200,6 +229,9 @@ namespace TogetherNotes.Forms
             ClearForm();
         }
 
+        /// <summary>
+        /// Actualiza un usuario seleccionado en la base de datos.
+        /// </summary>
         private void UpdateUser(User selectedUser)
         {
             string role = (roleComboBox.SelectedItem as ComboBoxItem)?.Content.ToString();
@@ -229,8 +261,9 @@ namespace TogetherNotes.Forms
             LoadUserData();
         }
 
-
-
+        /// <summary>
+        /// Inserta un nuevo usuario en la base de datos.
+        /// </summary>
         private void InsertUser()
         {
             string name = nameUser.Text;
@@ -271,6 +304,9 @@ namespace TogetherNotes.Forms
             LoadUserData();
         }
 
+        /// <summary>
+        /// Elimina un usuario seleccionado de la base de datos.
+        /// </summary>
         private void DeleteUser(object sender, RoutedEventArgs e)
         {
             if (usersDataGrid.SelectedItem is User selectedUser)
@@ -325,6 +361,9 @@ namespace TogetherNotes.Forms
             }
         }
 
+        /// <summary>
+        /// Muestra un mensaje de éxito o error al realizar una acción.
+        /// </summary>
         private void ShowMessage(bool success, string action)
         {
             if (success)
@@ -337,6 +376,9 @@ namespace TogetherNotes.Forms
             }
         }
 
+        /// <summary>
+        /// Limpia el formulario de usuario.
+        /// </summary>
         private void ClearForm()
         {
             nameUser.Clear();
@@ -355,7 +397,9 @@ namespace TogetherNotes.Forms
             GenreBox.Visibility = Visibility.Collapsed;
         }
 
-
+        /// <summary>
+        /// Maneja el evento de cambio de selección en el ComboBox de roles.
+        /// </summary>
         private void roleComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (roleComboBox.SelectedItem is ComboBoxItem selectedItem)
@@ -382,6 +426,9 @@ namespace TogetherNotes.Forms
             }
         }
 
+        /// <summary>
+        /// Maneja el evento de limpiar formulario.
+        /// </summary>
         private void BtnClear_Click(object sender, RoutedEventArgs e)
         {
             ClearForm();
