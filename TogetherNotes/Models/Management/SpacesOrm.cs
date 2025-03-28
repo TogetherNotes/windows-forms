@@ -141,38 +141,28 @@ namespace TogetherNotes.Models.Management
                     var contracts = Orm.db.contracts.Where(c => c.space_id == userId).ToList();
                     Orm.db.contracts.RemoveRange(contracts);
 
-                    // **ELIMINAR MENSAJES PRIMERO**
-                    var messages = Orm.db.messages.Where(m => m.chat_id != null &&
-                                                              (Orm.db.chats.Any(c => c.id == m.chat_id &&
-                                                                                      (c.user1_id == userId || c.user2_id == userId)))).ToList();
-                    Orm.db.messages.RemoveRange(messages);
+                    // Eliminar mensajes
+                    var chatIds = Orm.db.chats.Where(c => c.user1_id == userId || c.user2_id == userId).Select(c => c.id).ToList();
+                    if (chatIds.Any())
+                    {
+                        Orm.db.messages.RemoveRange(Orm.db.messages.Where(m => chatIds.Contains(m.chat_id ?? 0)));
+                    }
 
-                    // **AHORA ELIMINAR CHATS**
+                    // Eliminar chats
                     var chats = Orm.db.chats.Where(c => c.user1_id == userId || c.user2_id == userId).ToList();
                     Orm.db.chats.RemoveRange(chats);
 
                     // Eliminar incidencias
-                    var incidences = Orm.db.incidences.Where(i => i.app_user_id == userId).ToList();
-                    Orm.db.incidences.RemoveRange(incidences);
+                    Orm.db.incidences.RemoveRange(Orm.db.incidences.Where(i => i.app_user_id == userId));
 
-                    // Eliminar el espacio de la tabla spaces
+                    // Eliminar archivos asociados
+                    Orm.db.files.RemoveRange(Orm.db.files.Where(f => f.app_id == userId));
+
+                    // Eliminar notificaciones asociadas
+                    Orm.db.notifications.RemoveRange(Orm.db.notifications.Where(n => n.app_id == userId));
+
+                    // Finalmente, eliminar el espacio y el usuario
                     Orm.db.spaces.Remove(space);
-
-                    // Eliminar archivos asociados si existen
-                    if (user.file_id != null)
-                    {
-                        var file = Orm.db.files.SingleOrDefault(f => f.id == user.file_id);
-                        if (file != null) Orm.db.files.Remove(file);
-                    }
-
-                    // Eliminar notificaciones asociadas si existen
-                    if (user.notification_id != null)
-                    {
-                        var notification = Orm.db.notifications.SingleOrDefault(n => n.id == user.notification_id);
-                        if (notification != null) Orm.db.notifications.Remove(notification);
-                    }
-
-                    // Finalmente, eliminar el usuario de la tabla app
                     Orm.db.app.Remove(user);
 
                     // Guardar cambios

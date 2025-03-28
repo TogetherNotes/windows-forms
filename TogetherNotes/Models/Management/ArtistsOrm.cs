@@ -198,19 +198,12 @@ namespace TogetherNotes.Models.Management
                     // Eliminar artista de artists
                     Orm.db.artists.Remove(artist);
 
-                    // Eliminar archivos asociados si existen
-                    if (user.file_id != null)
-                    {
-                        var file = Orm.db.files.SingleOrDefault(f => f.id == user.file_id);
-                        if (file != null) Orm.db.files.Remove(file);
-                    }
+                    // Eliminar archivos asociados
+                    Orm.db.files.RemoveRange(Orm.db.files.Where(f => f.app_id == userId));
 
-                    // Eliminar notificaciones asociadas si existen
-                    if (user.notification_id != null)
-                    {
-                        var notification = Orm.db.notifications.SingleOrDefault(n => n.id == user.notification_id);
-                        if (notification != null) Orm.db.notifications.Remove(notification);
-                    }
+                    // Eliminar notificaciones asociadas
+                    Orm.db.notifications.RemoveRange(Orm.db.notifications.Where(n => n.app_id == userId));
+
 
                     // Finalmente, eliminar el usuario de la tabla app
                     Orm.db.app.Remove(user);
