@@ -3,18 +3,9 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-using TogetherNotes.Models;
 using TogetherNotes.Models.Management;
 using TogetherNotes.Utils;
 
@@ -29,8 +20,15 @@ namespace TogetherNotes.Forms
         private ObservableCollection<User> users;
         private ICollectionView usersView;
 
+        /// <summary>
+        /// Colección de géneros disponibles.
+        /// </summary>
         public ObservableCollection<GenreModel> Genres { get; set; }
 
+        /// <summary>
+        /// Constructor de la clase ManageApp.
+        /// Inicializa la interfaz y carga los datos de usuarios y géneros.
+        /// </summary>
         public ManageApp()
         {
             InitializeComponent();
@@ -41,6 +39,9 @@ namespace TogetherNotes.Forms
             SetupUserFilter();
         }
 
+        /// <summary>
+        /// Carga la lista de géneros desde la base de datos.
+        /// </summary>
         private void LoadGenres()
         {
             List<string> genresFromDb = GenresOrm.SelectAllGenres();
@@ -53,12 +54,18 @@ namespace TogetherNotes.Forms
             }
         }
 
+        /// <summary>
+        /// Evento que actualiza el cuadro de texto de género cuando se cierra el desplegable.
+        /// </summary>
         private void GenreBox_DropDownClosed(object sender, EventArgs e)
         {
             var selectedGenres = Genres.Where(g => g.IsSelected).Select(g => g.Name);
             GenreBox.Text = string.Join(", ", selectedGenres);
         }
 
+        /// <summary>
+        /// Carga los datos de los usuarios desde la base de datos.
+        /// </summary>
         private void LoadUserData()
         {
             List<User> artistsFromDb = ArtistsOrm.SelectAllArtists();
@@ -74,6 +81,9 @@ namespace TogetherNotes.Forms
             usersDataGrid.ItemsSource = usersView;
         }
 
+        /// <summary>
+        /// Configura el filtro de búsqueda de usuarios.
+        /// </summary>
         private void SetupUserFilter()
         {
             if (usersView != null)
@@ -90,20 +100,24 @@ namespace TogetherNotes.Forms
             }
         }
 
-
-
+        /// <summary>
+        /// Filtra los usuarios en función del texto ingresado en el cuadro de búsqueda.
+        /// </summary>
         private void searchedUser_TextChanged(object sender, TextChangedEventArgs e)
         {
-            usersView.Refresh();
-
-            if (!usersView.Cast<User>().Any())
+            using (usersView.DeferRefresh())
             {
-                searchedUser.Text = string.Empty;
-                MessageBox.Show("No se encontraron usuarios.", "Búsqueda", MessageBoxButton.OK, MessageBoxImage.Information);
-                usersView.Refresh();
+                if (!usersView.Cast<User>().Any())
+                {
+                    searchedUser.Text = string.Empty;
+                    MessageBox.Show("No users were found.", "Search", MessageBoxButton.OK, MessageBoxImage.Information);
+                }
             }
         }
 
+        /// <summary>
+        /// Maneja el evento de cambio de selección en la tabla de usuarios.
+        /// </summary>
         private void usersDataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (usersDataGrid.SelectedItem is User selectedUser)
@@ -161,6 +175,9 @@ namespace TogetherNotes.Forms
             }
         }
 
+        /// <summary>
+        /// Alterna la visibilidad de la contraseña entre texto plano y oculto.
+        /// </summary>
         private void TogglePasswordVisibility(object sender, RoutedEventArgs e)
         {
             _isPasswordVisible = !_isPasswordVisible;
@@ -179,12 +196,18 @@ namespace TogetherNotes.Forms
             }
         }
 
+        /// <summary>
+        /// Actualiza el cuadro de texto de contraseña cuando se modifica la contraseña.
+        /// </summary>
         private void PasswordBox_PasswordChanged(object sender, RoutedEventArgs e)
         {
             if (!_isPasswordVisible)
                 PasswordTextBox.Text = PasswordBox.Password;
         }
 
+        /// <summary>
+        /// Guarda o actualiza la información del usuario seleccionado.
+        /// </summary>
         private void SaveUser(object sender, RoutedEventArgs e)
         {
             if (usersDataGrid.SelectedItem is User selectedUser)
@@ -195,7 +218,7 @@ namespace TogetherNotes.Forms
             {
                 if(App.role.Equals("mant"))
                 {
-                    MessageBox.Show("No tienes los permisos para crear usuarios.", "Advertencia", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    MessageBox.Show("You do not have permissions to create users.", "Warning", MessageBoxButton.OK, MessageBoxImage.Warning);
                 }
                 else
                 {
@@ -206,6 +229,9 @@ namespace TogetherNotes.Forms
             ClearForm();
         }
 
+        /// <summary>
+        /// Actualiza un usuario seleccionado en la base de datos.
+        /// </summary>
         private void UpdateUser(User selectedUser)
         {
             string role = (roleComboBox.SelectedItem as ComboBoxItem)?.Content.ToString();
@@ -218,25 +244,26 @@ namespace TogetherNotes.Forms
                 List<string> selectedGenres = Genres.Where(g => g.IsSelected).Select(g => g.Name).ToList();
 
                 bool updated = ArtistsOrm.UpdateArtist(selectedUser.Id, nameUser.Text, Mail.Text, PasswordTextBox.Text, selectedGenres, rating);
-                ShowMessage(updated, "actualizado");
+                ShowMessage(updated, "updated");
             }
             else if (role == "Space")
             {
                 int capacity = int.TryParse(CapacityBox.Text, out int c) ? c : 1;
                 if (capacity < 1)
                 {
-                    MessageBox.Show("La capacidad debe ser mayor a 0.", "Error", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    MessageBox.Show("The capacity must be greater than 0.", "Error", MessageBoxButton.OK, MessageBoxImage.Warning);
                     return;
                 }
 
                 bool updated = SpacesOrm.UpdateSpace(selectedUser.Id, nameUser.Text, Mail.Text, PasswordTextBox.Text, capacity);
-                ShowMessage(updated, "actualizado");
+                ShowMessage(updated, "updated");
             }
             LoadUserData();
         }
 
-
-
+        /// <summary>
+        /// Inserta un nuevo usuario en la base de datos.
+        /// </summary>
         private void InsertUser()
         {
             string name = nameUser.Text;
@@ -246,7 +273,7 @@ namespace TogetherNotes.Forms
 
             if (string.IsNullOrWhiteSpace(name) || string.IsNullOrWhiteSpace(mail) || string.IsNullOrWhiteSpace(password) || string.IsNullOrWhiteSpace(role))
             {
-                MessageBox.Show("Todos los campos son obligatorios.", "Advertencia", MessageBoxButton.OK, MessageBoxImage.Warning);
+                MessageBox.Show("All fields are required.", "Warning", MessageBoxButton.OK, MessageBoxImage.Warning);
                 return;
             }
 
@@ -258,7 +285,7 @@ namespace TogetherNotes.Forms
                 List<string> selectedGenres = Genres.Where(g => g.IsSelected).Select(g => g.Name).ToList();
 
                 bool inserted = ArtistsOrm.InsertArtist(name, mail, password, selectedGenres, rating);
-                ShowMessage(inserted, "creado");
+                ShowMessage(inserted, "created");
             }
             else if (role == "Space")
             {
@@ -267,16 +294,19 @@ namespace TogetherNotes.Forms
                 int capacity = int.TryParse(CapacityBox.Text, out int c) ? c : 1;
                 if (capacity < 1)
                 {
-                    MessageBox.Show("La capacidad debe ser mayor a 0.", "Error", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    MessageBox.Show("The capacity must be greater than 0.", "Error", MessageBoxButton.OK, MessageBoxImage.Warning);
                     return;
                 }
 
                 bool inserted = SpacesOrm.InsertSpace(name, mail, password, capacity, rating);
-                ShowMessage(inserted, "creado");
+                ShowMessage(inserted, "created");
             }
             LoadUserData();
         }
 
+        /// <summary>
+        /// Elimina un usuario seleccionado de la base de datos.
+        /// </summary>
         private void DeleteUser(object sender, RoutedEventArgs e)
         {
             if (usersDataGrid.SelectedItem is User selectedUser)
@@ -284,8 +314,8 @@ namespace TogetherNotes.Forms
                 if (App.role.Equals("admin"))
                 {
                     MessageBoxResult result = MessageBox.Show(
-                    "¿Estás seguro de que deseas eliminar este usuario?",
-                    "Confirmación",
+                    "Are you sure you want to delete this user?",
+                    "Confirmation",
                     MessageBoxButton.YesNo,
                     MessageBoxImage.Warning);
 
@@ -308,7 +338,7 @@ namespace TogetherNotes.Forms
 
                         if (deleted)
                         {
-                            MessageBox.Show("Usuario eliminado correctamente.", "Éxito", MessageBoxButton.OK, MessageBoxImage.Information);
+                            MessageBox.Show("User deleted successfully.", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
                             users.Remove(selectedUser);
                             usersView.Refresh();
                             ClearForm();
@@ -316,41 +346,47 @@ namespace TogetherNotes.Forms
                         }
                         else
                         {
-                            MessageBox.Show("Error al eliminar usuario.", "Error", MessageBoxButton.OK, MessageBoxImage.Warning);
+                            MessageBox.Show("Error deleting user.", "Error", MessageBoxButton.OK, MessageBoxImage.Warning);
                         }
                     }
                 }
                 else
                 {
-                    MessageBox.Show("No tienes los permisos para eliminar usuarios.", "Advertencia", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    MessageBox.Show("You do not have permissions to delete users.", "Warning", MessageBoxButton.OK, MessageBoxImage.Warning);
                 }
             }
             else
             {
-                MessageBox.Show("Seleccione un usuario para eliminar.", "Advertencia", MessageBoxButton.OK, MessageBoxImage.Warning);
+                MessageBox.Show("Select a user to delete.", "Warning", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
         }
 
+        /// <summary>
+        /// Muestra un mensaje de éxito o error al realizar una acción.
+        /// </summary>
         private void ShowMessage(bool success, string action)
         {
             if (success)
             {
-                MessageBox.Show($"Usuario {action} correctamente.", "Éxito", MessageBoxButton.OK, MessageBoxImage.Information);
+                MessageBox.Show($"User {action} successfulyy.", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
             }
             else
             {
-                MessageBox.Show($"Error al {action} usuario.", "Error", MessageBoxButton.OK, MessageBoxImage.Warning);
+                MessageBox.Show($"Error to {action} user.", "Error", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
         }
 
+        /// <summary>
+        /// Limpia el formulario de usuario.
+        /// </summary>
         private void ClearForm()
         {
-            nameUser.Text = string.Empty;
-            Mail.Text = string.Empty;
-            PasswordBox.Password = string.Empty;
-            PasswordTextBox.Text = string.Empty;
-            CapacityBox.Text = string.Empty;
-            RatingBox.Text = string.Empty;
+            nameUser.Clear();
+            Mail.Clear();
+            PasswordBox.Clear();
+            PasswordTextBox.Clear();
+            CapacityBox.Clear();
+            RatingBox.Clear();
             GenreBox.Text = string.Empty;
             roleComboBox.SelectedIndex = -1;
             usersDataGrid.SelectedItem = null;
@@ -361,7 +397,9 @@ namespace TogetherNotes.Forms
             GenreBox.Visibility = Visibility.Collapsed;
         }
 
-
+        /// <summary>
+        /// Maneja el evento de cambio de selección en el ComboBox de roles.
+        /// </summary>
         private void roleComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (roleComboBox.SelectedItem is ComboBoxItem selectedItem)
@@ -388,6 +426,9 @@ namespace TogetherNotes.Forms
             }
         }
 
+        /// <summary>
+        /// Maneja el evento de limpiar formulario.
+        /// </summary>
         private void BtnClear_Click(object sender, RoutedEventArgs e)
         {
             ClearForm();

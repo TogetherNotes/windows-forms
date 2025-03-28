@@ -223,8 +223,8 @@
     </Compile>
     <Compile Include="Utils\Btn.cs" />
     <Compile Include="Utils\Event.cs" />
+    <Compile Include="Utils\FAQ.cs" />
     <Compile Include="Utils\GenreModel.cs" />
-    <Compile Include="Utils\NullToVisibilityConverter.cs" />
     <Compile Include="Utils\RelayCommand.cs" />
     <Compile Include="Utils\User.cs" />
     <Compile Include="Utils\ViewModelBase.cs" />
@@ -327,7 +327,6 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="PageModel\PageModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -345,7 +344,9 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <Resource Include="Fonts\PlayfairDisplay.ttf" />
+    <Resource Include="Fonts\PlayfairDisplay.ttf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
     <Resource Include="Fonts\PlayfairDisplay-Medium.ttf" />
     <None Include="Docs\CREATING_CLASSES.md" />
     <None Include="Docs\REFACTORING_CLASSES.md" />
@@ -444,11 +445,14 @@
       <DependentUpon>TogetherNotesModel.edmx</DependentUpon>
       <LastGenOutput>TogetherNotesModel.cs</LastGenOutput>
     </Content>
-    <Resource Include="Resources\marker.png" />
+    <Resource Include="Resources\marker.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>

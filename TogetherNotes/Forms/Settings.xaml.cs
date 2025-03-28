@@ -3,6 +3,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media.Animation;
+using TogetherNotes.ViewModel;
 
 namespace TogetherNotes.Forms
 {
@@ -71,16 +72,18 @@ namespace TogetherNotes.Forms
 
         private void LogoutClicked(object sender, RoutedEventArgs e)
         {
-            if (Application.Current.MainWindow.DataContext is TogetherNotes.ViewModel.NavigationVM navigationVM)
+            if (Application.Current.MainWindow.DataContext is NavigationVM navigationVM)
             {
                 navigationVM.IsAuthenticated = false;
 
                 // Creem un nou LoginVM i assegurem que OnLoginSuccess es configura correctament
-                var loginVM = new TogetherNotes.ViewModel.LoginVM();
-                loginVM.OnLoginSuccess = () =>
+                var loginVM = new LoginVM
                 {
-                    navigationVM.IsAuthenticated = true;
-                    navigationVM.CurrentView = new TogetherNotes.ViewModel.HomeVM(); // Torna al Dashboard
+                    OnLoginSuccess = () =>
+                    {
+                        navigationVM.IsAuthenticated = true;
+                        navigationVM.CurrentView = new HomeVM(); // Torna al Dashboard
+                    }
                 };
 
                 navigationVM.CurrentView = loginVM;

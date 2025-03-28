@@ -1,8 +1,7 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:vm="clr-namespace:TogetherNotes.ViewModel"
-                    xmlns:view="clr-namespace:TogetherNotes.Forms"
-                    >
+                    xmlns:view="clr-namespace:TogetherNotes.Forms">
 
     <DataTemplate DataType="{x:Type vm:HomeVM}">
         <view:Home/>

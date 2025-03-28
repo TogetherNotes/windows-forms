@@ -1,12 +1,9 @@
-﻿using System.ComponentModel;
-using System.Runtime.CompilerServices;
-using System.Windows.Input;
-using TogetherNotes.Utils;
-
-namespace TogetherNotes.ViewModel
+﻿namespace TogetherNotes.ViewModel
 {
+    /// <summary>
+    /// ViewModel para la gestión de administradores.
+    /// </summary>
     public class ManageAdminVM
     {
-        
     }
 }

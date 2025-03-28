@@ -33,11 +33,7 @@ namespace TogetherNotes.Forms
         {
             // Carreguem i configurem el mapa només quan el MapControl s'ha carregat completament
             LoadMap();
-
-            // Establim el Clip inicial
             UpdateMapClip();
-
-            // 🔹 Carregar els marcadors després de la configuració del mapa
             LoadMarkers();
         }
 
@@ -67,7 +63,6 @@ namespace TogetherNotes.Forms
 
         private void MapControl_SizeChanged(object sender, SizeChangedEventArgs e)
         {
-            // Actualitzem el Clip quan el mapa canviï de mida
             UpdateMapClip();
         }
 
@@ -80,7 +75,6 @@ namespace TogetherNotes.Forms
 
         private void LoadMarkers()
         {
-            // 🔹 Esborrem els marcadors antics
             MapControl.Markers.Clear();
 
             foreach (var marker in _viewModel.Markers)
