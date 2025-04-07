@@ -105,13 +105,14 @@ namespace TogetherNotes.Forms
         /// </summary>
         private void searchedUser_TextChanged(object sender, TextChangedEventArgs e)
         {
-            using (usersView.DeferRefresh())
+            usersView.Refresh();
+
+            if (!usersView.Cast<User>().Any())
             {
-                if (!usersView.Cast<User>().Any())
-                {
-                    searchedUser.Text = string.Empty;
-                    MessageBox.Show("No users were found.", "Search", MessageBoxButton.OK, MessageBoxImage.Information);
-                }
+                searchedUser.Text = string.Empty;
+                MessageBox.Show("No users were found.", "Search", MessageBoxButton.OK, MessageBoxImage.Information);
+                usersView.Refresh();
+
             }
         }
 

@@ -107,7 +107,7 @@ namespace TogetherNotes.Forms
             if (!usersView.Cast<User>().Any())
             {
                 searchedUser.Text = string.Empty;
-                MessageBox.Show("No se encontraron usuarios.", "Búsqueda", MessageBoxButton.OK, MessageBoxImage.Information);
+                MessageBox.Show("No users were found.", "Search", MessageBoxButton.OK, MessageBoxImage.Information);
                 usersView.Refresh();
             }
         }
